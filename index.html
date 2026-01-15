@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cassie Liang</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --link-color: #000000;
+            --meta-color: #666666;
+            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+        }
+
+        body {
+            font-family: var(--font-main);
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        /* Top Right Navigation */
+        .top-nav {
+            position: absolute;
+            top: 40px;
+            right: 20px;
+            font-size: 14px;
+        }
+
+        .top-nav a {
+            margin-left: 15px;
+            color: var(--meta-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .top-nav a:hover {
+            color: var(--link-color);
+            border-bottom-color: var(--link-color);
+        }
+
+        header {
+            margin-bottom: 60px; /* Increased margin to account for nav */
+            margin-top: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+            letter-spacing: -0.5px;
+        }
+
+        .bio {
+            color: var(--meta-color);
+            margin-bottom: 20px;
+            max-width: 80%;
+        }
+
+        .links {
+            display: flex;
+            gap: 15px;
+            font-size: 14px;
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+            border-bottom: 1px solid #ddd;
+            transition: border-color 0.2s;
+        }
+
+        a:hover {
+            border-bottom-color: #000;
+        }
+
+        section {
+            margin-bottom: 50px;
+        }
+
+        h2 {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--meta-color);
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .item {
+            margin-bottom: 25px;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 5px;
+        }
+
+        .item-title {
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .item-meta {
+            font-size: 13px;
+            color: var(--meta-color);
+        }
+
+        .item-desc {
+            font-size: 15px;
+            color: #444;
+        }
+
+        .skills-list {
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .article-link {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 12px;
+        }
+        
+        .article-date {
+            color: var(--meta-color);
+            font-size: 13px;
+            min-width: 100px;
+            font-variant-numeric: tabular-nums;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 20px;
+            }
+            .top-nav {
+                position: static;
+                margin-bottom: 20px;
+                text-align: left;
+            }
+            .top-nav a {
+                margin-left: 0;
+                margin-right: 15px;
+            }
+            .item-header {
+                flex-direction: column;
+            }
+            .item-meta {
+                margin-top: 2px;
+            }
+            .article-link {
+                flex-direction: column;
+            }
+            .article-date {
+                margin-bottom: 2px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-nav">
+        <a href="#projects">Projects</a>
+        <a href="#writing">Writing</a>
+        <a href="#experience">Experience</a>
+    </div>
+
+    <header>
+        <h1>Cassie Liang</h1>
+        <div class="bio">
+            M.S. CS student at Northeastern University. Building distributed systems & AI agents.
+            <br>
+            Seeking Summer 2026 Internship.
+        </div>
+        <div class="links">
+            <a href="mailto:cassieliang233@gmail.com">Email</a>
+            <a href="https://github.com/cassieliang6709" target="_blank">GitHub</a>
+            <a href="https://www.linkedin.com/in/yue-liang-195960384/" target="_blank">LinkedIn</a>
+        </div>
+    </header>
+
+    <section id="projects">
+        <h2>Featured Projects</h2>
+        
+        <div class="item">
+            <div class="item-header">
+                <span class="item-title"><a href="https://becoming.liangyue.site/">Becoming</a></span>
+                <span class="item-meta">React 18, Supabase, LLM API</span>
+            </div>
+            <div class="item-desc">
+                AI Life Coach platform. Integrated Qwen-32B via Edge Functions for personalized mentorship. Built gamified skill tree with optimistic UI updates.
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="item-header">
+                <span class="item-title"><a href="https://word.liangyue.site/">WordForge</a></span>
+                <span class="item-meta">Next.js, Prisma, AI</span>
+            </div>
+            <div class="item-desc">
+                AI-enhanced vocabulary learning. Combines etymology research with semantic explanations. <100ms API response time.
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="item-header">
+                <span class="item-title"><a href="#">Zenith Task</a></span>
+                <span class="item-meta">React Native, Supabase, AI</span>
+            </div>
+            <div class="item-desc">
+                AI-powered mobile task manager. Integrated secure authentication and real-time sync for a seamless cross-platform experience.
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="item-header">
+                <span class="item-title"><a href="https://github.com/cassieliang6709/leetcode-learning-platform">AlgoMentor</a></span>
+                <span class="item-meta">Python, Docker, Redis</span>
+            </div>
+            <div class="item-desc">
+                Distributed learning platform serving 500+ concurrent users with <150ms latency using Redis caching and AsyncIO.
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="item-header">
+                <span class="item-title"><a href="https://github.com/viso-study/visocode">VisoCode</a></span>
+                <span class="item-meta">LLM Agents, PyTorch</span>
+            </div>
+            <div class="item-desc">
+                Award-winning multi-agent automation pipeline. Orchestrates AI agents for complex code generation and analysis.
+            </div>
+        </div>
+    </section>
+
+    <section id="writing">
+        <h2>Writing</h2>
+        <div class="item">
+            <div class="article-link">
+                <span class="article-date">Jan 14, 2026</span>
+                <a href="article-wordforge.html">Building WordForge: An AI-Enhanced Vocabulary Platform</a>
+            </div>
+            <div class="article-link">
+                <span class="article-date">Jan 01, 2026</span>
+                <a href="article-my-story.html">From Accounting to Algorithms: My Journey to Software Engineering</a>
+            </div>
+            <div class="article-link">
+                <span class="article-date">Dec 20, 2025</span>
+                <a href="article-rag-optimization.html">Optimizing RAG Pipelines: Reducing Latency to &lt;200ms</a>
+            </div>
+            <div class="article-link">
+                <span class="article-date">Nov 15, 2025</span>
+                <a href="article-distributed-training.html">Scaling Distributed Training for LLMs on Kubernetes</a>
+            </div>
+            <div class="article-link">
+                <span class="article-date">Oct 08, 2025</span>
+                <a href="article-mobile-auth.html">Implementing Secure Authentication in React Native with Supabase</a>
+            </div>
+            <div class="article-link">
+                <span class="article-date">Sep 22, 2025</span>
+                <a href="article-event-driven.html">Why I Switched to Event-Driven Architecture for Scalable Microservices</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <h2>Experience</h2>
+        
+        <div class="item">
+            <div class="item-header">
+                <span class="item-title">Deloitte | Shanghai, China</span>
+                <span class="item-meta">2023 – 2024</span>
+            </div>
+            <div class="item-desc">
+                <strong>Audit & Assurance Associate (Automation Engineer)</strong><br>
+                • Engineered automated data pipelines using Python and SQL, integrating Git-based CI/CD workflows to streamline data processing and reduce manual effort by <strong>30%</strong><br>
+                • Collaborated with cross-functional teams under Agile methodologies to deliver <strong>15+ production automation tools</strong>, conducting rigorous testing and defect resolution<br>
+                • Optimized database queries for multi-entity datasets, improving data retrieval speed by <strong>40%</strong> and documenting all designs and test results
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="item-header">
+                <span class="item-title">Liangyue E-commerce Co., Ltd. | Hangzhou, China</span>
+                <span class="item-meta">2021 – Present</span>
+            </div>
+            <div class="item-desc">
+                <strong>Founder & Lead Engineer</strong><br>
+                • Architected a scalable backend system to handle high-traffic workloads, implementing resource orchestration strategies that maintained <strong>99.9% uptime</strong> during peak operations<br>
+                • Analyzed user behavior patterns using data-driven algorithms, reducing customer acquisition costs by <strong>30%</strong> and enabling intelligent business intelligence decisions through real-time metrics
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Skills</h2>
+        <div class="skills-list">
+            <strong>Languages:</strong> Python, Java, C++, JavaScript, Go, SQL<br>
+            <strong>Tech:</strong> React Native, Docker, Kubernetes, AWS, Redis, FastAPI
+        </div>
+    </section>
+
+</body>
+</html>

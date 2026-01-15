@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scaling Distributed Training - Cassie Liang</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --link-color: #000000;
+            --meta-color: #666666;
+            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+        }
+
+        body {
+            font-family: var(--font-main);
+            line-height: 1.8;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            margin-bottom: 40px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+
+        .back-link {
+            font-size: 14px;
+            color: var(--meta-color);
+            text-decoration: none;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+            letter-spacing: -0.5px;
+        }
+
+        .date {
+            color: var(--meta-color);
+            font-size: 14px;
+        }
+
+        article {
+            font-size: 16px;
+        }
+
+        h2 {
+            font-size: 20px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        ul {
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="back-link">← Back to Home</a>
+        <h1>Scaling Distributed Training for LLMs on Kubernetes</h1>
+        <div class="date">November 15, 2025</div>
+    </header>
+
+    <article>
+        <p>Training Large Language Models (LLMs) requires massive computational resources. When building <strong>VisoCode</strong>, I faced the challenge of orchestrating multi-agent systems efficiently. This led me to explore distributed training patterns on Kubernetes.</p>
+
+        <h2>The Challenge: GPU Utilization</h2>
+        <p>One of the biggest issues in distributed training is keeping the GPUs fed with data. I observed that GPU utilization was dropping to 40% due to data loading bottlenecks.</p>
+
+        <h2>Optimization Strategy</h2>
+        <p>I implemented a custom data loader that prefetches data asynchronously. By decoupling the data preparation step from the training loop and using a shared memory buffer, I was able to ensure that the GPUs always had a batch ready to process.</p>
+
+        <h2>Infrastructure</h2>
+        <ul>
+            <li><strong>Orchestrator:</strong> Kubernetes (EKS)</li>
+            <li><strong>Framework:</strong> PyTorch Distributed Data Parallel (DDP)</li>
+            <li><strong>Monitoring:</strong> Prometheus + Grafana</li>
+        </ul>
+
+        <h2>Outcome</h2>
+        <p>The optimization resulted in a **95% GPU utilization rate**, significantly reducing the training time and cost. This experience reinforced the importance of system-level optimization in AI workflows.</p>
+    </article>
+</body>
+</html>
