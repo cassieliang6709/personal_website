@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cassie Liang</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23111'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='Arial' font-size='14' font-weight='700' fill='white'%3ECL%3C/text%3E%3C/svg%3E">
     <style>
         :root {
             --bg-color: #ffffff;
-            --text-color: #2f2f2f;
+            --text-color: #202020;
             --link-color: #111111;
-            --meta-color: #666666;
-            --rule-color: #e8e8e8;
-            --soft-color: #f7f7f7;
+            --meta-color: #6d6d6d;
+            --rule-color: #e4e4e4;
+            --soft-color: #fafafa;
             --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
         }
 
@@ -20,21 +21,21 @@
             line-height: 1.6;
             color: var(--text-color);
             background-color: var(--bg-color);
-            max-width: 720px;
+            max-width: 760px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 48px 24px;
             position: relative;
         }
 
         .top-nav {
-            position: absolute;
-            top: 40px;
-            right: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-bottom: 52px;
             font-size: 14px;
         }
 
         .top-nav a {
-            margin-left: 15px;
             color: var(--meta-color);
             text-decoration: none;
             border-bottom: 1px solid transparent;
@@ -47,26 +48,27 @@
         }
 
         header {
-            margin-top: 20px;
-            margin-bottom: 58px;
+            margin-bottom: 54px;
         }
 
         h1 {
-            font-size: 26px;
+            font-size: 30px;
             font-weight: 700;
-            margin: 0 0 10px 0;
+            margin: 0 0 12px 0;
+            letter-spacing: -0.02em;
         }
 
         .bio {
-            color: var(--meta-color);
+            color: #3f3f3f;
             margin-bottom: 18px;
             max-width: 96%;
+            font-size: 17px;
         }
 
         .highlight-line {
             margin-top: 12px;
             font-size: 14px;
-            color: #444444;
+            color: var(--meta-color);
         }
 
         .links {
@@ -89,22 +91,29 @@
         }
 
         section {
-            margin-bottom: 50px;
+            margin-bottom: 46px;
         }
 
         h2 {
-            font-size: 14px;
+            font-size: 12px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.12em;
             color: var(--meta-color);
             border-bottom: 1px solid var(--rule-color);
-            padding-bottom: 5px;
-            margin-bottom: 25px;
+            padding-bottom: 7px;
+            margin-bottom: 22px;
             font-weight: 600;
         }
 
         .item {
-            margin-bottom: 28px;
+            margin-bottom: 24px;
+            padding-bottom: 22px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .item:last-child {
+            border-bottom: 0;
+            padding-bottom: 0;
         }
 
         .item-header {
@@ -129,7 +138,7 @@
 
         .item-desc {
             font-size: 15px;
-            color: #444444;
+            color: #3f3f3f;
         }
 
         .project-links {
@@ -143,6 +152,18 @@
         .tag-line {
             margin-top: 7px;
             font-size: 13px;
+            color: var(--meta-color);
+        }
+
+        .profile-facts {
+            display: grid;
+            grid-template-columns: 132px 1fr;
+            gap: 7px 20px;
+            margin-top: 22px;
+            font-size: 14px;
+        }
+
+        .fact-label {
             color: var(--meta-color);
         }
 
@@ -160,6 +181,26 @@
             margin-top: 4px;
             color: var(--meta-color);
             font-size: 13px;
+        }
+
+        .collection {
+            display: grid;
+            grid-template-columns: 132px 1fr;
+            gap: 18px 22px;
+            margin-bottom: 22px;
+        }
+
+        .collection-title {
+            color: var(--meta-color);
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .collection-list {
+            display: grid;
+            gap: 14px;
         }
 
         .article-link {
@@ -182,22 +223,11 @@
 
         @media (max-width: 640px) {
             body {
-                padding: 22px 20px;
+                padding: 24px 20px;
             }
 
             .top-nav {
-                position: static;
-                margin-bottom: 22px;
-                text-align: left;
-            }
-
-            .top-nav a {
-                margin-left: 0;
-                margin-right: 14px;
-            }
-
-            header {
-                margin-top: 0;
+                margin-bottom: 38px;
             }
 
             .item-header {
@@ -212,6 +242,16 @@
 
             .supporting-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .profile-facts,
+            .collection {
+                grid-template-columns: 1fr;
+                gap: 6px;
+            }
+
+            .collection {
+                margin-bottom: 28px;
             }
 
             .article-link {
@@ -237,12 +277,18 @@
     <header>
         <h1>Yue (Cassie) Liang</h1>
         <div class="bio">
-            M.S. in Artificial Intelligence student at Northeastern University building recommendation pipelines, AI companion products, and Java backend systems.
-            <br>
-            I like product-shaped engineering work: retrieval and ranking systems, privacy-aware LLM applications, and backend infrastructure that can be measured under real traffic.
+            Backend and AI engineer building recommendation pipelines, AI companion products, and Java backend systems.
         </div>
         <div class="highlight-line">
-            Current focus: search/recommendation, RAG and agentic workflows, SwiftUI AI products, Spring Boot, Redis caching, and high-concurrency backend design.
+            M.S. in Artificial Intelligence at Northeastern University. Current focus: search/recommendation, RAG and agentic workflows, SwiftUI AI products, Spring Boot, Redis caching, and high-concurrency backend design.
+        </div>
+        <div class="profile-facts">
+            <div class="fact-label">Based in</div>
+            <div>San Jose, CA</div>
+            <div class="fact-label">Looking for</div>
+            <div>Software engineering, AI/backend, recommendation systems, and product-minded engineering internships.</div>
+            <div class="fact-label">Working style</div>
+            <div>Product-shaped systems, measurable backend work, and privacy-aware AI workflows.</div>
         </div>
         <div class="links">
             <a href="mailto:liangyue3666@gmail.com">Email</a>
@@ -304,42 +350,55 @@
 
     <section id="labs">
         <h2>Live Demos / Labs</h2>
-        <div class="supporting-grid">
-            <div class="supporting-item">
-                <a href="https://chromewebstore.google.com/detail/tabspace/pigfllmaggabolcjieedkilhpdfcddai?hl=en" target="_blank">Tabspace</a>
-                <div>Chrome extension for new-tab workspace cleanup, tab grouping, reading queue, bookmark organization, and Reader Assist.</div>
-                <div class="project-links">
-                    <a href="https://cassieliang6709.github.io/tabspace-site/" target="_blank">Landing</a>
-                    <a href="https://cassieliang6709.github.io/tabspace-privacy-policy/" target="_blank">Privacy</a>
+        <div class="collection">
+            <div class="collection-title">Products</div>
+            <div class="collection-list">
+                <div class="supporting-item">
+                    <a href="https://chromewebstore.google.com/detail/tabspace/pigfllmaggabolcjieedkilhpdfcddai?hl=en" target="_blank">Tabspace</a>
+                    <div>Chrome extension for new-tab workspace cleanup, tab grouping, reading queue, bookmark organization, and Reader Assist.</div>
+                    <div class="project-links">
+                        <a href="https://cassieliang6709.github.io/tabspace-site/" target="_blank">Landing</a>
+                        <a href="https://cassieliang6709.github.io/tabspace-privacy-policy/" target="_blank">Privacy</a>
+                    </div>
+                </div>
+                <div class="supporting-item">
+                    <a href="https://leetcode-learning-platform.vercel.app" target="_blank">LeetCode Learning Platform</a>
+                    <div>Deployed learning product prototype for algorithm practice, personalized hints, and interview-prep workflows.</div>
                 </div>
             </div>
-            <div class="supporting-item">
-                <a href="https://leetcode-learning-platform.vercel.app" target="_blank">LeetCode Learning Platform</a>
-                <div>Deployed learning product prototype for algorithm practice, personalized hints, and interview-prep workflows.</div>
+        </div>
+        <div class="collection">
+            <div class="collection-title">Learning Systems</div>
+            <div class="collection-list">
+                <div class="supporting-item">
+                    <a href="https://aiprojectsselfstudy.vercel.app" target="_blank">AI Projects Self-Study Hub</a>
+                    <div>Practical self-study book for RAG, LLM-from-scratch, alignment, and agent/RL project paths.</div>
+                </div>
+                <div class="supporting-item">
+                    <a href="https://study-notes-murex-ten.vercel.app" target="_blank">Study Notes Hub</a>
+                    <div>Structured notes for algorithms, OOD, system design, Amazon prep, and AI systems learning.</div>
+                </div>
+                <div class="supporting-item">
+                    <a href="https://amazon-vo-coding-book.vercel.app" target="_blank">Amazon VO Coding Book</a>
+                    <div>Compact bilingual coding-prep handbook mapping business-style interview prompts back to algorithm patterns.</div>
+                </div>
             </div>
-            <div class="supporting-item">
-                <a href="https://aiprojectsselfstudy.vercel.app" target="_blank">AI Projects Self-Study Hub</a>
-                <div>Practical self-study book for RAG, LLM-from-scratch, alignment, and agent/RL project paths.</div>
-            </div>
-            <div class="supporting-item">
-                <a href="https://newmanimvideo-cassieliang6709s-projects.vercel.app" target="_blank">AI Teaching Animation Demo</a>
-                <div>Live demo surface for a GenAI system that turns code and concepts into teaching animations.</div>
-            </div>
-            <div class="supporting-item">
-                <a href="https://demo-site-drab-rho.vercel.app" target="_blank">LCS Movie Recommender Demo</a>
-                <div>Interactive demo explaining a sequence-based recommender built around MovieLens-style viewing history.</div>
-            </div>
-            <div class="supporting-item">
-                <a href="https://study-notes-murex-ten.vercel.app" target="_blank">Study Notes Hub</a>
-                <div>Structured notes for algorithms, OOD, system design, Amazon prep, and AI systems learning.</div>
-            </div>
-            <div class="supporting-item">
-                <a href="https://cassieliang6709.github.io/TA-for-CS6180-Foundations-of-GenAI/" target="_blank">GenAI TA Materials</a>
-                <div>Teaching assistant resources and course-support materials for Foundations of Generative AI.</div>
-            </div>
-            <div class="supporting-item">
-                <a href="https://amazon-vo-coding-book.vercel.app" target="_blank">Amazon VO Coding Book</a>
-                <div>Compact bilingual coding-prep handbook mapping business-style interview prompts back to algorithm patterns.</div>
+        </div>
+        <div class="collection">
+            <div class="collection-title">AI Demos</div>
+            <div class="collection-list">
+                <div class="supporting-item">
+                    <a href="https://newmanimvideo-cassieliang6709s-projects.vercel.app" target="_blank">AI Teaching Animation Demo</a>
+                    <div>Live demo surface for a GenAI system that turns code and concepts into teaching animations.</div>
+                </div>
+                <div class="supporting-item">
+                    <a href="https://demo-site-drab-rho.vercel.app" target="_blank">LCS Movie Recommender Demo</a>
+                    <div>Interactive demo explaining a sequence-based recommender built around MovieLens-style viewing history.</div>
+                </div>
+                <div class="supporting-item">
+                    <a href="https://cassieliang6709.github.io/TA-for-CS6180-Foundations-of-GenAI/" target="_blank">GenAI TA Materials</a>
+                    <div>Teaching assistant resources and course-support materials for Foundations of Generative AI.</div>
+                </div>
             </div>
         </div>
     </section>
