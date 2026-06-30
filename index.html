@@ -7,9 +7,11 @@
     <style>
         :root {
             --bg-color: #ffffff;
-            --text-color: #333333;
-            --link-color: #000000;
+            --text-color: #2f2f2f;
+            --link-color: #111111;
             --meta-color: #666666;
+            --rule-color: #e8e8e8;
+            --soft-color: #f7f7f7;
             --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
         }
 
@@ -18,13 +20,12 @@
             line-height: 1.6;
             color: var(--text-color);
             background-color: var(--bg-color);
-            max-width: 680px;
+            max-width: 720px;
             margin: 0 auto;
             padding: 40px 20px;
             position: relative;
         }
 
-        /* Top Right Navigation */
         .top-nav {
             position: absolute;
             top: 40px;
@@ -46,38 +47,45 @@
         }
 
         header {
-            margin-bottom: 60px; /* Increased margin to account for nav */
             margin-top: 20px;
+            margin-bottom: 58px;
         }
 
         h1 {
-            font-size: 24px;
+            font-size: 26px;
             font-weight: 700;
             margin: 0 0 10px 0;
-            letter-spacing: -0.5px;
         }
 
         .bio {
             color: var(--meta-color);
-            margin-bottom: 20px;
-            max-width: 92%;
+            margin-bottom: 18px;
+            max-width: 96%;
+        }
+
+        .highlight-line {
+            margin-top: 12px;
+            font-size: 14px;
+            color: #444444;
         }
 
         .links {
             display: flex;
+            flex-wrap: wrap;
             gap: 15px;
             font-size: 14px;
+            margin-top: 18px;
         }
 
         a {
             color: var(--link-color);
             text-decoration: none;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid #d6d6d6;
             transition: border-color 0.2s;
         }
 
         a:hover {
-            border-bottom-color: #000;
+            border-bottom-color: #000000;
         }
 
         section {
@@ -89,47 +97,69 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             color: var(--meta-color);
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid var(--rule-color);
             padding-bottom: 5px;
             margin-bottom: 25px;
             font-weight: 600;
         }
 
         .item {
-            margin-bottom: 25px;
+            margin-bottom: 28px;
         }
 
         .item-header {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            margin-bottom: 5px;
+            gap: 16px;
+            margin-bottom: 6px;
         }
 
         .item-title {
-            font-weight: 600;
+            font-weight: 650;
             font-size: 16px;
         }
 
         .item-meta {
             font-size: 13px;
             color: var(--meta-color);
+            text-align: right;
+            white-space: nowrap;
         }
 
         .item-desc {
             font-size: 15px;
-            color: #444;
+            color: #444444;
         }
 
-        .skills-list {
+        .project-links {
+            margin-top: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 13px;
+        }
+
+        .tag-line {
+            margin-top: 7px;
+            font-size: 13px;
+            color: var(--meta-color);
+        }
+
+        .supporting-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px 28px;
+        }
+
+        .supporting-item {
             font-size: 15px;
-            line-height: 1.8;
         }
 
-        .highlight-line {
-            margin-top: 12px;
-            font-size: 14px;
-            color: #444;
+        .supporting-item div {
+            margin-top: 4px;
+            color: var(--meta-color);
+            font-size: 13px;
         }
 
         .article-link {
@@ -137,36 +167,57 @@
             align-items: baseline;
             margin-bottom: 12px;
         }
-        
+
         .article-date {
             color: var(--meta-color);
             font-size: 13px;
-            min-width: 100px;
+            min-width: 104px;
             font-variant-numeric: tabular-nums;
         }
 
-        @media (max-width: 600px) {
+        .skills-list {
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 640px) {
             body {
-                padding: 20px;
+                padding: 22px 20px;
             }
+
             .top-nav {
                 position: static;
-                margin-bottom: 20px;
+                margin-bottom: 22px;
                 text-align: left;
             }
+
             .top-nav a {
                 margin-left: 0;
-                margin-right: 15px;
+                margin-right: 14px;
             }
+
+            header {
+                margin-top: 0;
+            }
+
             .item-header {
                 flex-direction: column;
+                gap: 2px;
             }
+
             .item-meta {
-                margin-top: 2px;
+                text-align: left;
+                white-space: normal;
             }
+
+            .supporting-grid {
+                grid-template-columns: 1fr;
+            }
+
             .article-link {
                 flex-direction: column;
             }
+
             .article-date {
                 margin-bottom: 2px;
             }
@@ -176,87 +227,116 @@
 <body>
     <div class="top-nav">
         <a href="#projects">Projects</a>
+        <a href="#supporting">Supporting</a>
         <a href="#writing">Writing</a>
         <a href="#experience">Experience</a>
         <a href="#skills">Skills</a>
     </div>
 
     <header>
-        <h1>Cassie Liang</h1>
+        <h1>Yue (Cassie) Liang</h1>
         <div class="bio">
-            M.S. in Artificial Intelligence student at Northeastern University building backend services, distributed systems, and AI-powered products.
+            M.S. in Artificial Intelligence student at Northeastern University building recommendation pipelines, AI companion products, and Java backend systems.
             <br>
-            Targeting Software Engineering internships for Summer 2026, with a portfolio focused on Java backends, data-intensive systems, and production AI workflows.
+            I like product-shaped engineering work: retrieval and ranking systems, privacy-aware LLM applications, and backend infrastructure that can be measured under real traffic.
         </div>
         <div class="highlight-line">
-            Current focus: Spring Boot, FastAPI, REST APIs, MySQL/PostgreSQL, Redis, retrieval systems, and full-stack product delivery.
+            Current focus: search/recommendation, RAG and agentic workflows, SwiftUI AI products, Spring Boot, Redis caching, and high-concurrency backend design.
         </div>
         <div class="links">
             <a href="mailto:liangyue3666@gmail.com">Email</a>
             <a href="https://github.com/cassieliang6709" target="_blank">GitHub</a>
             <a href="https://www.linkedin.com/in/yue-liang-195960384/" target="_blank">LinkedIn</a>
-            <a href="https://github.com/cassieliang6709/orderflow" target="_blank">OrderFlow</a>
+            <a href="https://github.com/cassieliang6709/jobfit-ai" target="_blank">JobFit AI</a>
+            <a href="https://github.com/cassieliang6709/locki-ai-companion" target="_blank">Locki</a>
+            <a href="https://github.com/cassieliang6709/lifepulse-backend" target="_blank">LifePulse</a>
         </div>
     </header>
 
     <section id="projects">
         <h2>Featured Projects</h2>
-        
+
         <div class="item">
             <div class="item-header">
-                <span class="item-title"><a href="https://github.com/cassieliang6709/orderflow">OrderFlow</a></span>
-                <span class="item-meta">Java, Spring Boot, MySQL, Redis</span>
+                <span class="item-title"><a href="https://github.com/cassieliang6709/jobfit-ai" target="_blank">JobFit AI</a></span>
+                <span class="item-meta">Python, PyTorch, FastAPI, FAISS, LightGBM</span>
             </div>
             <div class="item-desc">
-                Java Spring Boot order-processing backend refactored from a takeout-domain codebase into a reusable system for order lifecycle, inventory consistency, payment status updates, and operational workflows.
+                Career intelligence and recommendation pipeline for matching candidates with high-fit jobs and learning content. The system is designed around multi-stage candidate generation, ranking, LLM skill-gap reasoning, and human review.
+            </div>
+            <div class="tag-line">Focus: retrieval, ranking, recommendation systems, LLM explanations, Redis-backed recommendation state.</div>
+            <div class="project-links">
+                <a href="https://github.com/cassieliang6709/jobfit-ai" target="_blank">Repository</a>
+                <a href="https://github.com/cassieliang6709/jobfit-ai/blob/main/docs/architecture.md" target="_blank">Architecture</a>
             </div>
         </div>
 
         <div class="item">
             <div class="item-header">
-                <span class="item-title"><a href="https://github.com/cassieliang6709/CS6120_finance_RAG">FinancialReport</a></span>
-                <span class="item-meta">Python, FastAPI, PostgreSQL, React</span>
+                <span class="item-title"><a href="https://github.com/cassieliang6709/locki-ai-companion" target="_blank">Locki AI Companion</a></span>
+                <span class="item-meta">SwiftUI, Family Controls, DeviceActivity, Vision OCR</span>
             </div>
             <div class="item-desc">
-                Full-stack financial analysis platform that ingests filings, market data, and news, then runs retrieval, analysis, validation, and report assembly through a backend pipeline.
+                SwiftUI Screen Time companion that locks distracting apps until users complete intentional tasks or lightweight proof-of-progress checks. AI stays advisory: it helps generate gentle tasks and reflections while deterministic local rules control unlocks.
+            </div>
+            <div class="tag-line">Focus: iOS platform constraints, Screen Time extensions, emotional accountability, privacy-aware AI workflows.</div>
+            <div class="project-links">
+                <a href="https://github.com/cassieliang6709/locki-ai-companion" target="_blank">Repository</a>
+                <a href="https://github.com/cassieliang6709/locki-ai-companion/tree/main/ai-gateway" target="_blank">AI Gateway</a>
             </div>
         </div>
 
         <div class="item">
             <div class="item-header">
-                <span class="item-title"><a href="https://github.com/cassieliang6709/memory-os">MemoryOS</a></span>
-                <span class="item-meta">FastAPI, React, PostgreSQL, pgvector</span>
+                <span class="item-title"><a href="https://github.com/cassieliang6709/lifepulse-backend" target="_blank">LifePulse Backend</a></span>
+                <span class="item-meta">Java, Spring Boot, MyBatis, Redis, Caffeine</span>
             </div>
             <div class="item-desc">
-                Cross-platform personal memory system focused on hybrid retrieval, stale-memory handling, state consistency, and product-engineering reliability.
+                Java Spring Boot backend for local-services discovery, voucher purchasing, and flash-sale ordering under high read traffic. The project focuses on caching, concurrency control, order workflows, and measurable backend reliability.
+            </div>
+            <div class="tag-line">Focus: multi-level caching, Redis Lua, Redisson locks, JMeter performance tests, layered Java backend design.</div>
+            <div class="project-links">
+                <a href="https://github.com/cassieliang6709/lifepulse-backend" target="_blank">Repository</a>
             </div>
         </div>
+    </section>
 
-        <div class="item">
-            <div class="item-header">
-                <span class="item-title"><a href="https://github.com/youdescribe-sfsu/YouDescribeX-app">YouDescribe</a></span>
-                <span class="item-meta">React, TypeScript, Google Cloud TTS</span>
+    <section id="supporting">
+        <h2>Supporting Work</h2>
+        <div class="supporting-grid">
+            <div class="supporting-item">
+                <a href="https://github.com/cassieliang6709/CS6120_finance_RAG" target="_blank">CS6120 Finance RAG</a>
+                <div>Financial retrieval and evidence-grounded report generation.</div>
             </div>
-            <div class="item-desc">
-                Software engineering internship work on accessibility and AI-assisted authoring, including playback controls across React/TypeScript and cloud TTS plus contextual description suggestions for visually impaired users.
+            <div class="supporting-item">
+                <a href="https://github.com/cassieliang6709/new_manim_video" target="_blank">AI Teaching Animation</a>
+                <div>Multi-step generation and validation for code teaching animations.</div>
+            </div>
+            <div class="supporting-item">
+                <a href="https://github.com/cassieliang6709/study_notes" target="_blank">Study Notes</a>
+                <div>Algorithms, OOD, system design, and AI systems preparation.</div>
+            </div>
+            <div class="supporting-item">
+                <a href="https://github.com/cassieliang6709/TA-for-CS6180-Foundations-of-GenAI" target="_blank">GenAI TA Materials</a>
+                <div>Teaching assistant materials for Foundations of Generative AI.</div>
             </div>
         </div>
     </section>
 
     <section id="writing">
-        <h2>Writing</h2>
+        <h2>Writing / Notes</h2>
         <div class="item">
             <div class="article-link">
-                <span class="article-date">Apr 17, 2026</span>
-                <a href="https://github.com/cassieliang6709/orderflow">OrderFlow Repository Notes</a>
+                <span class="article-date">Jun 30, 2026</span>
+                <a href="https://github.com/cassieliang6709/jobfit-ai" target="_blank">JobFit AI: Retrieval, Ranking, and Human-in-the-Loop Career Decisions</a>
             </div>
             <div class="article-link">
-                <span class="article-date">Apr 17, 2026</span>
-                <a href="https://github.com/cassieliang6709/CS6120_finance_RAG">FinancialReport: Backend Pipeline and Retrieval Workflow</a>
+                <span class="article-date">Jun 30, 2026</span>
+                <a href="https://github.com/cassieliang6709/locki-ai-companion" target="_blank">Locki AI Companion: AI Should Advise, Not Control</a>
             </div>
             <div class="article-link">
-                <span class="article-date">Apr 17, 2026</span>
-                <a href="https://github.com/cassieliang6709/memory-os">MemoryOS: Product Engineering and Retrieval Quality</a>
+                <span class="article-date">Jun 30, 2026</span>
+                <a href="https://github.com/cassieliang6709/lifepulse-backend" target="_blank">LifePulse Backend: Redis Caching and Flash-Sale Concurrency</a>
             </div>
             <div class="article-link">
                 <span class="article-date">Apr 03, 2026</span>
@@ -264,47 +344,33 @@
             </div>
             <div class="article-link">
                 <span class="article-date">Apr 02, 2026</span>
-                <a href="https://github.com/cassieliang6709/study_notes">Study Notes and Interview Preparation Hub</a>
+                <a href="https://github.com/cassieliang6709/study_notes" target="_blank">Study Notes and Interview Preparation Hub</a>
             </div>
         </div>
     </section>
 
     <section id="experience">
         <h2>Experience</h2>
-        
+
         <div class="item">
             <div class="item-header">
-                <span class="item-title">YouDescribe | San Jose, CA</span>
-                <span class="item-meta">Jan 2025 – Present</span>
+                <span class="item-title">Northeastern University | San Jose, CA</span>
+                <span class="item-meta">2026 - Present</span>
             </div>
             <div class="item-desc">
-                <strong>Software Engineering Intern</strong><br>
-                • Built and shipped a full-stack playback control feature across React/TypeScript and cloud-based TTS services for visually impaired users<br>
-                • Designed and integrated an AI-assisted description workflow using transcript, scene context, and editorial guidance, reducing manual authoring time by <strong>64%</strong> in a 30-user evaluation
-            </div>
-        </div>
-        
-        <div class="item">
-            <div class="item-header">
-                <span class="item-title">Deloitte | Shanghai, China</span>
-                <span class="item-meta">2023 – 2024</span>
-            </div>
-            <div class="item-desc">
-                <strong>Audit Associate</strong><br>
-                • Automated repetitive reporting and data-processing workflows with Python and VBA, improving consistency across <strong>10+</strong> templates<br>
-                • Built reusable internal tooling to reduce manual effort and support more reliable financial operations
+                <strong>Teaching Assistant, Foundations of Generative AI</strong><br>
+                Supported graduate students on RAG, LLM systems, applied generative AI implementation, cloud setup, and project-based debugging.
             </div>
         </div>
 
         <div class="item">
             <div class="item-header">
-                <span class="item-title">Northeastern University | San Jose, CA</span>
-                <span class="item-meta">Sep 2024 – Present</span>
+                <span class="item-title">Deloitte | Shanghai, China</span>
+                <span class="item-meta">2022 - 2023</span>
             </div>
             <div class="item-desc">
-                <strong>Teaching Assistant, Foundations of Generative AI</strong><br>
-                • Supported graduate students on RAG, LLM systems, and applied generative AI implementation<br>
-                • Helped students debug model pipelines, cloud setup, and system integration issues in project-based coursework
+                <strong>Audit Associate</strong><br>
+                Automated financial-record cleansing, working-paper mapping, and anomaly reporting with Python/VBA across recurring audit workflows.
             </div>
         </div>
     </section>
@@ -312,14 +378,12 @@
     <section id="skills">
         <h2>Skills</h2>
         <div class="skills-list">
-            <strong>Languages:</strong> Java, Python, SQL, JavaScript/TypeScript, Go<br>
-            <strong>Backend:</strong> Spring Boot, FastAPI, REST APIs, Async Processing, Microservices<br>
-            <strong>Databases:</strong> MySQL, PostgreSQL, Redis<br>
-            <strong>Cloud / Infra:</strong> AWS, Docker, GitHub Actions, Git, Linux<br>
-            <strong>Concepts:</strong> Data Structures, OOP, Distributed Systems, Caching, Fault Tolerance<br>
-            <strong>Frontend:</strong> React
+            <strong>Languages:</strong> Java, Python, Swift, SQL, JavaScript/TypeScript, Go<br>
+            <strong>Backend:</strong> Spring Boot, Spring MVC, FastAPI, REST APIs, MyBatis, PostgreSQL, MySQL, Redis<br>
+            <strong>AI/ML:</strong> PyTorch, FAISS, LightGBM, RAG, embeddings, QLoRA, OpenAI API, MCP, Chroma<br>
+            <strong>Systems:</strong> caching, async processing, Redis Lua, Redisson, distributed systems fundamentals, Docker, CI/CD<br>
+            <strong>Mobile:</strong> SwiftUI, Family Controls, DeviceActivity, WidgetKit, Vision OCR
         </div>
     </section>
-
 </body>
 </html>
