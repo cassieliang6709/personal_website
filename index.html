@@ -42,9 +42,21 @@
             transition: all 0.2s ease;
         }
 
-        .top-nav a:hover {
+        .top-nav a:hover,
+        .lang-toggle:hover {
             color: var(--link-color);
             border-bottom-color: var(--link-color);
+        }
+
+        .lang-toggle {
+            color: var(--meta-color);
+            background: transparent;
+            border: 0;
+            border-bottom: 1px solid transparent;
+            cursor: pointer;
+            font: inherit;
+            padding: 0;
+            transition: all 0.2s ease;
         }
 
         header {
@@ -273,6 +285,7 @@
         <a href="#writing">Writing</a>
         <a href="#experience">Experience</a>
         <a href="#skills">Skills</a>
+        <button class="lang-toggle" type="button" aria-pressed="false">中文</button>
     </div>
 
     <header>
@@ -399,10 +412,6 @@
                     <a href="https://aiprojectsselfstudy.vercel.app" target="_blank">Cassie Project Knowledge Base</a>
                     <div>Public project knowledge base plus the original self-study roadmap for RAG, LLM-from-scratch, alignment, and backend project paths.</div>
                 </div>
-                <div class="supporting-item">
-                    <span>Cassie Interview OS</span>
-                    <div>Private interview-prep system for project defense, LaiOffer-style review, English answers, and Amazon VO coding prep.</div>
-                </div>
             </div>
         </div>
         <div class="collection">
@@ -485,7 +494,7 @@
         <div class="item">
             <div class="item-header">
                 <span class="item-title">Deloitte | Shanghai, China</span>
-                <span class="item-meta">2022 - 2023</span>
+                <span class="item-meta">2023 - 2024</span>
             </div>
             <div class="item-desc">
                 <strong>Audit Associate</strong><br>
@@ -504,5 +513,138 @@
             <strong>Mobile:</strong> SwiftUI, Family Controls, DeviceActivity, WidgetKit, Vision OCR
         </div>
     </section>
+    <script>
+        const translations = {
+            "Cassie Liang": "梁越 Cassie",
+            "Projects": "项目",
+            "Knowledge Base": "知识库",
+            "Labs": "演示",
+            "Supporting": "补充作品",
+            "Writing": "文章",
+            "Experience": "经历",
+            "Skills": "技能",
+            "Backend and AI engineer building recommendation pipelines, AI companion products, and Java backend systems.": "Backend 和 AI 工程方向，主要做推荐系统 pipeline、AI companion 产品，以及 Java 后端系统。",
+            "M.S. in Artificial Intelligence at Northeastern University. Current focus: search/recommendation, RAG and agentic workflows, SwiftUI AI products, Spring Boot, Redis caching, and high-concurrency backend design.": "东北大学人工智能硕士在读。当前重点方向包括搜索/推荐、RAG 与 agent 工作流、SwiftUI AI 产品、Spring Boot、Redis 缓存和高并发后端设计。",
+            "Based in": "所在地",
+            "Looking for": "求职方向",
+            "Working style": "工作风格",
+            "San Jose, CA": "San Jose, CA",
+            "Software engineering, AI/backend, recommendation systems, and product-minded engineering internships.": "软件工程、AI/backend、推荐系统，以及偏产品思维的工程实习。",
+            "Product-shaped systems, measurable backend work, and privacy-aware AI workflows.": "关注产品化系统、可衡量的后端工程，以及重视隐私边界的 AI 工作流。",
+            "Email": "邮箱",
+            "GitHub": "GitHub",
+            "LinkedIn": "LinkedIn",
+            "Project KB": "项目知识库",
+            "Project Knowledge Base": "项目知识库",
+            "Public project map": "公开项目地图",
+            "Public-facing project notes that connect my core systems work across JobFit AI, Locki, LifePulse, and AuditFlow. Each project is framed around the problem, architecture, technical challenges, lessons learned, and evidence.": "公开项目笔记，把 JobFit AI、Locki、LifePulse 和 AuditFlow 这些核心系统项目串起来。每个项目都围绕问题定义、架构、技术挑战、复盘收获和证据展开。",
+            "Use this as the deeper companion to the project summaries below.": "可以把它当作下面项目摘要的深入版本。",
+            "JobFit AI notes": "JobFit AI 笔记",
+            "Locki notes": "Locki 笔记",
+            "LifePulse notes": "LifePulse 笔记",
+            "AuditFlow notes": "AuditFlow 笔记",
+            "Featured Projects": "核心项目",
+            "Python, PyTorch, FastAPI, FAISS, LightGBM": "Python, PyTorch, FastAPI, FAISS, LightGBM",
+            "Career intelligence and recommendation pipeline for matching candidates with high-fit jobs and learning content. The system is designed around multi-stage candidate generation, ranking, LLM skill-gap reasoning, and human review.": "职业智能与推荐 pipeline，用来匹配更适合候选人的岗位和学习内容。系统围绕多阶段候选生成、排序、LLM 技能差距分析和人工审核设计。",
+            "Focus: retrieval, ranking, recommendation systems, LLM explanations, Redis-backed recommendation state.": "重点：召回、排序、推荐系统、LLM 解释，以及基于 Redis 的推荐状态管理。",
+            "Repository": "代码仓库",
+            "Architecture": "架构",
+            "Project notes": "项目笔记",
+            "SwiftUI, Family Controls, DeviceActivity, Vision OCR": "SwiftUI, Family Controls, DeviceActivity, Vision OCR",
+            "SwiftUI Screen Time companion that locks distracting apps until users complete intentional tasks or lightweight proof-of-progress checks. AI stays advisory: it helps generate gentle tasks and reflections while deterministic local rules control unlocks.": "SwiftUI Screen Time companion，用于在用户完成有意识任务或轻量进度证明前锁住分心应用。AI 只提供建议：帮助生成温和任务和反思内容，真正的解锁由本地确定性规则控制。",
+            "Focus: iOS platform constraints, Screen Time extensions, emotional accountability, privacy-aware AI workflows.": "重点：iOS 平台约束、Screen Time extensions、情绪化 accountability，以及隐私友好的 AI 工作流。",
+            "AI Gateway": "AI Gateway",
+            "Java, Spring Boot, MyBatis, Redis, Caffeine": "Java, Spring Boot, MyBatis, Redis, Caffeine",
+            "Java Spring Boot backend for local-services discovery, voucher purchasing, and flash-sale ordering under high read traffic. The project focuses on caching, concurrency control, order workflows, and measurable backend reliability.": "Java Spring Boot 后端项目，支持本地服务发现、优惠券购买和高读流量下的秒杀下单流程。项目重点是缓存、并发控制、订单流程和可衡量的后端可靠性。",
+            "Focus: multi-level caching, Redis Lua, Redisson locks, JMeter performance tests, layered Java backend design.": "重点：多级缓存、Redis Lua、Redisson 锁、JMeter 性能测试，以及分层 Java 后端设计。",
+            "Live Demos / Labs": "在线演示 / 实验",
+            "Products": "产品",
+            "Chrome extension for new-tab workspace cleanup, tab grouping, reading queue, bookmark organization, and Reader Assist.": "Chrome 新标签页插件，用于 workspace 清理、标签分组、阅读队列、书签整理和 Reader Assist。",
+            "Landing": "官网",
+            "Privacy": "隐私",
+            "Deployed learning product prototype for algorithm practice, personalized hints, and interview-prep workflows.": "已部署的算法学习产品原型，支持刷题练习、个性化提示和面试准备流程。",
+            "Learning Systems": "学习系统",
+            "Public project knowledge base plus the original self-study roadmap for RAG, LLM-from-scratch, alignment, and backend project paths.": "公开项目知识库，并包含 RAG、LLM-from-scratch、alignment 和后端项目路径的自学路线。",
+            "AI Demos": "AI 演示",
+            "Live demo surface for a GenAI system that turns code and concepts into teaching animations.": "GenAI 教学动画系统的在线演示，用于把代码和概念转成教学动画。",
+            "Interactive demo explaining a sequence-based recommender built around MovieLens-style viewing history.": "交互式 demo，解释基于 MovieLens 风格观看历史的序列推荐系统。",
+            "Teaching assistant resources and course-support materials for Foundations of Generative AI.": "Foundations of Generative AI 课程的助教资源和课程支持材料。",
+            "Supporting Work": "补充作品",
+            "Financial retrieval and evidence-grounded report generation.": "金融检索和基于证据的报告生成。",
+            "Multi-step generation and validation for code teaching animations.": "面向代码教学动画的多步骤生成与验证。",
+            "Public notes connecting core projects to backend, AI application, recommendation, and reliability themes.": "公开笔记，将核心项目与后端、AI 应用、推荐系统和可靠性主题连接起来。",
+            "Teaching assistant materials for Foundations of Generative AI.": "Foundations of Generative AI 的助教材料。",
+            "Writing / Notes": "文章 / 笔记",
+            "JobFit AI: Retrieval, Ranking, and Human-in-the-Loop Career Decisions": "JobFit AI：召回、排序与 Human-in-the-Loop 职业决策",
+            "Locki AI Companion: AI Should Advise, Not Control": "Locki AI Companion：AI 应该建议，而不是控制",
+            "LifePulse Backend: Redis Caching and Flash-Sale Concurrency": "LifePulse Backend：Redis 缓存与秒杀并发",
+            "From Accounting to Software Engineering": "从会计到软件工程",
+            "Northeastern University | San Jose, CA": "Northeastern University | San Jose, CA",
+            "2026 - Present": "2026 - 至今",
+            "Teaching Assistant, Foundations of Generative AI": "Teaching Assistant, Foundations of Generative AI",
+            "Supported graduate students on RAG, LLM systems, applied generative AI implementation, cloud setup, and project-based debugging.": "支持研究生完成 RAG、LLM 系统、应用型生成式 AI 实现、云环境配置和项目调试。",
+            "Deloitte | Shanghai, China": "Deloitte | 上海，中国",
+            "Audit Associate": "审计助理",
+            "Automated financial-record cleansing, working-paper mapping, and anomaly reporting with Python/VBA across recurring audit workflows.": "在周期性审计流程中，使用 Python/VBA 自动化财务记录清洗、底稿映射和异常报告。",
+            "Languages:": "编程语言：",
+            "Backend:": "后端：",
+            "AI/ML:": "AI/ML：",
+            "Systems:": "系统：",
+            "Mobile:": "移动端：",
+            "caching, async processing, Redis Lua, Redisson, distributed systems fundamentals, Docker, CI/CD": "缓存、异步处理、Redis Lua、Redisson、分布式系统基础、Docker、CI/CD"
+        }
+
+        const toggle = document.querySelector(".lang-toggle")
+        const translatableTextNodes = []
+
+        const walker = document.createTreeWalker(
+            document.body,
+            NodeFilter.SHOW_TEXT,
+            {
+                acceptNode(node) {
+                    if (!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT
+                    if (node.parentElement.closest("script, style, .lang-toggle")) return NodeFilter.FILTER_REJECT
+                    return NodeFilter.FILTER_ACCEPT
+                }
+            }
+        )
+
+        while (walker.nextNode()) {
+            translatableTextNodes.push({
+                node: walker.currentNode,
+                original: walker.currentNode.nodeValue
+            })
+        }
+
+        function withPreservedSpace(original, replacement) {
+            const leading = original.match(/^\s*/)[0]
+            const trailing = original.match(/\s*$/)[0]
+            return `${leading}${replacement}${trailing}`
+        }
+
+        function setLanguage(language) {
+            const isChinese = language === "zh"
+            document.documentElement.lang = isChinese ? "zh-Hans" : "en"
+            document.title = isChinese ? "梁越 Cassie" : "Cassie Liang"
+
+            translatableTextNodes.forEach(({ node, original }) => {
+                const key = original.trim()
+                node.nodeValue = isChinese && translations[key]
+                    ? withPreservedSpace(original, translations[key])
+                    : original
+            })
+
+            toggle.textContent = isChinese ? "English" : "中文"
+            toggle.setAttribute("aria-pressed", String(isChinese))
+            localStorage.setItem("preferredLanguage", language)
+        }
+
+        toggle.addEventListener("click", () => {
+            const nextLanguage = document.documentElement.lang === "zh-Hans" ? "en" : "zh"
+            setLanguage(nextLanguage)
+        })
+
+        setLanguage(localStorage.getItem("preferredLanguage") === "zh" ? "zh" : "en")
+    </script>
 </body>
 </html>
