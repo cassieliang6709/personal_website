@@ -1,0 +1,30 @@
+/* Cassie Liang Design System — the single source of visual tokens. */
+:root {
+  --cassie-canvas: #f8f5ef;
+  --cassie-surface: #fffdf8;
+  --cassie-ink: #17211e;
+  --cassie-night: #17211e;
+  --cassie-quiet: #64706a;
+  --cassie-rule: #d9d7cf;
+
+  /* Meaningful accents: use one per component, not all at once. */
+  --cassie-signal: #d3ff6b;   /* agency, active choice, action */
+  --cassie-data: #b9ddff;     /* systems, evidence, information */
+  --cassie-memory: #e2d8ff;   /* reflection, care, archive */
+  --cassie-caution: #ffcf91;  /* friction worth noticing */
+
+  --cassie-serif: "Instrument Serif", "Noto Serif SC", Georgia, serif;
+  --cassie-sans: "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --cassie-mono: "DM Mono", "SFMono-Regular", Consolas, monospace;
+
+  --cassie-radius-sm: 6px;
+  --cassie-radius-md: 10px;
+  --cassie-shadow-offset: 6px;
+  --cassie-page-max: 1180px;
+}
+
+::selection { background: var(--cassie-signal); color: var(--cassie-ink); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
+}
