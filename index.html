@@ -106,21 +106,6 @@
 
     .card-meta span { font-family: var(--mono); font-size: 11px; color: var(--quiet); }
 
-    .hook {
-      margin-top: 18px;
-      display: block;
-      border: 1px dashed var(--rule);
-      border-radius: var(--cassie-radius-md);
-      background: var(--surface);
-      padding: 11px 13px;
-      color: var(--quiet);
-      font-size: 13px;
-      line-height: 1.6;
-    }
-
-    .hook:hover { border-color: var(--ink); color: var(--ink); }
-    .hook b { display: block; color: var(--ink); font-weight: 500; margin-bottom: 2px; }
-
     .card-contact {
       margin-top: 18px;
       padding-top: 16px;
@@ -187,6 +172,24 @@
     .panel > p { color: var(--quiet); max-width: 62ch; }
 
     .lead { margin-bottom: 26px; }
+
+    /* Who I am */
+
+    .tldr { font-size: 15px; max-width: 60ch; }
+    .tldr + .tldr { margin-top: 13px; color: var(--quiet); }
+
+    .facts { margin: 28px 0; padding: 0; display: grid; }
+    .facts > div {
+      display: grid;
+      grid-template-columns: 80px minmax(0, 1fr);
+      gap: 18px;
+      padding: 11px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .facts > div:first-child { border-top: 1px solid var(--rule); }
+    .facts > div:last-child { border-bottom: 0; }
+    .facts dt { font-family: var(--mono); font-size: 11px; color: var(--quiet); }
+    .facts dd { margin: 0; }
 
     /* Now */
 
@@ -357,23 +360,20 @@
       <button class="language" type="button" aria-label="Switch language">EN</button>
     </div>
 
-    <h1 data-zh="我造东西。<br>今年在学怎么<em>把它做完</em>。"
-        data-en="I build things.<br>This year I'm learning <em>how to finish them</em>."></h1>
+    <h1 data-zh="我可以改造工具，<br>而不只是<em>使用工具</em>。"
+        data-en="I can rebuild a tool,<br>not just <em>use one</em>."></h1>
 
     <p class="who"
-       data-zh="上财会计本科，德勤审计做过一年半，为了少加班写下第一行 Python。现在在湾区读 AI 硕士，一边上课一边自己做 app。"
-       data-en="Accounting at SUFE, a year and a half auditing at Deloitte, and a first line of Python written to escape overtime. Now doing an AI master's in the Bay Area, shipping my own apps alongside classes."></p>
+       data-zh="在德勤审计的时候为了少加班写了第一行 Python，从此一发不可收拾。现在在美国湾区读 AI 硕士，一边上课一边自己做 app。"
+       data-en="I wrote my first line of Python at Deloitte to get out of overtime, and it never stopped there. Now I'm doing an AI master's in the Bay Area, taking classes and building my own apps."></p>
 
     <div class="card-meta">
-      <span data-zh="ESTJ · 00 后 · 新疆哈密长大" data-en="ESTJ · born in the 2000s · raised in Hami, Xinjiang"></span>
-      <span data-zh="NEU MSAI 在读 · GPA 4.0" data-en="NEU MSAI in progress · GPA 4.0"></span>
+      <span data-zh="梁悦 Cassie · 00 后 · ESTJ" data-en="Yue (Cassie) Liang · born in the 2000s · ESTJ"></span>
+      <span data-zh="上财会计 ACCA · 前德勤审计" data-en="SUFE Accounting, ACCA · ex-Deloitte Audit"></span>
+      <span data-zh="NEU MSAI 在读 · GPA 4.0 · 助教" data-en="NEU MSAI · GPA 4.0 · teaching assistant"></span>
+      <span data-zh="2025 AdvX 赛道最佳技术奖" data-en="2025 AdvX Best Technical Award"></span>
       <span>San Jose, CA</span>
     </div>
-
-    <a class="hook" href="#unsolved">
-      <b data-zh="我还没解决的三个问题" data-en="Three problems I haven't solved"></b>
-      <span data-zh="把缺点摆出来，至少说明我不打算装。" data-en="Naming what I haven't solved is how I avoid performing."></span>
-    </a>
 
     <div class="card-contact">
       <a href="mailto:liangyue3666@gmail.com">liangyue3666@gmail.com</a>
@@ -386,7 +386,7 @@
   <!-- ══ RIGHT COLUMN ════════════════════════════════ -->
   <div>
     <div class="caps" role="tablist" aria-label="Sections">
-      <button class="cap" role="tab" id="tab-now"      aria-controls="now"      data-zh="现在" data-en="Now"></button>
+      <button class="cap" role="tab" id="tab-who"      aria-controls="who"      data-zh="我是谁" data-en="Who I am"></button>
       <button class="cap" role="tab" id="tab-builds"   aria-controls="builds"   data-zh="在造" data-en="Builds"></button>
       <button class="cap" role="tab" id="tab-path"     aria-controls="path"     data-zh="我的路" data-en="Path"></button>
       <button class="cap" role="tab" id="tab-think"    aria-controls="think"    data-zh="我怎么想" data-en="How I think"></button>
@@ -394,15 +394,55 @@
       <button class="cap" role="tab" id="tab-contact"  aria-controls="contact"  data-zh="找我" data-en="Contact"></button>
     </div>
 
-    <!-- ── NOW ───────────────────────────────────── -->
-    <section class="panel" id="now" role="tabpanel" aria-labelledby="tab-now" tabindex="-1">
+    <!-- ── WHO I AM ──────────────────────────────── -->
+    <section class="panel" id="who" role="tabpanel" aria-labelledby="tab-who" tabindex="-1">
+      <p class="tldr"
+         data-zh="新疆哈密长大，现在家在乌鲁木齐，常驻杭州和上海，小时候在 B 站学修手机、折纸、在贴吧给人做个性签名动图。高考全省前 180，然后被务实的氛围骗去念了上财会计。"
+         data-en="Grew up in Hami, Xinjiang; home is Ürümqi now, with long stretches in Hangzhou and Shanghai. As a kid I learned phone repair and origami off Bilibili and made animated signature GIFs for strangers on forums. Finished in my province's top 180, then got talked into accounting at SUFE by how practical everyone there sounded."></p>
+      <p class="tldr"
+         data-zh="中间辞过职、迷茫过、在杭州开过公司、打过黑客松、做完全飞秒之后彻底看不清别人的脸于是更加不在意别人的看法了，决定人生只活出自己。"
+         data-en="Since then I've quit a job, been lost, registered a company in Hangzhou, done the hackathon circuit, and had LASIK — after which I genuinely couldn't read faces across a room, and cared even less what was on them. I decided to live this one as mine."></p>
+
+      <dl class="facts">
+        <div>
+          <dt data-zh="学历" data-en="Education"></dt>
+          <dd data-zh="上海财经大学 会计学院 国际会计（ACCA）· GPA 3.52/4.0，专业前 15% · 人民奖学金 · 华为奖学金（前 5%）"
+              data-en="Shanghai University of Finance &amp; Economics, International Accounting (ACCA) · GPA 3.52/4.0, top 15% · People's Scholarship · Huawei Scholarship (top 5%)"></dd>
+        </div>
+        <div>
+          <dt data-zh="审计" data-en="Audit"></dt>
+          <dd data-zh="德勤中国 生命健康组 · 万物新生（NYSE: RERE）、君实生物（01877.HK）、远景能源，以及一个生物医药 IPO"
+              data-en="Deloitte China, Life Sciences &amp; Health Care · ATRenew (NYSE: RERE), Junshi Biosciences (01877.HK), Envision Energy, and a biopharma IPO"></dd>
+        </div>
+        <div>
+          <dt data-zh="工程" data-en="Engineering"></dt>
+          <dd data-zh="Smith-Kettlewell Eye Research Institute · 为 30+ 名研究员搭生产级 FastAPI 服务，99.5% 可用性，视频制作时间 -64%"
+              data-en="Smith-Kettlewell Eye Research Institute · production FastAPI service for 30+ researchers at 99.5% uptime, 64% less video production time"></dd>
+        </div>
+        <div>
+          <dt data-zh="在读" data-en="Studying"></dt>
+          <dd data-zh="Northeastern University · M.S. Artificial Intelligence · GPA 4.0 · Foundations of Generative AI 助教"
+              data-en="Northeastern University · M.S. Artificial Intelligence · GPA 4.0 · TA for Foundations of Generative AI"></dd>
+        </div>
+        <div>
+          <dt data-zh="得过的奖" data-en="Awards"></dt>
+          <dd data-zh="2025 AdvX 赛道最佳技术奖 · AdventureX 两次参赛两次得奖 · 创业森林二等奖 · 全国大学生数学建模竞赛上海市二等奖"
+              data-en="2025 AdvX Best Technical Award · entered AdventureX twice, placed twice · 2nd prize, Startup Forest · 2nd prize, Shanghai division, National Mathematical Contest in Modeling"></dd>
+        </div>
+        <div>
+          <dt data-zh="上架的" data-en="Shipped"></dt>
+          <dd data-zh="Tabspace（Chrome Web Store）· ToGoal（App Store）· 微信小程序「正在帮助」"
+              data-en="Tabspace (Chrome Web Store) · ToGoal (App Store) · the Zhengzai Bangzhu WeChat mini-program"></dd>
+        </div>
+      </dl>
+
       <div class="now">
-        <h2 data-zh="一个决定：不再主动参加黑客松了。"
-            data-en="One decision: no more hackathons."></h2>
-        <p data-zh="连续两届赶赛程、追赛道选题、从零搭新项目，到头来所有作品都停在半成品。熬夜堆功能、为了贴合奖项硬改方向，全程在被动赶路，疲惫远大于成就感。"
-           data-en="Two events back to back — chasing deadlines, chasing tracks, starting from zero every time. Everything ended up half-built. Stacking features overnight, bending the direction to fit a prize category: all of it reactive, and far more draining than satisfying."></p>
+        <h2 data-zh="最近戒掉了黑客松"
+            data-en="I recently quit hackathons"></h2>
+        <p data-zh="不想再当半成品批发商了，想安心把手里的东西做好。"
+           data-en="I didn't want to keep wholesaling half-finished things. I wanted to sit still and make what I already have good."></p>
         <p data-zh="往后我不做「新项目开拓者」，安心做一个拼贴怪——把手里已经成型的东西深耕、迭代、维护下去。一堆残缺的 demo，不如一个真的能用的东西。"
-           data-en="So I'm done being a starter of new things. I'd rather be a patcher — take what I already have and deepen it, iterate on it, keep it alive. A pile of broken demos is worth less than one thing that actually works."></p>
+           data-en="I'm done being a starter of new things. I'd rather be a patcher — take what has already taken shape, deepen it, iterate on it, keep it alive. A pile of broken demos is worth less than one thing that actually works."></p>
         <dl class="now-list">
           <div>
             <dt data-zh="正在做" data-en="Building"></dt>
@@ -807,7 +847,7 @@
 <script>
   (function () {
     var LOCALE_KEY = 'cassie-locale';
-    var TABS = ['now', 'builds', 'path', 'think', 'unsolved', 'contact'];
+    var TABS = ['who', 'builds', 'path', 'think', 'unsolved', 'contact'];
 
     var TITLE = { zh: '梁悦 Cassie · 说明书', en: 'Cassie Liang · A Manual' };
     var DESC = {
@@ -867,11 +907,6 @@
         caps[next].focus();
         showTab(TABS[next], true);
       });
-    });
-
-    document.querySelector('.hook').addEventListener('click', function (e) {
-      e.preventDefault();
-      showTab('unsolved', true);
     });
 
     window.addEventListener('hashchange', function () {
