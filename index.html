@@ -3,47 +3,846 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Cassie Liang's work and creation archive.">
-  <title>Cassie Liang · Work & Creation Archive</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2317221e'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='Arial' font-size='14' font-weight='700' fill='white'%3ECL%3C/text%3E%3C/svg%3E">
+  <meta name="description" content="梁悦 Cassie · 从审计到工程，现在在湾区读 AI 硕士，一边上课一边自己做 app。">
+  <title>梁悦 Cassie · 说明书</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2317221e'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='Georgia' font-size='14' font-weight='700' fill='white'%3ECL%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../design-system/tokens.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500&display=swap" rel="stylesheet">
+  <!-- absolute path is what ships on Vercel; the relative one is a no-op there
+       and keeps the page styled when opened straight off disk as a file:// URL -->
+  <link rel="stylesheet" href="/design-system/tokens.css">
+  <link rel="stylesheet" href="design-system/tokens.css">
   <style>
-    :root{--paper:var(--cassie-canvas);--surface:var(--cassie-surface);--ink:var(--cassie-ink);--quiet:var(--cassie-quiet);--rule:var(--cassie-rule);--lime:var(--cassie-signal);--pink:var(--cassie-memory);--blue:var(--cassie-data);--orange:var(--cassie-caution);--dark:var(--cassie-night);--mono:var(--cassie-mono);--sans:var(--cassie-sans);--serif:var(--cassie-serif)}
-    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.55} a{color:inherit;text-decoration:none}a:focus-visible,.language:focus-visible{outline:2px solid var(--lime);outline-offset:4px}.shell{max-width:1180px;margin:auto;padding:0 28px}.mono{font-family:var(--mono);font-size:12px;letter-spacing:.02em}.top{display:flex;align-items:center;justify-content:space-between;padding:22px 0;border-bottom:1px solid var(--rule)}.brand{font-family:var(--mono);font-size:13px}.nav{display:flex;align-items:center;gap:20px}.nav a,.language{font:12px var(--mono);color:var(--quiet);border:0;background:none;cursor:pointer;padding:0}.language{color:var(--ink);border-bottom:1px solid var(--ink)}
-    .hero{min-height:620px;display:grid;grid-template-columns:1.15fr .85fr;gap:45px;align-items:center;padding:55px 0 70px}.terminal{background:var(--dark);color:#e8f0e9;border-radius:10px;padding:18px 20px;align-self:start;box-shadow:8px 8px 0 var(--lime)}.traffic{display:flex;gap:7px;margin-bottom:28px}.traffic i{display:block;width:10px;height:10px;border-radius:50%;background:#ff7777}.traffic i:nth-child(2){background:#ffcf62}.traffic i:nth-child(3){background:#83d78e}.terminal p{margin:7px 0;font:13px/1.7 var(--mono)}.prompt{color:var(--lime)}.output{color:#b5c3b9;padding-left:14px}.hero h1{font:clamp(55px,8vw,104px)/.88 var(--serif);font-weight:400;letter-spacing:-.045em;margin:24px 0}.hero h1 em{font-style:italic}.lede{max-width:560px;font-size:17px}.stamp{display:inline-block;margin-top:25px;padding:7px 10px;background:var(--pink);font:12px var(--mono);transform:rotate(-2deg)}
-    .section{padding:70px 0;border-top:1px solid var(--rule)}.kicker{font:12px var(--mono);color:var(--quiet);text-transform:uppercase;letter-spacing:.08em}.section-head{display:flex;justify-content:space-between;gap:20px;align-items:baseline;margin-bottom:32px}.section h2{font:clamp(36px,5vw,62px)/1 var(--serif);font-weight:400;letter-spacing:-.025em;margin:0}.now{display:grid;grid-template-columns:.8fr 1.2fr;border:1px solid var(--ink);border-radius:8px;overflow:hidden}.now-label{background:var(--lime);padding:28px;font:13px var(--mono)}.now-copy{padding:28px;font-size:18px}.now-copy p{margin:0 0 14px}.now-copy p:last-child{margin:0}.builds{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}.card{display:flex;min-height:255px;flex-direction:column;justify-content:space-between;padding:22px;border:1px solid var(--ink);border-radius:8px;transition:transform .2s,box-shadow .2s}.card:hover{transform:translate(-4px,-4px);box-shadow:5px 5px 0 var(--ink)}.card.capture{grid-column:span 7;background:var(--orange)}.card.oneday{grid-column:span 5;background:var(--pink)}.card.tabspace{grid-column:span 5;background:var(--blue)}.card.locki{grid-column:span 7;background:var(--lime)}.card.jobfit{grid-column:span 8;background:var(--blue)}.card.pulse{grid-column:span 4;background:var(--surface)}.card h3{margin:10px 0 8px;font:42px/1 var(--serif);font-weight:400}.card p{max-width:470px;margin:0;font-size:15px}.card-foot{display:flex;justify-content:space-between;gap:10px;font:11px var(--mono);padding-top:15px}.arrow{font-size:18px}.trajectory{display:grid;grid-template-columns:190px 1fr;gap:0}.year{padding:18px 0;border-top:1px solid var(--rule);font:13px var(--mono);color:var(--quiet)}.event{padding:18px 0;border-top:1px solid var(--rule);font-size:16px}.event strong{display:block;font-weight:700;margin-bottom:5px}.notes{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.note{padding:20px;min-height:190px;border-radius:6px;transform:rotate(-1deg)}.note:nth-child(2){transform:rotate(1.4deg);background:var(--blue)}.note:nth-child(3){transform:rotate(-.5deg);background:var(--pink)}.note:first-child{background:var(--lime)}.note p{font-size:18px;margin:28px 0 0}.footer{display:flex;justify-content:space-between;gap:25px;align-items:flex-end;padding:75px 0 105px}.footer h2{font:clamp(45px,7vw,80px)/.9 var(--serif);font-weight:400;margin:0}.footer-links{display:flex;gap:14px;flex-wrap:wrap}.footer-links a{border-bottom:1px solid var(--ink);font:12px var(--mono)}.reveal{opacity:1;transform:none}
-    @media(max-width:700px){.shell{padding:0 18px}.top{padding:16px 0}.nav a{display:none}.hero{grid-template-columns:1fr;min-height:auto;padding:45px 0 65px;gap:28px}.hero h1{font-size:67px}.terminal{width:calc(100% - 7px)}.section{padding:54px 0}.now{grid-template-columns:1fr}.builds{display:block}.card{margin-bottom:14px;min-height:210px}.trajectory{grid-template-columns:82px 1fr}.notes{grid-template-columns:1fr}.footer{display:block;padding:60px 0 90px}.footer-links{margin-top:28px}}
+    :root {
+      --paper: var(--cassie-canvas);
+      --surface: var(--cassie-surface);
+      --ink: var(--cassie-ink);
+      --quiet: var(--cassie-quiet);
+      --rule: var(--cassie-rule);
+      --mono: var(--cassie-mono);
+      --sans: var(--cassie-sans);
+      --serif: var(--cassie-serif);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font: 400 14px/1.75 var(--sans);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    a:focus-visible, button:focus-visible { outline: 1px solid var(--ink); outline-offset: 3px; }
+    p { margin: 0; }
+    em { font-style: italic; }
+
+    .shell { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+    .mono {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      color: var(--quiet);
+    }
+
+    /* ── Header ─────────────────────────────────────── */
+
+    .top {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 40px 0 0;
+    }
+
+    .name { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+
+    .language {
+      border: 0;
+      background: none;
+      padding: 0;
+      cursor: pointer;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--quiet);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .language:hover { color: var(--ink); border-color: var(--ink); }
+
+    /* ── Hero ───────────────────────────────────────── */
+
+    .hero { padding: 56px 0 40px; }
+
+    .hero h1 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 46px;
+      line-height: 1.2;
+      letter-spacing: -0.015em;
+      margin: 0 0 22px;
+    }
+
+    .hero h1 em { font-style: italic; box-shadow: inset 0 -0.34em 0 var(--cassie-signal); }
+
+    .hero .lede { font-size: 15px; max-width: 58ch; }
+    .hero .lede + .lede { margin-top: 13px; color: var(--quiet); }
+
+    .idcard {
+      margin-top: 26px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 10px;
+    }
+
+    .idcard span {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--quiet);
+      border: 1px solid var(--rule);
+      border-radius: var(--cassie-radius-sm);
+      padding: 3px 8px;
+      background: var(--surface);
+    }
+
+    /* ── Sections ───────────────────────────────────── */
+
+    .section { padding: 40px 0; border-top: 1px solid var(--rule); }
+
+    .label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--quiet);
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .label::before {
+      content: "";
+      width: 8px; height: 8px;
+      border-radius: 2px;
+      background: var(--rule);
+      flex: none;
+    }
+
+    .label.is-signal::before  { background: var(--cassie-signal); }
+    .label.is-data::before    { background: var(--cassie-data); }
+    .label.is-memory::before  { background: var(--cassie-memory); }
+    .label.is-caution::before { background: var(--cassie-caution); }
+
+    h2 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 27px;
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+      margin: 0 0 16px;
+    }
+
+    .section > p { color: var(--quiet); max-width: 62ch; }
+    .section > p + p { margin-top: 12px; }
+
+    /* ── Now card ───────────────────────────────────── */
+
+    .now {
+      background: var(--surface);
+      border: 1px solid var(--ink);
+      border-radius: var(--cassie-radius-md);
+      padding: 24px 26px;
+      box-shadow: var(--cassie-shadow-offset) var(--cassie-shadow-offset) 0 var(--cassie-signal);
+    }
+
+    .now h2 { font-size: 23px; margin-bottom: 12px; }
+    .now p { color: var(--quiet); }
+    .now p + p { margin-top: 11px; }
+
+    .now-list { margin: 18px 0 0; padding-top: 16px; border-top: 1px solid var(--rule); display: grid; gap: 8px; }
+    .now-list > div { display: grid; grid-template-columns: 96px 1fr; gap: 14px; align-items: baseline; }
+    .now-list dt { font-family: var(--mono); font-size: 11px; color: var(--quiet); }
+    .now-list dd { margin: 0; }
+
+    /* ── Row lists ──────────────────────────────────── */
+
+    .rows { display: grid; }
+
+    .row {
+      display: grid;
+      grid-template-columns: 148px 1fr auto;
+      gap: 18px;
+      align-items: baseline;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .rows .row:first-child { border-top: 1px solid var(--rule); }
+    .rows .row:last-child { border-bottom: 0; }
+
+    .row-title { font-weight: 500; }
+    .row-desc { color: var(--quiet); }
+    .row-meta { font-family: var(--mono); font-size: 11px; color: var(--quiet); white-space: nowrap; }
+
+    a.row:hover { background: var(--surface); }
+    a.row:hover .row-title { text-decoration: underline; text-underline-offset: 3px; }
+
+    /* ── Path ───────────────────────────────────────── */
+
+    .path { display: grid; }
+
+    .stop {
+      display: grid;
+      grid-template-columns: 132px 1fr;
+      gap: 20px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .path .stop:first-child { border-top: 1px solid var(--rule); }
+    .path .stop:last-child { border-bottom: 0; }
+
+    .stop-when { font-family: var(--mono); font-size: 11px; color: var(--quiet); line-height: 1.7; }
+    .stop-what { font-weight: 500; }
+    .stop-note { color: var(--quiet); margin-top: 5px; }
+    .stop-meta { font-family: var(--mono); font-size: 11px; color: var(--quiet); margin-top: 6px; }
+
+    /* ── Principles ─────────────────────────────────── */
+
+    .principles { display: grid; gap: 16px; counter-reset: p 0; }
+
+    .principle {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 14px;
+      align-items: baseline;
+    }
+
+    .principle::before {
+      counter-increment: p;
+      content: "0" counter(p);
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--quiet);
+    }
+
+    .principle strong { font-weight: 500; }
+    .principle p { color: var(--quiet); margin-top: 3px; }
+
+    /* ── Pull quotes ────────────────────────────────── */
+
+    .thoughts { display: grid; gap: 14px; margin-top: 30px; }
+
+    .thought {
+      border-left: 2px solid var(--cassie-memory);
+      padding: 2px 0 2px 16px;
+      color: var(--quiet);
+    }
+
+    .thought b { color: var(--ink); font-weight: 500; }
+
+    /* ── Unsolved ───────────────────────────────────── */
+
+    .unsolved { display: grid; gap: 14px; }
+
+    .problem {
+      border: 1px dashed var(--rule);
+      border-radius: var(--cassie-radius-md);
+      padding: 16px 18px;
+      background: var(--surface);
+    }
+
+    .problem-head { display: flex; align-items: baseline; gap: 10px; }
+    .problem-head strong { font-weight: 500; }
+
+    .tag {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink);
+      background: var(--cassie-caution);
+      border-radius: 3px;
+      padding: 2px 6px;
+      flex: none;
+    }
+
+    .problem p { color: var(--quiet); margin-top: 7px; }
+
+    /* ── Contact ────────────────────────────────────── */
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; }
+
+    .col h3 {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--quiet);
+      margin: 0 0 12px;
+    }
+
+    .col ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 9px; }
+    .col li { color: var(--quiet); padding-left: 15px; position: relative; }
+    .col li::before { content: "—"; position: absolute; left: 0; color: var(--rule); }
+    .col li b { color: var(--ink); font-weight: 500; }
+
+    /* ── Footer ─────────────────────────────────────── */
+
+    .footer { padding: 36px 0 92px; border-top: 1px solid var(--rule); }
+    .footer .sign { margin-bottom: 16px; }
+
+    .contact { display: flex; flex-wrap: wrap; gap: 7px 18px; }
+
+    .contact a, .contact .wechat {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--quiet);
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 1px;
+    }
+
+    .contact a:hover { color: var(--ink); border-color: var(--ink); }
+    .contact .wechat { user-select: all; cursor: text; }
+
+    /* ── CJK / locale typography ────────────────────── */
+
+    html[lang="zh-CN"] body { line-height: 1.8; }
+    html[lang="zh-CN"] h1, html[lang="zh-CN"] h2 { letter-spacing: 0; }
+    html[lang="zh-CN"] .hero h1 { font-family: "Noto Serif SC", var(--serif); font-size: 38px; line-height: 1.35; }
+    html[lang="zh-CN"] h2 { font-family: "Noto Serif SC", var(--serif); font-size: 23px; }
+
+    /* ── Responsive ─────────────────────────────────── */
+
+    @media (max-width: 680px) {
+      .shell { padding: 0 18px; }
+      .hero { padding: 40px 0 32px; }
+      .hero h1 { font-size: 34px; }
+      html[lang="zh-CN"] .hero h1 { font-size: 28px; }
+      .row, .stop { grid-template-columns: 1fr; gap: 5px; }
+      .row-meta { justify-self: start; }
+      .now-list div { grid-template-columns: 1fr; gap: 2px; }
+      .two-col { grid-template-columns: 1fr; gap: 28px; }
+      .now { padding: 20px; box-shadow: 4px 4px 0 var(--cassie-signal); }
+    }
   </style>
 </head>
 <body>
-  <main class="shell">
-    <header class="top"><a class="brand" href="#top">cassie@work ~ %</a><nav class="nav"><a href="#builds" data-zh="作品" data-en="Builds">作品</a><a href="#trajectory" data-zh="轨迹" data-en="Path">轨迹</a><a href="#notes" data-zh="思考" data-en="Notes">思考</a><button class="language" type="button" aria-label="Switch language">EN</button></nav></header>
-    <section class="hero" id="top">
-      <div class="reveal"><div class="terminal"><div class="traffic"><i></i><i></i><i></i></div><p><span class="prompt">cassie@work</span>:~$ whoami</p><p class="output" data-zh="AI / 后端工程师，也是一位产品创造者。" data-en="AI / backend engineer and product builder.">AI / 后端工程师，也是一位产品创造者。</p><p><span class="prompt">cassie@work</span>:~$ focus</p><p class="output" data-zh="把混乱变成可以行动、记住、再选择的东西。" data-en="Turn mess into things people can act on, keep, and choose from.">把混乱变成可以行动、记住、再选择的东西。</p><p><span class="prompt">cassie@work</span>:~$ <span class="blink">_</span></p></div></div>
-      <div class="reveal"><span class="kicker" data-zh="个人工作与创造档案 · 持续更新" data-en="Work & creation archive · continuously updated">个人工作与创造档案 · 持续更新</span><h1 data-zh="我做<em>系统</em>，也做让人更好生活的<em>工具</em>。" data-en="I build <em>systems</em> and tools for a more <em>intentional life</em>.">我做<em>系统</em>，也做让人更好生活的<em>工具</em>。</h1><p class="lede" data-zh="从审计中的流程与数据，到 AI、iOS 与浏览器产品：我喜欢找到真实世界里摩擦最多的地方，把它做得更清楚、更可信，也更有人味。" data-en="From workflow and data in audit to AI, iOS, and browser products: I look for real-world friction and make it clearer, more trustworthy, and more human.">从审计中的流程与数据，到 AI、iOS 与浏览器产品：我喜欢找到真实世界里摩擦最多的地方，把它做得更清楚、更可信，也更有人味。</p><span class="stamp" data-zh="正在整理：Cassie Life Archive" data-en="Now organizing: Cassie Life Archive">正在整理：Cassie Life Archive</span></div>
-    </section>
-    <section class="section reveal" id="now"><div class="section-head"><span class="kicker">01 / now</span><h2 data-zh="正在生长" data-en="In progress">正在生长</h2></div><div class="now"><div class="now-label" data-zh="现在 / 2026" data-en="NOW / 2026">现在 / 2026</div><div class="now-copy"><p data-zh="在 Northeastern University 攻读人工智能硕士，同时把自己的工程项目做成真实、可使用的产品。" data-en="M.S. in Artificial Intelligence at Northeastern University, while turning personal engineering work into real, usable products.">在 Northeastern University 攻读人工智能硕士，同时把自己的工程项目做成真实、可使用的产品。</p><p data-zh="最近在做：长文档归档工具、短视频日记、浏览器工作台，以及以人为最终决策者的 AI 系统。" data-en="Currently building: long-document archiving, a short-video diary, a browser workspace, and AI systems where people keep the final say.">最近在做：长文档归档工具、短视频日记、浏览器工作台，以及以人为最终决策者的 AI 系统。</p></div></div></section>
-    <section class="section" id="builds"><div class="section-head reveal"><span class="kicker">02 / selected builds</span><h2 data-zh="做过的东西" data-en="Selected builds">做过的东西</h2></div><div class="builds">
-      <a class="card capture reveal" href="https://cassie-capture.cassie36.chatgpt.site" target="_blank" rel="noreferrer"><div><span class="mono">Chrome extension · v1.2</span><h3>Cassie Capture</h3><p data-zh="把超长网页、飞书和 Google Docs 变成低内存、可分卷保存的 PDF。" data-en="Turns long webpages, Feishu, and Google Docs into low-memory, split-volume PDFs.">把超长网页、飞书和 Google Docs 变成低内存、可分卷保存的 PDF。</p></div><div class="card-foot"><span data-zh="逐帧落盘 · 内部滚动容器" data-en="frame persistence · scroll-container capture">逐帧落盘 · 内部滚动容器</span><span class="arrow">↗</span></div></a>
-      <div class="card oneday reveal"><div><span class="mono">iOS · private beta</span><h3>1Day</h3><p data-zh="用几个短片段记录一天或一周，并在设备上自动剪成一部值得留下的电影。" data-en="A short-form video diary that turns small moments from a day or week into a film on-device.">用几个短片段记录一天或一周，并在设备上自动剪成一部值得留下的电影。</p></div><div class="card-foot"><span>SwiftUI · AVFoundation · CloudKit</span><span>private beta</span></div></div>
-      <a class="card tabspace reveal" href="https://chromewebstore.google.com/detail/tabspace/pigfllmaggabolcjieedkilhpdfcddai?hl=en" target="_blank" rel="noreferrer"><div><span class="mono">Chrome Web Store</span><h3>Tabspace</h3><p data-zh="把浏览器的标签、书签和阅读任务，整理成可回看的工作空间。" data-en="A browser workspace that turns tabs, bookmarks, and reading tasks into something revisitable.">把浏览器的标签、书签和阅读任务，整理成可回看的工作空间。</p></div><div class="card-foot"><span data-zh="先预览，再整理" data-en="review before apply">先预览，再整理</span><span class="arrow">↗</span></div></a>
-      <a class="card locki reveal" href="https://github.com/cassieliang6709/locki-ai-companion" target="_blank" rel="noreferrer"><div><span class="mono">iOS · Screen Time</span><h3>Locki</h3><p data-zh="在 iPhone 上建立可退出的专注边界：确定性的本地规则负责解锁，AI 只负责温和建议。" data-en="A trustworthy focus boundary on iPhone: deterministic local rules unlock apps; AI only offers gentle support.">在 iPhone 上建立可退出的专注边界：确定性的本地规则负责解锁，AI 只负责温和建议。</p></div><div class="card-foot"><span>Family Controls · Vision OCR · WidgetKit</span><span class="arrow">↗</span></div></a>
-      <a class="card jobfit reveal" href="https://github.com/cassieliang6709/jobfit-ai" target="_blank" rel="noreferrer"><div><span class="mono">Search / recommendation system</span><h3>JobFit AI</h3><p data-zh="把职业搜索当作推荐问题：召回、排序、解释与人工审核共同工作。" data-en="Career search as a recommendation problem: retrieval, ranking, explanation, and human review work together.">把职业搜索当作推荐问题：召回、排序、解释与人工审核共同工作。</p></div><div class="card-foot"><span>FAISS · LightGBM · FastAPI · Redis</span><span class="arrow">↗</span></div></a>
-      <a class="card pulse reveal" href="https://github.com/cassieliang6709/lifepulse-backend" target="_blank" rel="noreferrer"><div><span class="mono">Java backend</span><h3>LifePulse</h3><p data-zh="在高读流量下研究缓存、并发和可靠订单流程。" data-en="A Java backend exploring caching, concurrency, and reliable order flows under high read traffic.">在高读流量下研究缓存、并发和可靠订单流程。</p></div><div class="card-foot"><span>Spring Boot · Redis</span><span class="arrow">↗</span></div></a>
-    </div></section>
-    <section class="section" id="trajectory"><div class="section-head reveal"><span class="kicker">03 / trajectory</span><h2 data-zh="不是一次跳跃" data-en="Not one jump">不是一次跳跃</h2></div><div class="trajectory reveal"><div class="year">2023—2024</div><div class="event"><strong data-zh="审计与自动化" data-en="Audit and automation">审计与自动化</strong><span data-zh="从重复、易错又难追溯的流程里，开始看见系统如何影响人的工作。" data-en="Saw how systems shape people’s work inside repetitive, error-prone, hard-to-trace workflows.">从重复、易错又难追溯的流程里，开始看见系统如何影响人的工作。</span></div><div class="year">2025</div><div class="event"><strong data-zh="走向工程与 AI" data-en="Moving toward engineering and AI">走向工程与 AI</strong><span data-zh="从“发现问题”走到“把它做出来”：后端系统、推荐、RAG 与产品原型。" data-en="Moved from noticing problems to building: backend systems, recommendation, RAG, and product prototypes.">从“发现问题”走到“把它做出来”：后端系统、推荐、RAG 与产品原型。</span></div><div class="year">2026—</div><div class="event"><strong data-zh="持续构建" data-en="Continuing to build">持续构建</strong><span data-zh="把技术能力和个人关切放在一起，做真实可用、能被反复改进的工具。" data-en="Bringing technical skill and personal care together in useful tools that can keep improving.">把技术能力和个人关切放在一起，做真实可用、能被反复改进的工具。</span></div></div></section>
-    <section class="section" id="notes"><div class="section-head reveal"><span class="kicker">04 / notes</span><h2 data-zh="我反复在想的事" data-en="Questions I return to">我反复在想的事</h2></div><div class="notes"><article class="note reveal"><span class="mono">01 / attention</span><p data-zh="技术不该悄悄替人做决定；它应该帮助人重新看见自己正在做什么。" data-en="Technology should not quietly decide for people. It should help them see what they are doing.">技术不该悄悄替人做决定；它应该帮助人重新看见自己正在做什么。</p></article><article class="note reveal"><span class="mono">02 / memory</span><p data-zh="有些东西不应该只存在于滚动过去的屏幕里。" data-en="Some things should not disappear into a screen that keeps scrolling.">有些东西不应该只存在于滚动过去的屏幕里。</p></article><article class="note reveal"><span class="mono">03 / making</span><p data-zh="最好的学习，是把一个模糊但在意的问题，做成可以被别人使用的东西。" data-en="The best learning is turning a vague but meaningful question into something someone else can use.">最好的学习，是把一个模糊但在意的问题，做成可以被别人使用的东西。</p></article></div></section>
-    <footer class="footer reveal"><div><span class="kicker">cassie liang / 2026</span><h2 data-zh="一起做点<br><em>有意思的事。</em>" data-en="Let’s make something<br><em>worth keeping.</em>">一起做点<br><em>有意思的事。</em></h2></div><div class="footer-links"><a href="mailto:liangyue3666@gmail.com">Email</a><a href="https://github.com/cassieliang6709" target="_blank" rel="noreferrer">GitHub</a><a href="https://www.linkedin.com/in/yue-liang-195960384/" target="_blank" rel="noreferrer">LinkedIn</a></div></footer>
-  </main>
-  <script>
-    const isEnglish = location.pathname.startsWith('/en') || new URLSearchParams(location.search).get('lang') === 'en';
-    const setLanguage = english => { document.documentElement.lang = english ? 'en' : 'zh-CN'; document.querySelectorAll('[data-zh]').forEach(el => { el.innerHTML = el.dataset[english ? 'en' : 'zh']; }); document.querySelector('.language').textContent = english ? '中文' : 'EN'; document.title = english ? 'Cassie Liang · Work & Creation Archive' : 'Cassie Liang · 工作与创造档案'; };
-    setLanguage(isEnglish);
-    document.querySelector('.language').addEventListener('click', () => { location.href = isEnglish ? '/' : '/en/'; });
-    const observer = new IntersectionObserver(entries => entries.forEach(entry => { if(entry.isIntersecting){ entry.target.classList.add('visible'); observer.unobserve(entry.target); }}), {threshold:.08}); document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  </script>
+<main class="shell">
+
+  <header class="top">
+    <span class="name">梁悦 Cassie Liang</span>
+    <button class="language" type="button" aria-label="Switch language">EN</button>
+  </header>
+
+  <!-- ── HERO ─────────────────────────────────────── -->
+  <section class="hero">
+    <h1 data-zh="我造东西。<br>今年在学怎么<em>把它做完</em>。"
+        data-en="I build things.<br>This year I'm learning <em>how to finish them</em>."></h1>
+
+    <p class="lede"
+       data-zh="新疆哈密长大，上财会计本科，在德勤审计做了一年半。为了少加班写下第一行 Python，从此一发不可收拾。现在在美国湾区读 AI 硕士，一边上课一边自己做 app。"
+       data-en="Grew up in Hami, Xinjiang. Accounting at SUFE, then a year and a half auditing at Deloitte. I wrote my first line of Python to get out of overtime, and never stopped. Now I'm doing an AI master's in the Bay Area, taking classes and shipping my own apps on the side."></p>
+
+    <p class="lede"
+       data-zh="中间辞过职、迷茫过、在杭州开过公司、打过黑客松。做完全飞秒之后彻底看不清别人的脸，于是更加不在意别人的看法了。"
+       data-en="Along the way I quit a job, got lost for a while, registered a company in Hangzhou, and did the hackathon circuit. After LASIK I genuinely couldn't read faces across a room anymore — and cared even less what was on them."></p>
+
+    <div class="idcard">
+      <span data-zh="00 后" data-en="Born in the 2000s"></span>
+      <span>ESTJ</span>
+      <span data-zh="上财会计 · ACCA" data-en="SUFE Accounting · ACCA"></span>
+      <span data-zh="NEU MSAI 在读" data-en="NEU MSAI, in progress"></span>
+      <span data-zh="前德勤审计" data-en="ex-Deloitte Audit"></span>
+      <span data-zh="AdvX 2025 赛道最佳技术奖" data-en="AdvX 2025 Best Technical Award"></span>
+      <span>San Jose, CA</span>
+    </div>
+  </section>
+
+  <!-- ── NOW ──────────────────────────────────────── -->
+  <section class="section" id="now">
+    <p class="label is-signal">Now · 2026.08</p>
+    <div class="now">
+      <h2 data-zh="一个决定：不再主动参加黑客松了。"
+          data-en="One decision: no more hackathons."></h2>
+      <p data-zh="连续两届赶赛程、追赛道选题、从零搭新项目，到头来所有作品都停在半成品。熬夜堆功能、为了贴合奖项硬改方向，全程在被动赶路，疲惫远大于成就感。"
+         data-en="Two events back to back — chasing deadlines, chasing tracks, starting from zero every time. Everything ended up half-built. Stacking features overnight, bending the direction to fit a prize category: all of it reactive, and far more draining than satisfying."></p>
+      <p data-zh="往后我不做「新项目开拓者」，安心做一个拼贴怪——把手里已经成型的东西深耕、迭代、维护下去。一堆残缺的 demo，不如一个真的能用的东西。"
+         data-en="So I'm done being a starter of new things. I'd rather be a patcher — take what I already have and deepen it, iterate on it, keep it alive. A pile of broken demos is worth less than one thing that actually works."></p>
+      <dl class="now-list">
+        <div>
+          <dt data-zh="正在做" data-en="Building"></dt>
+          <dd data-zh="1Day 的下一步 · MindBridge 的下一步" data-en="What's next for 1Day · What's next for MindBridge"></dd>
+        </div>
+        <div>
+          <dt data-zh="正在学" data-en="Learning"></dt>
+          <dd data-zh="按自己排的 CS 基础路线补底子：系统、网络、分布式" data-en="Working through a self-made CS fundamentals track: systems, networking, distributed"></dd>
+        </div>
+        <div>
+          <dt data-zh="目标" data-en="Goal"></dt>
+          <dd data-zh="32 岁创业。之后的事，之后再说。" data-en="Start a company by 32. Everything after that, later."></dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ── BUILDS ───────────────────────────────────── -->
+  <section class="section" id="builds">
+    <p class="label is-data">Builds</p>
+    <h2 data-zh="在创造" data-en="What I've built"></h2>
+    <p data-zh="状态是照实写的：上架的写上架，在做的写在做，demo 就是 demo。"
+       data-en="Status labels are literal. Shipped means shipped, in progress means in progress, a demo is a demo."></p>
+    <div class="rows" style="margin-top:22px">
+
+      <a class="row" href="https://chromewebstore.google.com/detail/tabspace/pigfllmaggabolcjieedkilhpdfcddai?hl=en" target="_blank" rel="noreferrer">
+        <span class="row-title">Tabspace</span>
+        <span class="row-desc"
+              data-zh="把 60–100 个标签页按域名收成卡片，一眼看出哪些重复、哪些能安全关掉。每组可以挂一个「任务锚点」，提醒你当初为什么打开它。"
+              data-en="Groups 60–100 open tabs into per-domain cards so you can see what's duplicated and what's safe to close. Each group can carry a task anchor — why you opened it in the first place."></span>
+        <span class="row-meta" data-zh="Chrome · 已上架" data-en="Chrome · shipped"></span>
+      </a>
+
+      <a class="row" href="https://1day.liangyue.site" target="_blank" rel="noreferrer">
+        <span class="row-title">1Day</span>
+        <span class="row-desc"
+              data-zh="用 2 秒、5 秒、10 秒的短片段留住一天，不用剪。确定性 UUID + 有序 CloudKit 同步解决多设备状态不一致，离线优先，AVFoundation 做音频混合与交叉淡化。"
+              data-en="Keeps a day in a handful of 2-, 5-, and 10-second clips — no editing required. Deterministic UUIDs and ordered CloudKit sync kill multi-device drift; offline-first, with AVFoundation handling audio mixing and crossfades."></span>
+        <span class="row-meta" data-zh="iOS · private beta" data-en="iOS · private beta"></span>
+      </a>
+
+      <a class="row" href="https://github.com/cassieliang6709/locki-ai-companion" target="_blank" rel="noreferrer">
+        <span class="row-title">Locki</span>
+        <span class="row-desc"
+              data-zh="先锁，再用完成小任务换回来。解锁规则跑在本地（Family Controls + DeviceActivity），AI 只负责温和建议，不替你决定。"
+              data-en="Lock first, then earn it back by finishing small tasks. Unlock rules run locally via Family Controls and DeviceActivity; the AI only offers gentle nudges — it never decides for you."></span>
+        <span class="row-meta" data-zh="iOS · 开发中" data-en="iOS · in progress"></span>
+      </a>
+
+      <a class="row" href="https://cassie-capture.cassie36.chatgpt.site" target="_blank" rel="noreferrer">
+        <span class="row-title">Cassie Capture</span>
+        <span class="row-desc"
+              data-zh="三四百页的长文档存成可分卷 PDF。核心原则是一帧都不留在内存里——每帧截图立刻落 IndexedDB 再回 ACK，所以 300 页也不会把浏览器撑爆。"
+              data-en="Saves 300-page documents as split-volume PDFs. The rule is that no frame ever stays in memory — each capture is written to IndexedDB and acknowledged before the next one, so long documents don't blow up the browser."></span>
+        <span class="row-meta" data-zh="Chrome · 待发布" data-en="Chrome · release prepared"></span>
+      </a>
+
+      <a class="row" href="https://github.com/cassieliang6709" target="_blank" rel="noreferrer">
+        <span class="row-title">MindBridge</span>
+        <span class="row-desc"
+              data-zh="AI 情绪陪伴。三层记忆架构 + 语义检索让长期上下文召回率 +35%，语义缓存日命中 28%、LLM 支出 -25%，流式语音首字延迟 -40%。端到端加密，CBT 对齐的苏格拉底式对话。"
+              data-en="An AI companion for difficult moments. A three-tier memory architecture with semantic retrieval lifts long-term recall by 35%; a semantic cache hits 28% daily and cuts LLM spend by 25%; streaming voice drops time-to-first-token by 40%. End-to-end encrypted, with CBT-aligned Socratic dialogue."></span>
+        <span class="row-meta" data-zh="FastAPI · demo" data-en="FastAPI · demo"></span>
+      </a>
+
+      <a class="row" href="https://github.com/cassieliang6709" target="_blank" rel="noreferrer">
+        <span class="row-title">AuditFlow</span>
+        <span class="row-desc"
+              data-zh="当年我花三天核对的那张表，现在十秒钟。OpenCV 预处理 + OCR + LLM 字段归一化让提取准确率 +25%，幂等流水线把任务成功率从 92% 拉到 99.8%。"
+              data-en="The reconciliation that took me three days at Deloitte now takes ten seconds. OpenCV preprocessing plus OCR and LLM field normalisation raised extraction accuracy 25%; an idempotent pipeline took task success from 92% to 99.8%."></span>
+        <span class="row-meta" data-zh="Django · 2026.03–05" data-en="Django · Mar–May 2026"></span>
+      </a>
+
+      <a class="row" href="https://github.com/cassieliang6709/lifepulse-backend" target="_blank" rel="noreferrer">
+        <span class="row-title">LifePulse</span>
+        <span class="row-desc"
+              data-zh="起点是跟教程做的外卖项目，收获全在教程之外——尤其是库存方案的三选一。最后用 Redis + Lua 原子预扣减，突发流量零超卖，1,200 QPS 下 p95 &lt; 180ms。"
+              data-en="Started as a tutorial food-delivery backend; everything I learned was outside the tutorial — especially picking between three inventory designs. Landed on atomic Redis + Lua decrements: zero oversell under bursts, p95 under 180ms at 1,200 QPS."></span>
+        <span class="row-meta" data-zh="Java · 2025.10–11" data-en="Java · Oct–Nov 2025"></span>
+      </a>
+
+      <a class="row" href="https://github.com/cassieliang6709/jobfit-ai" target="_blank" rel="noreferrer">
+        <span class="row-title">JobFit AI</span>
+        <span class="row-desc"
+              data-zh="把找工作当推荐问题做：召回、排序、解释和人工审核一起工作。流程止步于用户点提交之前——不做自动投递。"
+              data-en="Treats the job search as a recommendation problem: retrieval, ranking, explanation, and human review working together. The pipeline stops before submit — it never applies on your behalf."></span>
+        <span class="row-meta" data-zh="FAISS · 进行中" data-en="FAISS · active"></span>
+      </a>
+
+      <a class="row" href="https://apps.apple.com/cn/app/togoal-todo-task-planner/id6756302680" target="_blank" rel="noreferrer">
+        <span class="row-title">ToGoal</span>
+        <span class="row-desc"
+              data-zh="在杭州梦想小镇那段时间和人一起做的，我第一个真正上架的东西。"
+              data-en="Built with a collaborator during the Hangzhou Dream Town months. The first thing I ever actually shipped to a store."></span>
+        <span class="row-meta" data-zh="App Store · 合作" data-en="App Store · collaboration"></span>
+      </a>
+
+      <span class="row">
+        <span class="row-title">Becoming</span>
+        <span class="row-desc"
+              data-zh="把习惯养成做成英雄之旅：你进来是一颗散落的星尘，用每天的微小行动点亮星图。初衷写在 PPT 里——帮人从别人的评价体系里走出来。"
+              data-en="Habit-building as a hero's journey: you arrive as scattered stardust and light up a star map through small daily actions. The intent was in the original deck — help people step out of someone else's scoring system."></span>
+        <span class="row-meta" data-zh="2025 · 创业森林二等奖" data-en="2025 · 2nd prize, Startup Forest"></span>
+      </span>
+
+      <span class="row">
+        <span class="row-title" data-zh="正在帮助" data-en="Zhengzai Bangzhu"></span>
+        <span class="row-desc"
+              data-zh="日常任务与情绪管理的微信小程序。做 Becoming 之前的轻量版，验证了「对话式 todo」这个方向成立。"
+              data-en="A lightweight WeChat mini-program for daily tasks and mood. It came before Becoming and proved the conversational-todo direction was worth pursuing."></span>
+        <span class="row-meta" data-zh="小程序 · 已上线" data-en="Mini-program · live"></span>
+      </span>
+
+    </div>
+  </section>
+
+  <!-- ── PATH ─────────────────────────────────────── -->
+  <section class="section" id="path">
+    <p class="label">Path</p>
+    <h2 data-zh="我的路" data-en="How I got here"></h2>
+    <p data-zh="跳的是行业，没跳的是我关心的东西。"
+       data-en="The industries changed. What I care about didn't."></p>
+
+    <div class="path" style="margin-top:22px">
+
+      <div class="stop">
+        <div class="stop-when" data-zh="起点<br>哈密" data-en="Origin<br>Hami"></div>
+        <div>
+          <div class="stop-what" data-zh="新疆，网瘾少女，B 站自学换手机屏幕" data-en="Xinjiang. Internet kid. Taught myself to replace a phone screen off Bilibili."></div>
+          <p class="stop-note"
+             data-zh="奥比岛年度红宝石用户，「空间素材吧」的 PS 狂热爱好者，喜欢给人做动态签名。也学过高难度的日系折纸。高考理科全省前 170。"
+             data-en="Top-tier player on a kids' MMO, obsessive Photoshop hobbyist making animated forum signatures for strangers, and a serious origami habit. Finished in the province's top 170 in the science track of the gaokao."></p>
+          <p class="stop-note"
+             data-zh="小学看《妖精的尾巴》里那个本体是布偶的角色，魔力一断，人形、故乡、所有温柔的经历全部归零。我想了很久，想出一句话：<b>唯一能全权掌控的人，只有你自己。</b>"
+             data-en="In primary school I watched a character in Fairy Tail whose human form, hometown, and every tender memory were on loan from someone else's magic — and vanished the moment it was cut. I thought about it for a long time and arrived at one line: <b>the only person you fully control is yourself.</b>"></p>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-when">2018 — 2023</div>
+        <div>
+          <div class="stop-what" data-zh="上海财经大学 · 会计学院 国际会计（ACCA）" data-en="Shanghai University of Finance & Economics · International Accounting (ACCA)"></div>
+          <p class="stop-note"
+             data-zh="报志愿本身就有随机性，真正说服我的是招生现场一个很帅的学长，还有上财那种「大家更知道自己想去做什么」的务实氛围。后来发现会计给我的比那个学长多得多——全英文啃 IFRS 练出来的阅读写作，和一整套商业直觉，现在做独立开发全在用。"
+             data-en="Choosing a major in China is partly a dice roll; what actually convinced me was a very handsome senior at the recruiting booth and the school's pragmatic air — people there seemed to know what they wanted. Accounting gave me more than he did: reading and writing forged on English-language IFRS, plus a whole set of business instincts I still use as an indie developer."></p>
+          <p class="stop-meta"
+             data-zh="GPA 3.52/4.0（专业前 15%）· 人民奖学金 · 华为奖学金（前 5%）· 全国大学生数学建模竞赛上海市二等奖"
+             data-en="GPA 3.52/4.0 (top 15%) · People's Scholarship · Huawei Scholarship (top 5%) · 2nd prize, Shanghai division, National Mathematical Contest in Modeling"></p>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-when">2019</div>
+        <div>
+          <div class="stop-what" data-zh="商业分析比赛：丰巢社区团购 · 长三角特色小镇" data-en="Business case competitions: Hive Box community commerce · Yangtze Delta town revitalisation"></div>
+          <p class="stop-note"
+             data-zh="丰巢那份方案框架很完整、数据也用得溜，但有个致命盲区：全靠研报推导，没和物业经理、家政老板、小区团长聊过一次。上门服务的纠纷成本、物业合规门槛、美团的存量垄断，全没算进去。<b>有分析框架不等于有 business sense。</b>"
+             data-en="The Hive Box deck had a complete framework and solid numbers, and one fatal blind spot: it was derived entirely from research reports. I never spoke to a property manager, a cleaning-service owner, or a neighbourhood group leader. Dispute costs, compliance thresholds, Meituan's incumbency — none of it was in the model. <b>Having a framework is not the same as having business sense.</b>"></p>
+          <p class="stop-note"
+             data-zh="朱备禅修小镇那次我们去当地待了一整周，做了真正的田野调查。提的方向是换一个买单方：不面向散客，面向长三角的企业团建。六年后在湾区看到 Jhourney 这类冥想 retreat 火起来，才反应过来那个方向本身是成立的。"
+             data-en="For the Zhubei retreat town we spent a full week on the ground doing real fieldwork. Our proposal changed who pays: not day-trippers, but corporate wellness budgets across the Yangtze Delta. Six years later, watching meditation-retreat startups take off in the Bay Area, I realised the thesis had been right."></p>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-when">2021.01 — 2021.03</div>
+        <div>
+          <div class="stop-what" data-zh="阿里巴巴 / 盒马鲜生 · APP 产品运营实习" data-en="Alibaba / Freshippo · App Product Operations Intern"></div>
+          <p class="stop-note"
+             data-zh="核心项目是上一条新的推荐链路：按菜谱推荐商品——点进一道菜，推的是整组食材，从「卖商品」变成「卖一顿饭」。我做的是冷启动：把外部菜谱和盒马 SKU 一条条对上，走查 5w+ 条搭配。"
+             data-en="The core project was a new recommendation path: recipe-based bundles. Click a dish and you get the full set of ingredients — selling a meal instead of an item. I did the cold start: matching external recipe data to Freshippo SKUs line by line and reviewing 50,000+ pairings."></p>
+          <p class="stop-note"
+             data-zh="三条策略：价格带要对得上用户画像；主菜和配菜必须分开算（一个决定点不点进来，一个决定多买几件）；能用真实买过的组合，就别用推理出来的。也是第一次意识到「数据不干净」是个真问题——菜谱里有错别字，脏在源头。"
+             data-en="Three rules came out of it: price bands must match the user segment; mains and sides need separate ranking logic (one decides whether you click, the other how much you add); and a combination people actually bought always beats one inferred from recipe text. It was also where I first understood that dirty data is a real problem, not an assumption you get to wave away — the recipes had typos at the source."></p>
+          <p class="stop-meta" data-zh="链路上线，推荐 GMV +2%" data-en="Shipped; +2% GMV on the recommendation path"></p>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-when">2021.11 — 2022.02</div>
+        <div>
+          <div class="stop-what" data-zh="Know Yourself · 产品经理实习" data-en="Know Yourself · Product Manager Intern"></div>
+          <p class="stop-note"
+             data-zh="做月食 APP 的「茶会」——一个从线下 AA 戒酒会长出来的线上互助产品。设计围观者的补充逻辑、写 PRD、画原型、定埋点。"
+             data-en="Built Tea Party inside the Moon Eclipse app — an online mutual-support format grown out of offline AA meetings. I designed the lurker-participation logic, wrote the PRD, drew the prototypes, and specced the analytics."></p>
+          <p class="stop-meta" data-zh="单场参与度 ×4 · 承接用户量 ×8 · 月回访 >30%" data-en="4× per-session engagement · 8× users served · 30%+ monthly return"></p>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-when">2022.06 — 2022.08</div>
+        <div>
+          <div class="stop-what" data-zh="美团优选 · 商业分析实习（战略研究 / 竞对）" data-en="Meituan Select · Business Analysis Intern (strategy & competitive research)"></div>
+          <p class="stop-note"
+             data-zh="SQL + Python 做华西地区销售周报和竞对拆解，自己提了一套「团长数量 × 单团销量」的四象限拓团框架。那段时间我一直在多跑表、多写 SQL，直到有一天突然意识到：<b>一个框架能替我把后面十张表都省了。</b>"
+             data-en="SQL and Python for weekly West-China sales reporting and competitor teardowns, plus a four-quadrant expansion framework I proposed myself: leader count against sales per leader. I'd been grinding out more queries and more tables until it hit me — <b>one good framework saves you the next ten tables.</b>"></p>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-when">2023.06 — 2024.12</div>
+        <div>
+          <div class="stop-what" data-zh="德勤中国 · 审计员（生命健康组）" data-en="Deloitte China · Auditor (Life Sciences & Health Care)"></div>
+          <p class="stop-note"
+             data-zh="跑了万物新生（NYSE: RERE）、君实生物（01877.HK）、远景能源和一个生物医药 IPO 项目，独立覆盖 PPE、费用、Payroll、Cash、FCRP 等科目。"
+             data-en="Worked on ATRenew (NYSE: RERE), Junshi Biosciences (01877.HK), Envision Energy, and a biopharma IPO, owning PPE, expenses, payroll, cash, and FCRP end to end."></p>
+          <p class="stop-note"
+             data-zh="审计教我的不是财务，是<b>怎么在一堆混乱的原始材料里，找出唯一那条能证明「事情为真」的证据链</b>。内控审计尤其像给一套人肉系统写测试用例。你会习惯性问一句「凭什么相信这个数」——这个习惯我后来写代码时一直在用。"
+             data-en="Audit didn't teach me finance. It taught me <b>how to find the one evidence chain in a pile of messy source material that proves a thing is true.</b> Internal-controls work in particular is writing test cases for a system made of people. You learn to reflexively ask what entitles you to believe a number — I've never stopped asking it while writing code."></p>
+          <p class="stop-note"
+             data-zh="也是这一年我第一次真正开始写代码：用 Python/VBA 把总账 Mapping 自动化，单次复核时间砍掉 60%；设计 20+ 条异常检测规则，覆盖 90% 的常见对账错误。当时只是想少加点班，回头看，那是我第一次意识到——<b>我可以改造工具，而不只是使用工具。</b>"
+             data-en="It's also the year I started really writing code: automating general-ledger mapping in Python and VBA cut review time by 60%, and 20+ anomaly rules covered 90% of common reconciliation errors. I only wanted less overtime. Looking back, it was the first time I understood that <b>I could rebuild a tool instead of just using it.</b>"></p>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-when">2024.07 — 2025.01</div>
+        <div>
+          <div class="stop-what" data-zh="把所有门都推了一遍" data-en="Pushed on every door I could find"></div>
+          <p class="stop-note"
+             data-zh="离职之后我没有下一步，所以能推的门都推了一遍：注册了量越（杭州）电子商务，开了亚马逊店铺；带着 Becoming 拿了创业森林二等奖；AdventureX 参加两次、得奖两次；因为得奖拿到半年房租减免，在杭州梦想小镇落了脚；上线微信小程序「正在帮助」，和人合作上线了 ToGoal。"
+             data-en="I left Deloitte without a next step, so I pushed on every door: registered a company in Hangzhou and opened an Amazon storefront; took Becoming to second prize at Startup Forest; entered AdventureX twice and placed twice; won six months of free rent and landed in Hangzhou's Dream Town; shipped the Zhengzai Bangzhu mini-program and co-shipped ToGoal."></p>
+          <p class="stop-note"
+             data-zh="这段时间在简历上是空白，但它是我这些年信息密度最高的一段。我在这半年里想明白了：<b>我真正想做的是造东西，不是分析东西。</b>"
+             data-en="On a résumé this half-year is a gap. It's the densest stretch I've had. What I worked out in it: <b>what I actually want to do is build things, not analyse them.</b>"></p>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-when">2025.01 — 2025.05</div>
+        <div>
+          <div class="stop-what" data-zh="Smith-Kettlewell Eye Research Institute · AI Product & Engineering Intern" data-en="Smith-Kettlewell Eye Research Institute · AI Product & Engineering Intern"></div>
+          <p class="stop-note"
+             data-zh="旧金山的视觉科学研究机构。我做的项目服务盲人和低视力用户：让他们能「看懂」YouTube 视频——把画面里正在发生的事，自动变成他们听得到的描述。"
+             data-en="A vision-science institute in San Francisco. My project served blind and low-vision users: making YouTube videos legible to them by turning what's happening on screen into something they can hear."></p>
+          <p class="stop-meta" data-zh="为 30+ 名研究员搭生产级 FastAPI 服务，99.5% 可用性，视频制作时间 -64%" data-en="Production FastAPI service for 30+ researchers at 99.5% uptime; 64% reduction in video production time"></p>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-when" data-zh="2025.09 — 2027.12<br>（预计）" data-en="2025.09 — 2027.12<br>(expected)"></div>
+        <div>
+          <div class="stop-what" data-zh="Northeastern University · M.S. Artificial Intelligence" data-en="Northeastern University · M.S. Artificial Intelligence"></div>
+          <p class="stop-note"
+             data-zh="上一段我已经想明白要造东西了，那为什么还来读书？因为我发现<b>我的代码全是补丁</b>。为了少加班写 VBA，为了做 app 学 Swift——缺什么补什么，能跑起来，但底下是空的。我想有一段不用对任何交付负责的时间，把计算机这门学科从头认真学一遍。"
+             data-en="I'd already decided I wanted to build. So why go back to school? Because <b>my code was all patches.</b> VBA to escape overtime, Swift to make an app — plug whatever gap appeared. It ran, but there was nothing underneath. I wanted a stretch of time where I owed no one a deliverable, so I could learn the discipline properly from the bottom."></p>
+          <p class="stop-note"
+             data-zh="另一个原因更简单：我想亲眼看看美国。不是旅游意义上的看，是在这里上课、在这里工作，还原一个真实的世界。"
+             data-en="The other reason is simpler: I wanted to see America myself. Not as a tourist — taking classes here, working here, assembling a real picture instead of a reported one."></p>
+          <p class="stop-meta" data-zh="GPA 4.0 · Foundations of Generative AI 助教" data-en="GPA 4.0 · TA, Foundations of Generative AI"></p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── PRINCIPLES ───────────────────────────────── -->
+  <section class="section" id="principles">
+    <p class="label is-memory">How I think</p>
+    <h2 data-zh="我怎么想事情" data-en="How I think about things"></h2>
+
+    <div class="principles" style="margin-top:24px">
+      <div class="principle">
+        <div>
+          <strong data-zh="我会让自己过得好。" data-en="I will make sure I'm okay."></strong>
+          <p data-zh="这条排在所有原则前面，剩下的都是它的推论。"
+             data-en="This one comes before the others. The rest are corollaries."></p>
+        </div>
+      </div>
+      <div class="principle">
+        <div>
+          <strong data-zh="不着急，不害怕，不要脸。" data-en="Don't rush. Don't be afraid. Don't be precious."></strong>
+          <p data-zh="对时间不着急——尽了人事就放下执念。对结果不害怕——尽人力，知天命。对外界不要脸——做事的时候屏蔽杂音。第三条我执行得最好，脸皮厚在我这是一种生产力。"
+             data-en="Don't rush time: do the work, then let go of the outcome. Don't fear results: do what you can, accept what you can't. Don't be precious about how you look: tune out the noise while you work. I'm best at the third one — a thick skin is a form of productivity for me."></p>
+        </div>
+      </div>
+      <div class="principle">
+        <div>
+          <strong data-zh="害怕的时候，就拆解目标。" data-en="When you're scared, decompose the goal."></strong>
+          <p data-zh="恐惧几乎从来不指向具体的东西，它指向的是「我不知道下一步是什么」。所以每次卡住，我就把目标往下拆一层，再拆一层，拆到出现一个我今天就能动手做的事为止。"
+             data-en="Fear almost never points at something specific. It points at not knowing the next step. So when I'm stuck I break the goal down a level, then another, until something surfaces that I can start today."></p>
+        </div>
+      </div>
+      <div class="principle">
+        <div>
+          <strong data-zh="不要指望别人来解决自己的问题。" data-en="Don't build other people into the plan."></strong>
+          <p data-zh="不是说不求助，是说不要在心里把「某个人帮我」设成计划的一部分。默认假设是：这个问题最终得我自己解决，别人的帮助是加分项，不是前提。"
+             data-en="Not that you shouldn't ask for help — just don't make someone helping you a load-bearing part of the plan. My default assumption is that I'll have to solve it myself. Help is a bonus, not a precondition."></p>
+        </div>
+      </div>
+      <div class="principle">
+        <div>
+          <strong data-zh="犯过的错只说明当时的我蠢，不说明以后的我蠢。" data-en="A past mistake indicts past me, not future me."></strong>
+          <p data-zh="自责的时候我不再问「我怎么这么蠢」，改问一个更有用的问题：要把这次的坑变成转机，我下一步该做什么？"
+             data-en="Instead of asking why I was so stupid, I ask something more useful: what's the next move that turns this hole into a turn?"></p>
+        </div>
+      </div>
+      <div class="principle">
+        <div>
+          <strong data-zh="每天只问一个问题。" data-en="One question a day."></strong>
+          <p data-zh="今天做完什么事，会让我今晚觉得这一天过得值？比任何 to-do list 都好用。"
+             data-en="What could I finish today that would make tonight feel like the day was worth it? More useful than any to-do list I've tried."></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="thoughts">
+      <p class="thought"
+         data-zh="<b>念头分三档，质量和速度正好相反。</b>只在脑子里转的产生最快、质量最低；说出口的会好一点；写下来的质量最高，但最慢。所以我一焦虑就叫停自己：要么说出来，要么写下来。空想除了消耗你，什么都不产生。"
+         data-en="<b>Thoughts come in three grades, and quality runs opposite to speed.</b> The ones that only circle in your head are fastest and worst; spoken ones are better; written ones are best and slowest. So when I get anxious I cut it off: say it out loud or write it down. Rumination produces nothing but wear."></p>
+      <p class="thought"
+         data-zh="<b>改变自己好像只有两条路：做正确的事，和进入正确的环境。</b>我原来以为是第一条，现在觉得第二条权重更大。所以我不再把「能忍」当优点——如果一件事需要动用忍耐力，先问问是不是该走。"
+         data-en="<b>There seem to be only two ways to change yourself: do the right things, or get into the right environment.</b> I used to bet on the first; now I think the second carries more weight. Which is why I stopped treating endurance as a virtue — if something requires enduring, first ask whether you should leave."></p>
+      <p class="thought"
+         data-zh="<b>「我做不了」这句话，大部分时候不是关于难度，是关于样本量。</b>觉得做不了，往往是圈子太小、见过的样本太少。人做出错误选择通常也不是人有问题，是前提假设错了。"
+         data-en="<b>&ldquo;I can't do that&rdquo; is usually not about difficulty. It's about sample size.</b> Feeling incapable usually means your circle is small and you haven't seen enough examples. Bad decisions usually aren't a people problem either — they're a wrong-premise problem."></p>
+    </div>
+  </section>
+
+  <!-- ── UNSOLVED ─────────────────────────────────── -->
+  <section class="section" id="unsolved">
+    <p class="label is-caution">Unsolved</p>
+    <h2 data-zh="我还没解决的三个问题" data-en="Three problems I haven't solved"></h2>
+    <p data-zh="目标是 32 岁创业。从这个目标往回推，我发现自己缺的不是知识，是三样更底层的东西。"
+       data-en="The goal is to start a company by 32. Working backwards from that, what I'm missing isn't knowledge — it's three more basic things."></p>
+
+    <div class="unsolved" style="margin-top:22px">
+      <div class="problem">
+        <div class="problem-head">
+          <span class="tag" data-zh="未解决" data-en="open"></span>
+          <strong data-zh="怎么合理地寻求帮助。" data-en="How to ask for help properly."></strong>
+        </div>
+        <p data-zh="脸皮厚归厚，但真正需要帮忙的时候反而不开口。敢问路，但不敢说「我搞不定，能不能帮我」。偶尔做到了，事后发现根本没那么难。所以问题不是不会，是默认设置还没改过来。"
+           data-en="Thick skin notwithstanding, I go quiet exactly when I need help. I'll ask for directions but not for rescue. The few times I've managed it, it turned out to be easy. So it isn't a skill gap — the default just hasn't been rewritten."></p>
+      </div>
+      <div class="problem">
+        <div class="problem-head">
+          <span class="tag" data-zh="在治" data-en="treating"></span>
+          <strong data-zh="怎么耐心地把一件事做完。" data-en="How to finish something patiently."></strong>
+        </div>
+        <p data-zh="最难的一条。我永远更想开始一件新事，而不是把旧事收尾。九个月四个项目——这个密度本身就是症状。2026 年 7 月我为这条给自己开了一副药：不再打黑客松，回去深耕手里已有的东西。"
+           data-en="The hardest one. I always want to start something new more than I want to close something out. Four projects in nine months — the density itself is the symptom. In July 2026 I wrote myself a prescription for it: no more hackathons, go back and deepen what I already have."></p>
+      </div>
+      <div class="problem">
+        <div class="problem-head">
+          <span class="tag" data-zh="未解决" data-en="open"></span>
+          <strong data-zh="怎么把好习惯固化成默认行为。" data-en="How to make good habits the default."></strong>
+        </div>
+        <p data-zh="我觉得自己的价值观没什么问题，卡的是执行力。目前想到的笨办法就是从最小的事开始养习惯：改掉一指禅打字、出门自带洗手液。"
+           data-en="I don't think my values are the problem; execution is. The dumb method I've settled on is starting with the smallest possible things: learn to touch-type, carry hand sanitiser."></p>
+      </div>
+    </div>
+
+    <p style="margin-top:22px"
+       data-zh="把缺点写在个人主页上有点反直觉。但我想，如果一个人连自己没解决的问题都敢摆出来，至少说明她不打算装。而且万一你刚好解决过其中一条——那我们可以聊聊。"
+       data-en="Putting your weaknesses on your homepage is counterintuitive. But if someone will name the problems they haven't solved, at least they're not performing. And if you happen to have solved one of these — let's talk."></p>
+  </section>
+
+  <!-- ── CONTACT ──────────────────────────────────── -->
+  <section class="section" id="contact">
+    <p class="label">Contact</p>
+    <h2 data-zh="找我" data-en="Find me"></h2>
+
+    <div class="two-col" style="margin-top:24px">
+      <div class="col">
+        <h3 data-zh="我可以提供" data-en="What I can offer"></h3>
+        <ul>
+          <li data-zh="<b>后端 & AI 系统设计</b>：Spring Boot / FastAPI / Django，RAG、语义缓存、记忆架构"
+              data-en="<b>Backend & AI system design</b> — Spring Boot / FastAPI / Django, RAG, semantic caching, memory architectures"></li>
+          <li data-zh="<b>从审计人转工程师的真实路径</b>：包括中间那段没有下一步的时间，怎么过来的"
+              data-en="<b>The real path from auditor to engineer</b> — including the stretch with no next step, and how I got through it"></li>
+          <li data-zh="<b>iOS / SwiftUI 独立开发心得</b>：从零到上架，一个人能做到哪一步"
+              data-en="<b>Indie iOS / SwiftUI</b> — zero to App Store, and how far one person actually gets"></li>
+          <li data-zh="<b>大厂产品 & 商分实习的真实体验</b>：盒马、美团优选、Know Yourself，怎么申、进去干什么、值不值"
+              data-en="<b>What big-tech product and BA internships are actually like</b> — Freshippo, Meituan Select, Know Yourself: applying, doing the work, whether it's worth it"></li>
+          <li data-zh="<b>美国 AI 硕士的申请与在读</b>：Northeastern MSAI，以及做 Generative AI 助教是什么感觉"
+              data-en="<b>Applying to and surviving a US AI master's</b> — Northeastern MSAI, plus what TA'ing Generative AI is like"></li>
+          <li data-zh="<b>会计 / ACCA 背景想转行的人</b>：你的背景没有你以为的那么没用"
+              data-en="<b>If you're leaving accounting or ACCA</b> — your background is less useless than you think"></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h3 data-zh="我想和你聊" data-en="What I want to talk about"></h3>
+        <ul>
+          <li data-zh="AI 记忆与个性化架构——怎么让模型真的「记得」一个人"
+              data-en="AI memory and personalisation — how to make a model actually remember a person"></li>
+          <li data-zh="AI 陪伴类产品的伦理边界和 guardrail 怎么设计"
+              data-en="Where the ethical lines sit for AI companionship products, and how to build the guardrails"></li>
+          <li data-zh="独立开发怎么找到第一批真实用户（我还在解这题）"
+              data-en="How indie developers find their first real users — still unsolved on my end"></li>
+          <li data-zh="怎么判断一个环境值不值得待——这是我最想听别人经验的话题"
+              data-en="How to tell whether an environment is worth staying in — the topic I most want to hear other people's experience on"></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ───────────────────────────────────── -->
+  <footer class="footer">
+    <p class="sign mono">cassie liang · 更新于 2026.08 · san jose, ca</p>
+    <div class="contact">
+      <a href="mailto:liangyue3666@gmail.com">liangyue3666@gmail.com</a>
+      <a href="https://github.com/cassieliang6709" target="_blank" rel="noreferrer">github.com/cassieliang6709</a>
+      <a href="https://www.linkedin.com/in/yue-liang-cassie/" target="_blank" rel="noreferrer">LinkedIn</a>
+      <span class="wechat">微信 liangyue3666</span>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+  (function () {
+    var KEY = 'cassie-locale';
+
+    function stored() {
+      try { return localStorage.getItem(KEY); } catch (e) { return null; }
+    }
+    function store(v) {
+      try { localStorage.setItem(KEY, v); } catch (e) {}
+    }
+
+    function resolve() {
+      var q = new URLSearchParams(location.search).get('lang');
+      if (q === 'en' || q === 'zh') return q;
+      var s = stored();
+      if (s === 'en' || s === 'zh') return s;
+      if (location.pathname.indexOf('/en') === 0) return 'en';
+      return (navigator.language || '').toLowerCase().indexOf('zh') === 0 ? 'zh' : 'zh';
+    }
+
+    var TITLE = { zh: '梁悦 Cassie · 说明书', en: 'Cassie Liang · A Manual' };
+    var DESC = {
+      zh: '梁悦 Cassie · 从审计到工程，现在在湾区读 AI 硕士，一边上课一边自己做 app。',
+      en: 'Cassie Liang — from audit to engineering. Now doing an AI master’s in the Bay Area and building my own apps.'
+    };
+    var SIGN = {
+      zh: 'cassie liang · 更新于 2026.08 · san jose, ca',
+      en: 'cassie liang · updated 2026.08 · san jose, ca'
+    };
+
+    var button = document.querySelector('.language');
+
+    function apply(locale) {
+      var en = locale === 'en';
+      document.documentElement.lang = en ? 'en' : 'zh-CN';
+      document.querySelectorAll('[data-zh]').forEach(function (el) {
+        el.innerHTML = en ? el.dataset.en : el.dataset.zh;
+      });
+      document.querySelector('.sign').textContent = SIGN[locale];
+      document.title = TITLE[locale];
+      var meta = document.querySelector('meta[name="description"]');
+      if (meta) meta.setAttribute('content', DESC[locale]);
+      button.textContent = en ? '中文' : 'EN';
+      button.setAttribute('aria-label', en ? '切换到中文' : 'Switch to English');
+    }
+
+    var current = resolve();
+    apply(current);
+
+    button.addEventListener('click', function () {
+      current = current === 'en' ? 'zh' : 'en';
+      store(current);
+      apply(current);
+      var url = new URL(location.href);
+      url.searchParams.set('lang', current);
+      history.replaceState(null, '', url);
+    });
+  })();
+</script>
 </body>
 </html>
