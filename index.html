@@ -9,7 +9,7 @@
   <meta property="og:title" content="Cassie's Room · 梁悦的个人主页">
   <meta property="og:description" content="从哈密到上海、杭州和 San Jose：一间可以慢慢逛的个人主页，放着 Cassie 的作品、文章和正在建造的东西。">
   <meta property="og:url" content="https://cassieliang6709.github.io/personal_website/">
-  <meta property="og:image" content="https://cassieliang6709.github.io/personal_website/assets/room-spec/home.png">
+  <meta property="og:image" content="https://cassieliang6709.github.io/personal_website/assets/room-spec/home.webp">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://cassieliang6709.github.io/personal_website/">
   <link rel="alternate" hreflang="zh-CN" href="https://cassieliang6709.github.io/personal_website/">
@@ -51,17 +51,20 @@
   <main id="main" tabindex="-1">
     <section class="world is-active" id="home" data-room="home" aria-labelledby="homeTitle">
       <div class="home-scene scene-frame" id="homeScene">
-        <img class="scene-art" src="assets/room-spec/home.png" alt="Cassie 站在一间现代单人房中，床、照片墙、工作桌和书架都是可以进入的空间" fetchpriority="high">
+        <img class="scene-art" src="assets/room-spec/home.webp" alt="Cassie 站在一间现代单人房中，床、照片墙、工作桌和书架都是可以进入的空间" fetchpriority="high">
         <div class="scene-wash" aria-hidden="true"></div>
 
         <div class="welcome-note">
-          <p class="eyebrow" data-zh="WELCOME HOME" data-en="WELCOME HOME"></p>
-          <h1 id="homeTitle" data-zh="欢迎来我家坐坐。" data-en="Come in and stay awhile."></h1>
-          <p data-zh="我没有一路规划着来到这里，只是在每个阶段，都决定再往前走一点。房间里的东西都可以看看。" data-en="I did not plan the whole route here. At every stage, I simply chose to move a little farther. Everything in the room can be explored."></p>
-          <p class="color-key"><span class="memory-dot" aria-hidden="true"></span><span data-zh="粉色装着走过的路" data-en="Blush holds the path behind me"></span><span class="build-dot" aria-hidden="true"></span><span data-zh="蓝色装着正在做的事" data-en="Blue holds what I am building"></span></p>
-          <div class="resume-doors" aria-label="简历入口">
-            <a href="assets/resume/Cassie-SDE-CN.pdf" target="_blank" rel="noreferrer"><i class="ph ph-code" aria-hidden="true"></i><span><strong data-zh="AI / SDE 简历" data-en="AI / SDE Resume"></strong><small data-zh="工程、Agent、RAG" data-en="Engineering · Agent · RAG · CN"></small></span></a>
-            <a href="assets/resume/Cassie-PM-CN.pdf" target="_blank" rel="noreferrer"><i class="ph ph-path" aria-hidden="true"></i><span><strong data-zh="AI Product 简历" data-en="AI Product Resume"></strong><small data-zh="产品、策略、交付" data-en="Product · Strategy · Delivery · CN"></small></span></a>
+          <div class="welcome-note-head">
+            <p class="eyebrow" data-zh="WELCOME HOME" data-en="WELCOME HOME"></p>
+            <button class="welcome-toggle" id="welcomeToggle" type="button" aria-expanded="true" aria-controls="welcomeDetails">
+              <i class="ph ph-caret-up" aria-hidden="true"></i>
+              <span class="sr-only" data-zh="收起欢迎卡片" data-en="Collapse welcome card"></span>
+            </button>
+          </div>
+          <div class="welcome-details" id="welcomeDetails">
+            <h1 id="homeTitle" data-zh="欢迎来我家坐坐。" data-en="Come in and stay awhile."></h1>
+            <p class="color-key"><span class="memory-dot" aria-hidden="true"></span><span data-zh="粉色装着走过的路" data-en="Blush holds the path behind me"></span><span class="build-dot" aria-hidden="true"></span><span data-zh="蓝色装着正在做的事" data-en="Blue holds what I am building"></span></p>
           </div>
         </div>
 
@@ -75,12 +78,17 @@
 
         <p class="explore-hint"><i class="ph ph-cursor-click" aria-hidden="true"></i><span data-zh="移动鼠标，找到会回应你的物件" data-en="Move around and find the objects that respond"></span></p>
       </div>
+      <div class="home-resume-strip" aria-label="简历入口">
+        <span class="home-resume-label" data-zh="简历 / RESUME" data-en="RESUME"></span>
+        <a href="assets/resume/Cassie-SDE-CN.pdf" target="_blank" rel="noreferrer"><span data-zh="AI / SDE 简历" data-en="AI / SDE · CN"></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+        <a href="assets/resume/Cassie-PM-CN.pdf" target="_blank" rel="noreferrer"><span data-zh="AI Product 简历" data-en="AI Product · CN"></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+      </div>
     </section>
 
     <section class="world room-world" id="profile" data-room="profile" aria-labelledby="aboutTitle" hidden>
       <div class="room-layout about-layout">
         <div class="room-visual scene-frame">
-          <img class="scene-art" src="assets/room-spec/about.png" alt="Cassie 坐在现代单人床上写东西，身边有一只猫和少量绿植" loading="lazy">
+          <img class="scene-art" src="assets/room-spec/about.webp" alt="Cassie 坐在现代单人床上写东西，身边有一只猫和少量绿植" loading="lazy">
           <div class="scene-wash" aria-hidden="true"></div>
           <button class="back-home in-scene" type="button" data-room-link="home"><i class="ph ph-arrow-left" aria-hidden="true"></i><span data-zh="回到房间" data-en="Back home"></span></button>
         </div>
@@ -112,7 +120,7 @@
     <section class="world room-world" id="timeline" data-room="timeline" aria-labelledby="timelineTitle" hidden>
       <div class="timeline-shell">
         <div class="timeline-visual scene-frame">
-          <img class="scene-art" src="assets/room-spec/timeline.png" alt="一面现代房间里的旅行照片墙，展示哈密、上海、杭州和 San Jose" loading="lazy">
+          <img class="scene-art" src="assets/room-spec/timeline.webp" alt="一面现代房间里的旅行照片墙，展示哈密、上海、杭州和 San Jose" loading="lazy">
           <div class="scene-wash" aria-hidden="true"></div>
           <button class="back-home in-scene" type="button" data-room-link="home"><i class="ph ph-arrow-left" aria-hidden="true"></i><span data-zh="回到房间" data-en="Back home"></span></button>
         </div>
@@ -138,7 +146,7 @@
       <div class="projects-shell">
         <div class="projects-left">
           <div class="projects-visual scene-frame">
-            <img class="scene-art" src="assets/room-spec/projects-v2.png" alt="Cassie 站在现代工作台后，桌上依次摆着 Tabspace、1Day、Cassie Capture、MindBridge 和 Vance 的项目物件" loading="lazy">
+            <img class="scene-art" src="assets/room-spec/projects-v2.webp" alt="Cassie 站在现代工作台后，桌上依次摆着 Tabspace、1Day、Cassie Capture、MindBridge 和 Vance 的项目物件" loading="lazy">
             <div class="scene-wash" aria-hidden="true"></div>
             <button class="back-home in-scene" type="button" data-room-link="home"><i class="ph ph-arrow-left" aria-hidden="true"></i><span data-zh="回到房间" data-en="Back home"></span></button>
             <div class="project-hotspots" aria-label="桌面上的项目物件">
@@ -179,7 +187,7 @@
     <section class="world room-world" id="writing" data-room="writing" aria-labelledby="writingTitle" hidden>
       <div class="writing-shell">
         <div class="writing-visual scene-frame">
-          <img class="scene-art" src="assets/room-spec/writing-v2.png" alt="Cassie 坐在冷白与浅木色的阅读角看书，书架里放着产品笔记、随笔和生活档案" loading="lazy">
+          <img class="scene-art" src="assets/room-spec/writing-v2.webp" alt="Cassie 坐在冷白与浅木色的阅读角看书，书架里放着产品笔记、随笔和生活档案" loading="lazy">
           <div class="scene-wash" aria-hidden="true"></div>
           <button class="back-home in-scene" type="button" data-room-link="home"><i class="ph ph-arrow-left" aria-hidden="true"></i><span data-zh="回到房间" data-en="Back home"></span></button>
         </div>
@@ -233,7 +241,7 @@
   </section>
 
   <noscript><p class="noscript">这个房间需要 JavaScript 才能打开物件。你仍然可以阅读页面里的主要文字。</p></noscript>
-  <script src="articles.js?v=20260810-writing2"></script>
-  <script src="studio.js?v=20260810-writing2"></script>
+  <script src="articles.js?v=20260810-writing3"></script>
+  <script src="studio.js?v=20260810-writing3"></script>
 </body>
 </html>
