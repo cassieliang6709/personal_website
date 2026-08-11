@@ -22,3 +22,8 @@ Network Trash Folder
 Temporary Items
 .apdisk
 .vercel
+
+# Superseded concept artwork. Zero references in index.html / studio.*;
+# every live scene is served from assets/room-spec/*.webp. Kept locally as
+# drafts only — archive elsewhere if worth keeping.
+assets/scenes/
