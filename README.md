@@ -1,10 +1,15 @@
 # Cassie's Room
 
-[Live site](https://cassieliang6709.github.io/personal_website/) · [English route](https://cassieliang6709.github.io/personal_website/en/)
+[liangyue.site](https://liangyue.site) · [GitHub Pages](https://cassieliang6709.github.io/personal_website/) · [English route](https://liangyue.site/en/)
 
 A bilingual, room-shaped personal portfolio for Cassie Liang. Visitors move
 through five spaces—Home, About, Timeline, Projects, and Writing—rather than
 scrolling through a conventional résumé page.
+
+The site is deployed to two hosts:
+
+- **Vercel** — `https://liangyue.site` (primary, custom domain)
+- **GitHub Pages** — `https://cassieliang6709.github.io/personal_website/` (mirror)
 
 ## What is here
 
@@ -41,6 +46,34 @@ remain separated into shipped behavior, prepared releases, and experiments.
 
 ## Deployment
 
+### Vercel (primary)
+
+The project is linked to Vercel as `liangyue-site`. Deploy from the repository
+root:
+
+```bash
+vercel --prod
+```
+
+Custom domains `liangyue.site` and `www.liangyue.site` are aliased to the
+latest production deployment.
+
+`.vercelignore` excludes internal documentation, source-quality PNG artwork,
+and the `assets/scenes/` experiment directory from production uploads.
+
+### GitHub Pages (mirror)
+
 GitHub Pages deploys the repository root from `main` to:
 
 `https://cassieliang6709.github.io/personal_website/`
+
+### Release check
+
+Before pushing `main` or deploying:
+
+1. Run `node --check articles.js` and `node --check studio.js`.
+2. Run `git diff --check`.
+3. Serve the root locally and verify `/`, `/en/`, both résumé PDFs, all five
+   article readers, the project links, and the 390 px layout.
+4. Push `main` (triggers GitHub Pages) and/or run `vercel --prod`.
+5. Verify the live Chinese and English routes and inspect browser console errors.
