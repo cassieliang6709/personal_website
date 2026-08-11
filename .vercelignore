@@ -1,0 +1,14 @@
+# Repository and internal documentation
+.git/
+.github/
+README.md
+DEPLOYMENT.md
+design-qa.md
+design-system/README.md
+design-system/SKILL.md
+design-system/brand-dna.md
+design-system/references/
+
+# Source-quality and unused room artwork; production uses WebP assets
+assets/room-spec/*.png
+assets/scenes/
