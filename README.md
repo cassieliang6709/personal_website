@@ -38,6 +38,11 @@ Open `http://127.0.0.1:8765/`. The English route is `/en/`.
 - `studio.js` contains room, project, timeline, and reader behavior.
 - `articles.js` is the bilingual public article collection.
 - `assets/room-spec/` contains the final room artwork.
+- `en/index.html` is **generated** — run `node scripts/build-en.mjs` after
+  editing the `<head>` of `index.html`. Everything below `<head>` is copied
+  verbatim, so the two routes cannot drift; only the metadata differs. The other
+  entries in `en/` stay symlinks, which is what keeps relative asset paths
+  resolving inside the copied markup.
 - `assets/resume/` contains the current public résumé files.
 
 The source material for public writing lives in Cassie's private Life Archive;
