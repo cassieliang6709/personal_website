@@ -18,7 +18,8 @@ The site is deployed to two hosts:
 - a four-city timeline from Hami to Shanghai, Hangzhou, and San Jose;
 - direct, truthful project destinations for Tabspace, 1Day, Cassie Capture,
   MindBridge, and Vance;
-- five complete bilingual articles rendered in a distraction-free reader;
+- twenty-one bilingual public articles rendered in a distraction-free reader,
+  grouped into building notes, reflections, and life archive;
 - current Chinese AI/SDE and AI Product résumé PDFs;
 - keyboard navigation, reduced-motion support, responsive layouts, and visible
   focus states.
@@ -36,7 +37,8 @@ Open `http://127.0.0.1:8765/`. The English route is `/en/`.
 - `index.html` contains the room structure and accessible navigation.
 - `studio.css` contains the responsive visual system.
 - `studio.js` contains room, project, timeline, and reader behavior.
-- `articles.js` is the bilingual public article collection.
+- `articles.js` is the bilingual public article collection. Public adaptations
+  preserve contribution boundaries and omit private vault material.
 - `assets/room-spec/` contains the final room artwork.
 - `en/index.html` is **generated** — run `node scripts/build-en.mjs` after
   editing the `<head>` of `index.html`. Everything below `<head>` is copied
