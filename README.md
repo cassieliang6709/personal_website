@@ -13,13 +13,13 @@ The site is deployed to two hosts:
 
 ## What is here
 
-- a modern-room visual system built around cool white, pale wood, muted blush,
-  gray-blue, and one yellow interaction cue;
+- a warm miniature musical-stage visual system built around cream, coral,
+  apricot, pale wood, footlights, and gentle scene-change motion;
 - a four-city timeline from Hami to Shanghai, Hangzhou, and San Jose;
 - direct, truthful project destinations for Tabspace, 1Day, Cassie Capture,
   MindBridge, and Vance;
-- twenty-one bilingual public articles rendered in a distraction-free reader,
-  grouped into building notes, reflections, and life archive;
+- fifteen curated bilingual public articles rendered in a distraction-free
+  reader, grouped into building notes, reflections, and life archive;
 - current Chinese AI/SDE and AI Product résumé PDFs;
 - keyboard navigation, reduced-motion support, responsive layouts, and visible
   focus states.
@@ -80,7 +80,7 @@ Before pushing `main` or deploying:
 
 1. Run `node --check articles.js` and `node --check studio.js`.
 2. Run `git diff --check`.
-3. Serve the root locally and verify `/`, `/en/`, both résumé PDFs, all five
-   article readers, the project links, and the 390 px layout.
+3. Serve the root locally and verify `/`, `/en/`, both résumé PDFs, each article
+   category and representative reader, the project links, and the 390 px layout.
 4. Push `main` (triggers GitHub Pages) and/or run `vercel --prod`.
 5. Verify the live Chinese and English routes and inspect browser console errors.

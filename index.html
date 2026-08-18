@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="欢迎来到 Cassie 的房间。从床边认识我，沿照片墙看我走过的路，到工作桌看看正在做的东西。">
+  <meta name="description" content="梁悦的个人主页：人工智能硕士在读，做过产品运营、产品经理、商业分析和审计，现在独立开发自己的产品。">
   <meta name="theme-color" content="#f7f7f3">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Cassie's Room · 梁悦的个人主页">
-  <meta property="og:description" content="从哈密到上海、杭州和 San Jose：一间可以慢慢逛的个人主页，放着 Cassie 的作品、文章和正在建造的东西。">
+  <meta property="og:title" content="梁悦 · Cassie Liang 的个人主页">
+  <meta property="og:description" content="人工智能硕士在读、独立开发者。这里是梁悦的项目、经历和文章。">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:url" content="https://liangyue.site/">
   <meta property="og:image" content="https://liangyue.site/assets/room-spec/home.webp">
@@ -16,23 +16,25 @@
   <link rel="alternate" hreflang="zh-CN" href="https://liangyue.site/">
   <link rel="alternate" hreflang="en" href="https://liangyue.site/en/">
   <link rel="alternate" hreflang="x-default" href="https://liangyue.site/">
-  <title>Cassie's Room · 梁悦的个人主页</title>
+  <title>梁悦 · Cassie Liang 的个人主页</title>
+  <link rel="icon" type="image/png" href="assets/characters/cassie-favicon.png">
+  <link rel="apple-touch-icon" href="assets/characters/cassie-favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600&family=Noto+Serif+SC:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css">
   <link rel="stylesheet" href="design-system/tokens.css">
-  <link rel="stylesheet" href="studio.css?v=20260809-room1">
+  <link rel="stylesheet" href="studio.css?v=20260819-mushroom1">
 </head>
 <body>
   <a class="skip-link" href="#main" data-zh="跳到主要内容" data-en="Skip to main content"></a>
 
   <header class="topbar">
     <button class="home-link" type="button" data-room-link="home" aria-label="回到 Cassie 的房间">
-      <span class="home-monogram">C.</span>
+      <img class="home-avatar" src="assets/characters/cassie-favicon.png" alt="" aria-hidden="true">
       <span class="home-wordmark">
-        <strong>Cassie's Room</strong>
-        <small data-zh="一间可以慢慢逛的个人主页" data-en="A personal website you can wander through"></small>
+        <strong data-zh="梁悦 · Cassie" data-en="Yue Liang · Cassie"></strong>
+        <small data-zh="AI 硕士在读 · 独立开发者" data-en="M.S. AI · Independent builder"></small>
       </span>
     </button>
 
@@ -50,36 +52,57 @@
   </header>
 
   <main id="main" tabindex="-1">
-    <section class="world is-active" id="home" data-room="home" aria-labelledby="homeTitle">
-      <div class="home-scene scene-frame" id="homeScene">
-        <img class="scene-art" src="assets/room-spec/home.webp" alt="Cassie 站在一间现代单人房中，床、照片墙、工作桌和书架都是可以进入的空间" fetchpriority="high">
-        <div class="scene-wash" aria-hidden="true"></div>
-
-        <div class="welcome-note">
-          <div class="welcome-note-head">
-            <p class="eyebrow" data-zh="WELCOME HOME" data-en="WELCOME HOME"></p>
-            <button class="welcome-toggle" id="welcomeToggle" type="button" aria-expanded="true" aria-controls="welcomeDetails">
-              <i class="ph ph-caret-up" aria-hidden="true"></i>
-              <span class="sr-only" data-zh="收起欢迎卡片" data-en="Collapse welcome card"></span>
-            </button>
-          </div>
-          <div class="welcome-details" id="welcomeDetails">
-            <h1 id="homeTitle" data-zh="欢迎来我家坐坐。" data-en="Come in and stay awhile."></h1>
-            <p class="color-key"><span class="memory-dot" aria-hidden="true"></span><span data-zh="粉色装着走过的路" data-en="Blush holds the path behind me"></span><span class="build-dot" aria-hidden="true"></span><span data-zh="蓝色装着正在做的事" data-en="Blue holds what I am building"></span></p>
+    <section class="world is-active stage-home" id="home" data-room="home" aria-labelledby="homeTitle">
+      <div class="stage-intro">
+        <div class="stage-heading">
+          <p class="eyebrow" data-zh="LIANG YUE · CASSIE" data-en="YUE LIANG · CASSIE"></p>
+          <h1 id="homeTitle" data-zh="嗨，我是梁悦。现在在湾区读 AI，也在做自己的 app。" data-en="Hi, I'm Cassie Liang. I study AI in the Bay Area and build apps of my own."></h1>
+        </div>
+        <div class="stage-story">
+          <p data-zh="我做过产品运营、产品经理、商业分析和审计，现在主要写代码。这里放着我的项目、经历和文章。" data-en="I have worked in product operations, product management, business analysis, and audit. These days I mostly write code. This site holds my projects, experience, and writing."></p>
+          <p class="stage-support" data-zh="可以直接看作品，也可以从我的经历开始。" data-en="You can go straight to the work or start with my path here."></p>
+          <div class="stage-actions">
+            <button class="stage-primary" type="button" data-room-link="profile"><span data-zh="从第一幕开始" data-en="Start with scene one"></span><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
+            <button class="stage-secondary" type="button" data-room-link="works"><span data-zh="先看代表作" data-en="See selected work"></span></button>
           </div>
         </div>
-
-        <div class="home-hotspots" aria-label="可探索的房间入口">
-          <button class="room-hotspot hotspot-about" type="button" data-room-link="profile" data-label-zh="从床边认识我" data-label-en="Meet me by the bed"><span data-zh="关于我" data-en="About me"></span></button>
-          <button class="room-hotspot hotspot-timeline" type="button" data-room-link="timeline" data-label-zh="沿着照片墙走走" data-label-en="Follow the photo wall"><span data-zh="年表" data-en="Timeline"></span></button>
-          <button class="room-hotspot hotspot-projects" type="button" data-room-link="works" data-label-zh="看看我做过的东西" data-label-en="See what I built"><span data-zh="作品" data-en="Projects"></span></button>
-          <button class="room-hotspot hotspot-writing" type="button" data-room-link="writing" data-label-zh="从书架抽一篇文章" data-label-en="Pull a story from the shelf"><span data-zh="文章" data-en="Writing"></span></button>
-          <button class="room-hotspot hotspot-future" type="button" data-entry="future-note" data-label-zh="门外还有下一章" data-label-en="The next chapter is outside"><span data-zh="门外" data-en="Outside"></span></button>
+        <div class="stage-proof" aria-label="真实项目进展" data-aria-zh="真实项目进展" data-aria-en="Real project progress">
+          <a href="https://cassieliang6709.github.io/tabspace-site/" target="_blank" rel="noreferrer" aria-label="打开 Tabspace 产品页" data-aria-zh="打开 Tabspace 产品页" data-aria-en="Open the Tabspace product page"><strong>Tabspace</strong><small>SHIPPED</small><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+          <a href="https://1day.liangyue.site" target="_blank" rel="noreferrer" aria-label="打开 1Day 产品页" data-aria-zh="打开 1Day 产品页" data-aria-en="Open the 1Day product page"><strong>1Day</strong><small>PRIVATE BETA</small><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+          <a href="https://youdescribe.org/" target="_blank" rel="noreferrer" aria-label="打开 YouDescribe 官方主页" data-aria-zh="打开 YouDescribe 官方主页" data-aria-en="Open the official YouDescribe website"><strong>YouDescribe</strong><small data-zh="撰写时间 −64%" data-en="−64% WRITING TIME"></small><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
         </div>
-
-        <p class="explore-hint"><i class="ph ph-cursor-click" aria-hidden="true"></i><span data-zh="移动鼠标，找到会回应你的物件" data-en="Move around and find the objects that respond"></span></p>
       </div>
-      <div class="home-resume-strip" aria-label="简历入口">
+
+      <div class="stage-scene-shell">
+        <div class="stage-scene-label"><span>SCENE 01</span><strong data-zh="家" data-en="HOME"></strong></div>
+        <div class="home-scene scene-frame miniature-house" id="homeScene" aria-label="可拖动的 Cassie 微缩屋" data-aria-zh="可拖动和缩放的 Cassie 微缩舞台" data-aria-en="Cassie's draggable and zoomable miniature stage">
+        <div class="miniature-world" id="miniatureWorld">
+          <img class="scene-art" src="assets/room-spec/home-stage-theatre.png" alt="暖色舞台上的 Cassie 微缩房间，脚灯、光点路径、床、工作桌和书架构成一幕正在发生的故事" fetchpriority="high" draggable="false">
+          <div class="scene-wash" aria-hidden="true"></div>
+
+          <div class="home-hotspots" aria-label="可探索的房间入口" data-aria-zh="可探索的舞台入口" data-aria-en="Stage entrances to explore">
+            <button class="room-hotspot hotspot-about" type="button" data-room-link="profile" data-focus-x="18" data-focus-y="56" data-label-zh="从床边认识我" data-label-en="Meet me by the bed"><i class="ph ph-user" aria-hidden="true"></i><span data-zh="关于我" data-en="About me"></span></button>
+            <button class="room-hotspot hotspot-timeline" type="button" data-room-link="timeline" data-focus-x="53" data-focus-y="20" data-label-zh="沿着照片墙走走" data-label-en="Follow the photo wall"><i class="ph ph-clock" aria-hidden="true"></i><span data-zh="走过的路" data-en="My path"></span></button>
+            <button class="room-hotspot hotspot-projects" type="button" data-room-link="works" data-focus-x="66" data-focus-y="47" data-label-zh="看看我做过的东西" data-label-en="See what I built"><i class="ph ph-desktop" aria-hidden="true"></i><span data-zh="工作桌" data-en="Work table"></span></button>
+            <button class="room-hotspot hotspot-writing" type="button" data-room-link="writing" data-focus-x="84" data-focus-y="40" data-label-zh="从书架抽一篇文章" data-label-en="Pull a story from the shelf"><i class="ph ph-book-open-text" aria-hidden="true"></i><span data-zh="阅读角" data-en="Reading nook"></span></button>
+            <button class="room-hotspot hotspot-future" type="button" data-entry="future-note" data-focus-x="91" data-focus-y="68" data-label-zh="门外还有下一章" data-label-en="The next chapter is outside"><i class="ph ph-arrow-bend-down-right" aria-hidden="true"></i><span data-zh="下一幕" data-en="Next scene"></span></button>
+          </div>
+
+          <img class="walking-cassie" id="walkingCassie" src="assets/characters/cassie-walk.webp" alt="" aria-hidden="true">
+          <p class="cassie-speech" id="cassieSpeech" aria-live="polite"></p>
+        </div>
+
+        <div class="miniature-controls" aria-label="房间视角控制" data-aria-zh="舞台视角控制" data-aria-en="Stage view controls">
+          <button type="button" id="zoomOut" aria-label="缩小房间"><i class="ph ph-minus" aria-hidden="true"></i></button>
+          <button type="button" id="resetView"><i class="ph ph-corners-out" aria-hidden="true"></i><span data-zh="看全屋" data-en="Full room"></span></button>
+          <button type="button" id="zoomIn" aria-label="放大房间"><i class="ph ph-plus" aria-hidden="true"></i></button>
+        </div>
+
+          <p class="explore-hint"><i class="ph ph-hand-grabbing" aria-hidden="true"></i><span data-zh="选择一个物件，下一幕会从这里长出来" data-en="Choose an object and let the next scene grow from here"></span></p>
+        </div>
+        <button class="next-scene-cue" type="button" data-room-link="timeline"><span data-zh="下一幕" data-en="Next scene"></span><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
+      </div>
+      <div class="home-resume-strip" aria-label="简历入口" data-aria-zh="简历入口" data-aria-en="Resume links">
         <span class="home-resume-label" data-zh="简历 / RESUME" data-en="RESUME"></span>
         <a href="assets/resume/Cassie-SDE-CN.pdf" target="_blank" rel="noreferrer"><span data-zh="AI / SDE 简历" data-en="AI / SDE · CN"></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
         <a href="assets/resume/Cassie-PM-CN.pdf" target="_blank" rel="noreferrer"><span data-zh="AI Product 简历" data-en="AI Product · CN"></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
@@ -89,31 +112,45 @@
     <section class="world room-world" id="profile" data-room="profile" aria-labelledby="aboutTitle" hidden>
       <div class="room-layout about-layout">
         <div class="room-visual scene-frame">
-          <img class="scene-art" src="assets/room-spec/about.webp" alt="Cassie 坐在现代单人床上写东西，身边有一只猫和少量绿植" loading="lazy">
+          <img class="scene-art" src="assets/room-spec/about.webp?v=20260812" alt="Cassie 坐在现代单人床上写东西，身边有一只猫和少量绿植" onerror="this.onerror=null;this.src='assets/room-spec/about.png?v=20260812'">
           <div class="scene-wash" aria-hidden="true"></div>
           <button class="back-home in-scene" type="button" data-room-link="home"><i class="ph ph-arrow-left" aria-hidden="true"></i><span data-zh="回到房间" data-en="Back home"></span></button>
+          <div class="scene-vault-notes" aria-label="插画里的笔记入口" data-aria-zh="插画里的笔记入口" data-aria-en="Notes placed around the room">
+            <button type="button" data-about-note="curiosity"><i class="ph ph-wrench" aria-hidden="true"></i><span data-zh="小时候的互联网" data-en="My childhood internet"></span><small data-zh="从哈密开始" data-en="It started in Hami"></small></button>
+            <button type="button" data-about-note="hessler"><i class="ph ph-book-open-text" aria-hidden="true"></i><span data-zh="《打工女孩》与《寻路中国》" data-en="Factory Girls & Country Driving"></span><small data-zh="两本书，两组具体的人" data-en="Two books, two groups of people"></small></button>
+            <button type="button" data-about-note="principles"><i class="ph ph-compass" aria-hidden="true"></i><span data-zh="我的微博原句" data-en="My original Weibo lines"></span><small data-zh="想的话都是问题，做的话都是答案" data-en="Thinking asks; doing answers"></small></button>
+            <button type="button" data-about-note="finish"><i class="ph ph-check-circle" aria-hidden="true"></i><span data-zh="最近在练习" data-en="What I practice now"></span><small data-zh="把手里的做深" data-en="Take current work further"></small></button>
+          </div>
         </div>
 
         <article class="story-panel about-panel">
-          <p class="eyebrow" data-zh="床边 · ABOUT" data-en="BY THE BED · ABOUT"></p>
-          <h1 id="aboutTitle" data-zh="嗨，我是 Cassie。" data-en="Hi, I'm Cassie."></h1>
-          <p class="lede" data-zh="00 后，在新疆哈密长大，现在在美国湾区读人工智能硕士，一边上课，一边做自己的 app。" data-en="I grew up in Hami, Xinjiang. I now study AI in the Bay Area while building my own apps."></p>
-          <p data-zh="我本科读的是上财国际会计，后来在德勤做审计。审计让我习惯追问“凭什么相信这个数”，也让我第一次做出一个其他团队愿意继续使用的工具。后来我发现，自己真正想做的是造东西，而不只是分析东西。" data-en="I studied international accounting at SUFE, then worked in audit at Deloitte. Audit taught me to ask why a number should be trusted, and led me to build a tool other teams wanted to keep using. I eventually realized I wanted to make things, not only analyze them."></p>
+          <p class="eyebrow" data-zh="关于我 · ABOUT" data-en="ABOUT"></p>
+          <h1 id="aboutTitle" data-zh="Yue (Cassie) Liang" data-en="Yue (Cassie) Liang"></h1>
+          <p class="lede" data-zh="我现在在湾区读人工智能硕士，想成为一名可以独立把产品做出来的工程师。" data-en="I am an AI master's student in the Bay Area, working toward becoming an engineer who can take a product from idea to release independently."></p>
+          <p data-zh="我是新疆人，本科在上海读国际会计。后来在盒马、KnowYourself、美团和德勤工作，做过产品运营、产品经理、商业分析和审计。" data-en="I am from Xinjiang and studied international accounting in Shanghai. I later worked at Hema, KnowYourself, Meituan, and Deloitte in product operations, product management, business analysis, and audit."></p>
+          <p data-zh="离开德勤以后，我去了杭州，注册公司、开网店，也开始认真学 coding。Tabspace 已经上架 Chrome 商店，1Day 正在 private beta，Cassie Capture 的发布包也已经准备好。我现在一边继续做这些产品，一边补计算机和 AI 的基础。" data-en="After Deloitte, I moved to Hangzhou, registered a company, opened an online shop, and began learning to code seriously. Tabspace is live in the Chrome Web Store, 1Day is in private beta, and the release package for Cassie Capture is ready. I keep building these products while strengthening my foundations in computer science and AI."></p>
 
           <div class="fact-list" aria-label="关于 Cassie 的几个事实">
-            <span data-zh="哈密长大" data-en="Raised in Hami"></span>
+            <span data-zh="新疆人" data-en="From Xinjiang"></span>
             <span data-zh="NEU MSAI 在读" data-en="NEU MSAI"></span>
-            <span data-zh="前德勤审计" data-en="Former Deloitte auditor"></span>
-            <span data-zh="独立开发" data-en="Independent builder"></span>
+            <span data-zh="做过产品经理" data-en="Product manager experience"></span>
+            <span data-zh="独立开发中" data-en="Building independently"></span>
           </div>
 
-          <details class="room-letter">
-            <summary data-zh="打开床头的小纸条" data-en="Open the note by the bed"></summary>
-            <div>
-              <p data-zh="小时候我在 B 站学修手机、折纸，也在贴吧给别人做动态签名。高考理科新疆第 175 名。那时留下来的不是“优秀学生”的标签，而是我总觉得：工具可以被拆开，也可以被重新做一遍。" data-en="As a kid I learned phone repair and origami online, and made animated forum signatures for strangers. I ranked 175th in Xinjiang's science-track gaokao. What stayed was not the label of a good student, but the belief that tools can be opened, understood, and remade."></p>
-              <blockquote data-zh="我可以改造工具，而不只是使用工具。" data-en="I can reshape tools, not only use them."></blockquote>
+          <section class="about-notes" aria-labelledby="aboutNotesTitle">
+            <header>
+              <p class="eyebrow">FROM MY VAULT</p>
+              <h2 id="aboutNotesTitle" data-zh="从我的笔记里翻几页" data-en="A few pages from my notes"></h2>
+            </header>
+            <div class="about-note-grid">
+              <button type="button" data-about-note="hessler"><i class="ph ph-book-open-text" aria-hidden="true"></i><span><strong data-zh="《打工女孩》与《寻路中国》" data-en="Factory Girls & Country Driving"></strong><small data-zh="女孩与工厂老板是两本书里的故事" data-en="The workers and owners come from different books"></small></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></button>
+              <button type="button" data-about-note="curiosity"><i class="ph ph-wrench" aria-hidden="true"></i><span><strong data-zh="小时候的互联网" data-en="My childhood internet"></strong><small data-zh="修手机、折纸和贴吧签名" data-en="Phone repair, origami, and forum art"></small></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></button>
+              <button type="button" data-about-note="principles"><i class="ph ph-compass" aria-hidden="true"></i><span><strong data-zh="我的微博原句" data-en="My original Weibo lines"></strong><small data-zh="想的话都是问题，做的话都是答案" data-en="Thinking asks; doing answers"></small></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></button>
+              <button type="button" data-about-note="finish"><i class="ph ph-check-circle" aria-hidden="true"></i><span><strong data-zh="最近在练习的事" data-en="What I am practicing now"></strong><small data-zh="少开新坑，把手里的东西做深" data-en="Start less; take current work further"></small></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></button>
+              <button type="button" data-about-note="ky"><i class="ph ph-users-three" aria-hidden="true"></i><span><strong data-zh="第一次做产品经理" data-en="My first product role"></strong><small data-zh="KnowYourself 的月食茶会" data-en="The MoonEclipse tea room at KnowYourself"></small></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></button>
+              <button type="button" data-about-note="builder"><i class="ph ph-hammer" aria-hidden="true"></i><span><strong data-zh="为什么自己做产品" data-en="Why I build my own products"></strong><small data-zh="从一个自己遇到的问题开始" data-en="Starting with a problem I actually have"></small></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></button>
             </div>
-          </details>
+          </section>
         </article>
       </div>
     </section>
@@ -121,9 +158,15 @@
     <section class="world room-world" id="timeline" data-room="timeline" aria-labelledby="timelineTitle" hidden>
       <div class="timeline-shell">
         <div class="timeline-visual scene-frame">
-          <img class="scene-art" src="assets/room-spec/timeline.webp" alt="一面现代房间里的旅行照片墙，展示哈密、上海、杭州和 San Jose" loading="lazy">
+          <img class="scene-art" src="assets/room-spec/timeline.webp?v=20260812" alt="一面现代房间里的旅行照片墙，展示哈密、上海、杭州和 San Jose" onerror="this.onerror=null;this.src='assets/room-spec/timeline.png?v=20260812'">
           <div class="scene-wash" aria-hidden="true"></div>
           <button class="back-home in-scene" type="button" data-room-link="home"><i class="ph ph-arrow-left" aria-hidden="true"></i><span data-zh="回到房间" data-en="Back home"></span></button>
+          <div class="timeline-photo-pins" aria-label="照片墙上的城市" data-aria-zh="照片墙上的城市" data-aria-en="Cities pinned to the photo wall">
+            <button type="button" data-city="hami" aria-pressed="true"><span>01</span><strong data-zh="哈密 · 好奇心" data-en="Hami · Curiosity"></strong></button>
+            <button type="button" data-city="shanghai" aria-pressed="false"><span>02</span><strong data-zh="上海 · 协作与规模" data-en="Shanghai · Scale"></strong></button>
+            <button type="button" data-city="hangzhou" aria-pressed="false"><span>03</span><strong data-zh="杭州 · 从 0 到 1" data-en="Hangzhou · 0 to 1"></strong></button>
+            <button type="button" data-city="sanjose" aria-pressed="false"><span>04</span><strong data-zh="San Jose · 视野与技术" data-en="San Jose · Perspective"></strong></button>
+          </div>
         </div>
 
         <article class="timeline-story">
@@ -133,10 +176,10 @@
             <p data-zh="一路离开熟悉的地方，也一路把自己重新搭起来。点一张照片，听它背后的故事。" data-en="I kept leaving familiar places and rebuilding myself along the way. Choose a photo to hear its story."></p>
           </header>
           <div class="city-switcher" role="tablist" aria-label="城市故事">
-            <button type="button" role="tab" aria-selected="true" data-city="hami"><span>01</span><strong>哈密</strong></button>
-            <button type="button" role="tab" aria-selected="false" data-city="shanghai"><span>02</span><strong>上海</strong></button>
-            <button type="button" role="tab" aria-selected="false" data-city="hangzhou"><span>03</span><strong>杭州</strong></button>
-            <button type="button" role="tab" aria-selected="false" data-city="sanjose"><span>04</span><strong>San Jose</strong></button>
+            <button type="button" role="tab" aria-selected="true" data-city="hami"><span>01</span><strong>哈密</strong><em data-zh="好奇心" data-en="Curiosity"></em></button>
+            <button type="button" role="tab" aria-selected="false" data-city="shanghai"><span>02</span><strong>上海</strong><em data-zh="协作与规模" data-en="Scale & teams"></em></button>
+            <button type="button" role="tab" aria-selected="false" data-city="hangzhou"><span>03</span><strong>杭州</strong><em data-zh="从 0 到 1" data-en="Zero to one"></em></button>
+            <button type="button" role="tab" aria-selected="false" data-city="sanjose"><span>04</span><strong>San Jose</strong><em data-zh="视野与技术" data-en="Perspective & tech"></em></button>
           </div>
           <div class="city-story" id="cityStory" aria-live="polite"></div>
         </article>
@@ -147,7 +190,7 @@
       <div class="projects-shell">
         <div class="projects-left">
           <div class="projects-visual scene-frame">
-            <img class="scene-art" src="assets/room-spec/projects-v2.webp" alt="Cassie 站在现代工作台后，桌上依次摆着 Tabspace、1Day、Cassie Capture、MindBridge 和 Vance 的项目物件" loading="lazy">
+            <img class="scene-art" src="assets/room-spec/projects-v2.webp?v=20260812" alt="Cassie 站在现代工作台后，桌上依次摆着 Tabspace、1Day、Cassie Capture、MindBridge 和 Vance 的项目物件" onerror="this.onerror=null;this.src='assets/room-spec/projects-v2.png?v=20260812'">
             <div class="scene-wash" aria-hidden="true"></div>
             <button class="back-home in-scene" type="button" data-room-link="home"><i class="ph ph-arrow-left" aria-hidden="true"></i><span data-zh="回到房间" data-en="Back home"></span></button>
             <div class="project-hotspots" aria-label="桌面上的项目物件">
@@ -172,8 +215,9 @@
             <a href="https://chromewebstore.google.com/detail/tabspace/pigfllmaggabolcjieedkilhpdfcddai?hl=en" target="_blank" rel="noreferrer"><span>01</span><strong>Tabspace</strong><small data-zh="Chrome 商店 · 已上架" data-en="Chrome Store · shipped"></small><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
             <a href="https://1day.liangyue.site" target="_blank" rel="noreferrer"><span>02</span><strong>1Day</strong><small>iOS · private beta</small><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
             <a href="https://github.com/cassieliang6709/cassie-capture" target="_blank" rel="noreferrer"><span>03</span><strong>Cassie Capture</strong><small data-zh="代码与说明 · 发布包已准备" data-en="Code & notes · release prepared"></small><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
-            <a href="https://github.com/cassieliang6709" target="_blank" rel="noreferrer"><span>04</span><strong>MindBridge</strong><small>reflective demo</small><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+            <a href="https://mindbridge.liangyue.site" target="_blank" rel="noreferrer"><span>04</span><strong>MindBridge</strong><small data-zh="本地优先 · AI 长期记忆" data-en="Local-first · long-term AI memory"></small><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
             <button type="button" data-entry="vance-note"><span>05</span><strong>Vance</strong><small data-zh="个人项目 · 整理中" data-en="Personal project · being organized"></small><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
+            <button type="button" data-entry="mushroom-note"><span>06</span><strong data-zh="待机小蘑菇" data-en="The Little Idle Mushroom"></strong><small data-zh="漫画版生成中 · 五集文字版可读" data-en="Comic in progress · five text episodes available"></small><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
           </nav>
 
           <footer class="project-index-footer">
@@ -188,9 +232,14 @@
     <section class="world room-world" id="writing" data-room="writing" aria-labelledby="writingTitle" hidden>
       <div class="writing-shell">
         <div class="writing-visual scene-frame">
-          <img class="scene-art" src="assets/room-spec/writing-v2.webp" alt="Cassie 坐在冷白与浅木色的阅读角看书，书架里放着产品笔记、随笔和生活档案" loading="lazy">
+          <img class="scene-art" src="assets/room-spec/writing-v2.webp?v=20260812" alt="Cassie 坐在冷白与浅木色的阅读角看书，书架里放着产品笔记、随笔和生活档案" onerror="this.onerror=null;this.src='assets/room-spec/writing-v2.png?v=20260812'">
           <div class="scene-wash" aria-hidden="true"></div>
           <button class="back-home in-scene" type="button" data-room-link="home"><i class="ph ph-arrow-left" aria-hidden="true"></i><span data-zh="回到房间" data-en="Back home"></span></button>
+          <div class="writing-shelf-tabs" aria-label="书架上的文章分类" data-aria-zh="书架上的文章分类" data-aria-en="Writing categories on the shelf">
+            <button type="button" data-writing-filter="build" aria-pressed="true"><i class="ph ph-hammer" aria-hidden="true"></i><span data-zh="做东西" data-en="Building"></span></button>
+            <button type="button" data-writing-filter="reflection" aria-pressed="false"><i class="ph ph-lightbulb" aria-hidden="true"></i><span data-zh="想事情" data-en="Thinking"></span></button>
+            <button type="button" data-writing-filter="life" aria-pressed="false"><i class="ph ph-coffee" aria-hidden="true"></i><span data-zh="过生活" data-en="Living"></span></button>
+          </div>
         </div>
 
         <article class="writing-index">
@@ -242,7 +291,7 @@
   </section>
 
   <noscript><p class="noscript">这个房间需要 JavaScript 才能打开物件。你仍然可以阅读页面里的主要文字。</p></noscript>
-  <script src="articles.js?v=20260810-writing3"></script>
-  <script src="studio.js?v=20260810-writing3"></script>
+  <script src="articles.js?v=20260819-mushroom1"></script>
+  <script src="studio.js?v=20260819-mushroom1"></script>
 </body>
 </html>

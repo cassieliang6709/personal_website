@@ -21,13 +21,13 @@ const source = join(root, 'index.html');
 const target = join(root, 'en', 'index.html');
 
 const EN = {
-  title: "Cassie's Room · Cassie Liang",
+  title: 'Yue (Cassie) Liang · AI student and independent builder',
   description:
-    'Welcome to Cassie’s room: follow the photo wall from Hami to San Jose, ' +
-    'explore the workbench, and read what she is building and learning.',
+    'Yue (Cassie) Liang is an AI master’s student and independent builder with ' +
+    'experience in product operations, product management, business analysis, and audit.',
   ogDescription:
-    'A personal homepage you can wander through — Cassie’s projects, writing, ' +
-    'and the things she is still building, from Hami to San Jose.'
+    'Explore Cassie Liang’s projects, experience, and writing across AI, product, ' +
+    'business analysis, and audit.'
 };
 
 // Each rule must match exactly once. A silent no-op here would ship a Chinese

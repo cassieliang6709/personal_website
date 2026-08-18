@@ -2,85 +2,83 @@ window.CASSIE_ARTICLES = [
   {
     id: "capture",
     cat: "build",
-    title: ["为什么我做 Cassie Capture", "Why I built Cassie Capture"],
-    meta: ["BUILD LOG · 已扩写", "BUILD LOG · EXPANDED"],
-    deck: ["长文档不应该消失在滚动条里。", "Long documents should not vanish inside a scrollbar."],
+    title: ["Cassie Capture：先接住眼前这一页", "Cassie Capture: hold on to one page at a time"],
+    meta: ["BUILD LOG · 真实手记", "BUILD LOG · FIELD NOTES"],
+    deck: ["CaptionX 截到一半崩了。另一次没崩，PDF 却空了一半。", "CaptionX once crashed halfway through. Another time, the PDF exported half blank."],
     body: [[
-      "我经常需要保存很长的网页文档。课程笔记、飞书文档、Google Docs，三四百页的那种。普通截图工具在几十页以内都很好，一旦超过一百页，要么浏览器崩掉，要么最后导出的 PDF 有一半是空白。",
-      "我一开始以为这只是一个截图问题。后来才发现，真正的问题是内存：如果把三百页未压缩图像一直留在浏览器里，二三 GB 很快就没有了。于是 Cassie Capture 有了一个很简单、也很固执的原则——一帧都不留在内存里。",
-      "每一帧都有一段很短的生命。页面滚动，Service Worker 请求截图，Offscreen Document 立刻把图片写进 IndexedDB，再回一个 ACK。只有确认这一帧已经落盘，系统才继续下一帧。任何时刻，后台拿着的都只是一张图。",
-      "真正麻烦的反而不是截图按钮。Google Docs 和飞书并不一定滚动 window，它们有自己的内部容器。我给候选容器算分：可滚动距离乘上可见面积。最大的那个通常才是正文，旁边的聊天框和工具栏会自然输掉。",
-      "最后一屏也会骗人。浏览器会自动限制滚动位置，所以它常常和前一屏重叠一小截。我把内容边界单独记下来，用一个纯函数计算应该裁掉多少；它很不起眼，但有单元测试，因为这种地方一旦错了，三百页之后才发现会很痛苦。",
-      "PDF 也不能一次吃下所有图片。Cassie Capture 每一百页生成一个分卷：读一帧、裁一帧、加入当前 PDF、释放引用。满一百页就下载并删除已经使用的帧，再开始下一卷。最后得到的是 part-01-of-05，而不是一个把浏览器拖死的巨大 Canvas。",
-      "Manifest V3 会随时终止 Service Worker，Chrome 又限制截图频率。这些限制最初都很烦，但它们逼着我把协调、存储和生成拆开。Content Script 管页面，Service Worker 管节奏，Offscreen Document 管重活。",
-      "我以前很容易把约束理解成‘这里做不了’。做完这个项目后，我更愿意把它当成架构的起点。长文档不是因为太长就应该消失在滚动条里；系统只是需要学会，一次认真接住一页。",
-      "Cassie Capture 目前已经准备好 v1.2 上架包、商店文案和截图，还在等待真正提交与审核。它不是一个什么都能截的工具，只认真做一件事：把超长网页文档变成可以保存、可以翻阅的 PDF。"
+      "我有一次想保存一份三四百页的飞书文档。CaptionX 截到一半，浏览器崩了。另一次没有崩，导出的 PDF 却空了一半。",
+      "我先怀疑截图 API 不稳定。后来算了一下：三百张没压缩的图片，很快就是 2–3 GB。截图本身没有坏，是我不能让几百张图一起待在内存里。",
+      "最后的办法有点笨。页面滚一下，Service Worker 截一张，Offscreen Document 马上把它写进 IndexedDB。收到 ACK 以后，再滚下一屏。后台任何时候只拿一张图，三百页也不例外。",
+      "Google Docs 和飞书还会把正文塞在自己的滚动容器里，滚 window 根本没反应。我只好给页面上的候选容器打分：可滚动距离乘上可见面积。正文通常会赢，旁边的聊天框和工具栏会自己掉下去。",
+      "最容易出错的是最后一屏。浏览器会把滚动位置卡在底部，于是它和上一屏重叠了一截。我把裁切计算拆成一个纯函数，单独给它写测试。毕竟截完三百页才看见一条重复的缝，实在不适合靠肉眼重来。",
+      "生成 PDF 时也一样：读一张，裁一张，放进去，再把引用放掉。每一百页做成一个分卷，下载后删除已经用过的帧。最后得到 part-01、part-02……看起来没有一个巨大 PDF 那么威风，但浏览器终于不会被我拖死了。",
+      "这个项目没有找到什么神奇 API。我只是把“三百页”拆开，不再要求浏览器一次记住全部。先接住眼前这一页，然后再去下一页。",
+      "> 当前状态：Cassie Capture v1.2.0 的上架资料和安装包已准备，尚未提交 Chrome Web Store 审核。"
     ], [
-      "I often need to save very long web documents: course notes, Feishu docs, and Google Docs that run to three or four hundred pages. Most capture tools work well for a few dozen pages. Past a hundred, the browser may crash or the exported PDF comes out half blank.",
-      "I first treated it as a screenshot problem. The real problem was memory. Keeping hundreds of uncompressed frames alive can consume several gigabytes, so Cassie Capture adopted one stubborn rule: never keep the whole page in memory.",
-      "Each frame has a short life. The page scrolls, the service worker requests a capture, and the offscreen document immediately persists it to IndexedDB and returns an ACK. Only then does the next frame begin. The background process holds one image, not hundreds.",
-      "The capture button was not the hardest part. Google Docs and Feishu often scroll inside their own containers. I score candidates by scrollable distance times visible area; the document tends to win while chat panels and toolbars fall away.",
-      "The last viewport is deceptive too. Browsers clamp the final scroll position, creating overlap with the previous frame. A small pure function tracks content boundaries and calculates the crop. It has tests because discovering a seam after page three hundred is a terrible debugging strategy.",
-      "A single canvas cannot safely hold five hundred pages, either. Cassie Capture builds one PDF part per hundred pages: read a frame, crop it, append it, release it. Once a part is full, it downloads and its source frames are deleted before the next part begins.",
-      "Manifest V3 may terminate the service worker at any time, and Chrome limits capture frequency. Those constraints forced the architecture to become clearer: the content script handles the page, the service worker coordinates, and the offscreen document performs storage and PDF work.",
-      "I used to hear a constraint as a reason something could not be done. This project taught me to use it as the first design input. A long document should not disappear because it is long; the system just needs to learn to hold one page carefully at a time.",
-      "Cassie Capture now has a v1.2 release package, store copy, and screenshots prepared; submission and review are still ahead. It is not trying to capture everything. It does one job: turn very long web documents into PDFs people can keep and read."
+      "I once tried to save a Feishu document that was three or four hundred pages long. CaptionX crashed halfway through. On another attempt, the browser survived, but half the exported PDF was blank.",
+      "At first I blamed the screenshot API. Then I did the math: three hundred uncompressed images can reach 2–3 GB very quickly. The capture was not the real problem. I simply could not keep every frame alive at once.",
+      "The fix is almost boring. Scroll once, capture one frame in the service worker, write it to IndexedDB through the offscreen document, and wait for an ACK. Only then does the page move again. The background holds one image at a time, even when the document has three hundred pages.",
+      "Google Docs and Feishu made this harder by putting the document inside their own scroll containers. Scrolling the window does nothing. I ended up scoring possible containers by scrollable distance and visible area. The document usually wins; sidebars and chat panels fall away.",
+      "The last viewport is the sneaky one. The browser clamps the scroll position at the bottom, so the final frame overlaps the one before it. I pulled the crop calculation into a pure function and wrote tests for it. Finding a repeated seam after page three hundred is a bad time to rely on manual checking.",
+      "PDF generation follows the same rhythm: read one frame, crop it, add it, release it. Every hundred pages becomes a separate part, and the source frames are deleted after download. A set of part-01, part-02 files looks less heroic than one enormous PDF, but it no longer takes the browser down with it.",
+      "There was no magical API hiding at the end of this project. I stopped asking the browser to remember all three hundred pages at once. Hold on to this page first; then move to the next one.",
+      "> Current status: the listing materials and release package for Cassie Capture v1.2.0 are ready; it has not yet been submitted for Chrome Web Store review."
     ]]
   },
   {
     id: "1day",
     cat: "build",
-    title: ["我想保留的不是视频，而是一天的感觉", "I want to keep the feeling of a day, not just a video"],
-    meta: ["1DAY · 创作笔记", "1DAY · MAKING NOTES"],
-    deck: ["记录应该发生在生活里，而不是生活结束之后。", "Recording should happen inside life, not after it ends."],
+    title: ["1Day：我们今天也一起生活过", "1Day: we shared today, too"],
+    meta: ["1DAY · 产品手记", "1DAY · PRODUCT NOTES"],
+    deck: ["没有车、朋友住得远的时候，两三秒的视频成了生活的交点。", "When friends lived far away and I had no car, tiny clips became the place our days met."],
     body: [[
-      "大多数日子不会被记住。不是因为它们不好，是因为没有留下什么。",
-      "我不太想拍 vlog。它需要计划、拍摄、剪辑，一打开前置摄像头，人也很容易开始表演。我真正想留下来的，常常只是两秒钟的风、五秒钟的笑声，或者十秒钟一起走回家的路。",
-      "所以 1Day 没有先给你一个空白的录像按钮。它给的是一组时刻提示：Wake up、Coffee、Golden hour、Wind down。不同模板不是滤镜，而是不同的叙事顺序。Perfect Day 从日出走到月光，Soft Reset 记录一天怎么慢慢恢复。",
-      "这些提示都用稳定的 moment key 保存，而不是直接存显示文字。听起来很像一个很小的工程决定，但它意味着中英文切换时，已经拍下来的生活不会因为翻译改变而坏掉。",
-      "所有视频合成都在手机上完成，不需要上传。片段会在两条视频轨道之间交替，用很短的交叉淡入淡出接起来；方向会归一化，竖屏和横屏不会突然打架。模拟器不支持的 Core Animation overlay，则只在真机上启用。",
-      "多人模式让我重新想了一遍‘一起记录’是什么。朋友不需要同时在线，也不需要学习一套复杂流程。房间只有一个六位码，同一个人重新录同一天，会更新确定的 CloudKit 记录，而不是制造重复。表情反应也是幂等的。",
-      "单人模式不需要账户，也不需要网络。CloudKit 只是可选协作层。我很在意这件事，因为记录生活不应该先要求你把生活交给一个服务器。",
-      "做 1Day 的时候，我反复问自己：什么值得被记住？后来答案没有变得更宏大，反而越来越小。咖啡的热度、窗外的光、回家路上耳机里的歌。文字有时候说不清，但两秒钟刚好。",
-      "两秒够短，短到你还没来得及表演；也够长，长到几个月以后，你会突然想起那一天。1Day 目前还在 Private Beta。它不是一个更复杂的剪辑器，是一个尽量不打断生活的记忆容器。"
+      "在美国，没有车，加上朋友住得远，很容易就变成：大家明明在同一座城市，生活却很少碰到一起。",
+      "那段时间我用了一个韩国 vlog app，叫 Setlog。它隔几个小时提醒一次，每次只拍两三秒。晚上大家把片段拼起来发出来：上课、吃饭、坐车、乱糟糟的桌面。事情都很普通，可我第一次觉得，我们各过各的这一天，中间居然有了几个交点。",
+      "1Day 最早其实不是这个方向。我一开始想做一个管自律、管屏幕时间的产品，做着做着觉得不对。每天已经够累了，我不想再造一个东西站在旁边监督人。真正让我愿意打开 app 的，是下一次提醒来时那一点点期待。",
+      "所以我把问题换了：能不能让朋友用很小的片段，一起过完一天？每段只要 2–10 秒。短到来不及摆好表情，也不需要先想今天值不值得记录。",
+      "Perfect Day、Soft Reset、Lock In Together 这些模板，安排的只是一天里可能出现的时刻。朋友也只是轻轻看见彼此，没有排行榜，没有断签惩罚，更没有人催你交作业。漏掉一段，就漏掉了。生活不会因此扣分。",
+      "单人模式可以完全离线，视频在手机上合成；只有想和朋友一起时，CloudKit 才出现。我也给每个时刻留了固定的 key，这样切换中英文，已经拍下来的那一天不会跟着翻译一起散掉。",
+      "我后来发现，自己想保留的并不是多完整的一支 vlog。可能只是朋友午饭吃了什么，我窗外那天是什么颜色，还有晚上看到彼此的片段时那句：哦，原来你今天在这里。",
+      "两三秒很小，但它会留下一个证据：我们今天也一起生活过。",
+      "> 当前状态：1Day 正在 Private Beta。"
     ], [
-      "Most days are forgotten. Not because they were bad, but because nothing stayed.",
-      "I do not really want to make vlogs. They require planning, filming, and editing, and the front camera can make ordinary life feel like a performance. What I want to keep is usually smaller: two seconds of wind, five seconds of laughter, or ten seconds of walking home together.",
-      "That is why 1Day does not begin with an empty record button. It offers moment prompts such as Wake up, Coffee, Golden hour, and Wind down. The templates are not filters; they are different narrative shapes. Perfect Day moves from sunrise to moonlight. Soft Reset follows a day gradually recovering.",
-      "The prompts are stored as stable moment keys rather than display text. It sounds like a tiny engineering choice, but it means switching between Chinese and English never corrupts a memory that has already been recorded.",
-      "All video composition happens on the phone. Clips alternate between two tracks with short crossfades, orientation is normalized, and Core Animation overlays that fail in the simulator are enabled only on real devices.",
-      "Friend mode made me rethink what recording together should require. People do not need to be online at the same time or learn a complicated workflow. A room has a six-character code, and recording the same day again updates a deterministic CloudKit record instead of creating duplicates. Reactions are idempotent too.",
-      "Solo mode needs no account and no network. CloudKit is only an optional collaboration layer. I care about that boundary because recording a life should not begin by asking someone to hand that life to a server.",
-      "While building 1Day, I kept asking what deserves to be remembered. The answer became smaller, not grander: the warmth of coffee, the light outside a window, the song playing on the walk home. Words sometimes miss those things, but two seconds can hold them.",
-      "Two seconds is short enough that I do not begin performing, and long enough to bring a day back months later. 1Day is currently in private beta. It is not a more complicated editor; it is a memory container designed not to interrupt the life it records."
+      "In the U.S., having no car and friends who lived far away often meant that we could be in the same city and still barely touch each other's daily lives.",
+      "Around then I used a Korean vlog app called Setlog. Every few hours it asked for a two- or three-second clip. At night, friends shared the day they had assembled: class, lunch, a commute, a messy desk. None of it was remarkable. Still, those tiny clips gave our separate days a few places to meet.",
+      "1Day actually began somewhere else. I first imagined a product about self-discipline and screen time. The more I worked on it, the less I liked the feeling. Life was already demanding enough; I did not want to build another thing that stood nearby and kept score. What made me want to open the app was the small anticipation of the next prompt.",
+      "So I changed the question: could friends move through a day together using very small pieces of it? Each clip lasts only 2–10 seconds—too short to arrange a performance, and small enough that I do not have to decide whether the day is worth documenting.",
+      "Templates such as Perfect Day, Soft Reset, and Lock In Together offer possible moments, nothing more. Friends are light witnesses. There are no rankings, no streak punishments, and no one asking where today's assignment went. If I miss a clip, I miss it. The day does not deduct points.",
+      "Solo mode works offline and composes the video on the phone. CloudKit appears only when someone chooses to share with friends. Each moment also has a stable key, so switching languages does not pull an already-recorded day apart.",
+      "Eventually I realized I was not trying to preserve a complete vlog. I wanted the smaller things: what a friend ate for lunch, the color outside my window, and the moment I watched their clip and thought, oh, that is where you were today.",
+      "Two seconds can be enough evidence that we shared today, too.",
+      "> Current status: 1Day is in private beta."
     ]]
   },
   {
     id: "tabspace",
     cat: "build",
-    title: ["Tabspace：把决定权留给用户", "Tabspace: keeping the final say with the user"],
-    meta: ["PRODUCT NOTE · 已扩写", "PRODUCT NOTE · EXPANDED"],
-    deck: ["AI 可以整理，但不能偷偷替你整理。", "AI can organize, but it should not do so secretly."],
+    title: ["Tabspace：我为什么舍不得关掉 100 个标签页", "Tabspace: why I couldn't close 100 tabs"],
+    meta: ["PRODUCT NOTE · 迭代手记", "PRODUCT NOTE · ITERATION NOTES"],
+    deck: ["我怕的不是标签页太多，是关掉以后找不回来。", "The number of tabs was not the scary part. Losing one I needed was."],
     body: [[
-      "我的浏览器长期有六十到一百个标签页。不是每一个都重要，只是关掉任何一个时，我都会想：万一等一下要用呢？",
-      "很多整理工具给出的答案是自动分类、自动关闭、自动替你决定。我不太喜欢。混乱当然让人累，但一个工具如果在背后悄悄改变你的工作现场，也会制造另一种不安。",
-      "Tabspace 最早只是把标签页按域名放进卡片里。你可以看到 GitHub 开了几个页面、哪些 URL 重复、哪一组可以关掉。去重、分组和关闭都是真实操作，但执行之前，变化先摆在你面前。",
-      "后来我把同样的逻辑放进书签整理：搜索、重复检测、批量移动和推荐文件夹都可以做，但破坏性操作必须先预览。‘先预览，再执行’不是为了多一个确认弹窗，而是为了让用户仍然知道自己的东西去了哪里。",
-      "Reader Assist 则是另一种整理。它不替你总结文章，而是把当前段落亮起来，让其他内容安静一点。你可以用键盘移动焦点、设置十五分钟计时，也可以把一句话标成重点、概念、行动或疑问。它帮助的是阅读动作，不是假装替你读完。",
-      "Manifest V3 的内容安全策略不喜欢现代打包工具的默认输出。为了让 React 页面同时跑在扩展和本地预览里，我做了自定义构建改写，也把 Chrome 的回调 API 集中包装成 Promise。技术细节很多，但它们都服务于一件事：工具要在真实浏览器里稳定工作，而不是只在 demo 里好看。",
-      "商店里的 0.1.0 版本完全本地运行。后来仓库加入过可选 AI 分组建议：只发送 tabId、标题、hostname 和当前分组，不发完整 URL 或页面内容，而且必须由用户主动点击。建议回来以后，也还是先看、再 Apply。",
-      "这个项目并不是一条很整齐的产品路线。上架以后我做过 Focus Assistant，后来又把它拆掉；当前仓库和商店版本也不是同一个时间切片。以前我会觉得这种反复很难看，现在我更愿意把它留下来——做产品本来就包括删掉自己曾经很认真做过的东西。",
-      "Tabspace 教会我的不是‘自动化越多越好’。恰恰相反：AI 可以帮忙看见模式，可以提出建议，但最后那一下，应该由用户自己按。"
+      "我的浏览器经常开着六十到一百个标签页。每次准备关一个，脑子里都会冒出同一句话：万一等下要用呢？于是一个也没关，新的还在继续开。",
+      "我试过一些会自动整理标签页的工具，但“自动”并没有让我更放心。如果一个页面突然被分组、移动或者关掉，我还是会想知道它去了哪里。我的麻烦其实不只是页面多，是我不敢相信一次看不见的整理。",
+      "Tabspace 第一版做得很直接：把标签页按域名铺成卡片。GitHub 开了几个、哪两个 URL 重复、这一组关掉以后会少什么，都先让我看见。点 Apply 之前，浏览器什么也不动。",
+      "后来做书签整理，我还是用了这条规矩。批量移动、去重、推荐文件夹都可以，但先给我一张变化清单。多看一步有点慢，却比整理完再到处找东西轻松。",
+      "Reader Assist 是这个过程中长出来的另一块。它有 837 行原生 JavaScript，做的事情却很小：把正在读的段落亮起来，让周围安静一点。它不会宣布已经替我读懂全文，只是让我别在一页里面又开出八个新标签。",
+      "0.1.0 上架 Chrome Web Store 的时候，所有整理都在本地完成。收到发布邮件那一刻，我比写代码时紧张得多——真的会有人把它装进自己已经很乱的浏览器里。",
+      "项目后来也走过弯路。我加过 Focus Assistant，又把它删了；仓库里再后来出现的可选 AI 建议，也没有进商店版本。它只在用户主动点击后发送 tabId、标题、hostname 和当前分组，不碰完整 URL 和页面内容。建议回来以后，仍然要自己按 Apply。",
+      "所以“先预览，再执行”并不是我一开始写在白板上的产品原则。它是我在一百个标签页面前，反复不敢按下关闭以后，慢慢留下来的。",
+      "> 当前状态：Chrome Web Store 0.1.0 为本地整理版；仓库中的可选 AI 建议属于后续实验。"
     ], [
-      "My browser often holds sixty to a hundred tabs. They are not all important. Closing any one of them simply triggers the same thought: what if I need it in five minutes?",
-      "Many organization tools answer with automatic grouping, closing, and decision-making. I do not love that. Clutter is tiring, but a tool that silently changes a working environment creates a different kind of anxiety.",
-      "Tabspace began by placing tabs into domain cards. I can see how many GitHub pages are open, which URLs repeat, and which group might be safe to close. Deduping, grouping, and closing are real actions, but the change appears before it happens.",
-      "I later applied the same rule to bookmarks. Search, duplicate detection, bulk moves, and folder suggestions are useful, but destructive operations must be previewed. Preview before apply is not an extra confirmation dialog; it is how the user continues to know where their things went.",
-      "Reader Assist organizes attention instead. It does not pretend to read an article for me. It highlights the current paragraph, quiets the rest of the page, supports keyboard navigation and a fifteen-minute timer, and lets me mark a line as an idea, action, question, or key point.",
-      "Manifest V3 content security rules do not cooperate with the default output of modern bundlers. I built a custom output rewrite, supported both Chrome and local preview runtimes, and wrapped callback APIs in promises. The details serve one purpose: the tool must work inside a real browser, not only look convincing in a demo.",
-      "The 0.1.0 store release runs locally. A later repository version added optional AI grouping suggestions that send only tab IDs, titles, hostnames, and current group IDs—not full URLs or page content—and only after an explicit user action. Returned suggestions are still reviewed before Apply.",
-      "The product history is not a clean line. I built a Focus Assistant after release and later removed it; the repository and store release now represent different moments. I used to think that history looked messy. I now want to keep it visible because building products includes deleting things I once worked hard on.",
-      "Tabspace did not teach me that more automation is always better. It taught me the opposite: AI can reveal patterns and make suggestions, but the final click should stay with the user."
+      "My browser regularly has sixty to a hundred tabs open. Every time I try to close one, the same thought appears: what if I need it in five minutes? So I close nothing, and keep opening more.",
+      "I tried tools that organized tabs automatically, but automatic did not make me feel safer. If a page suddenly moved, joined a group, or disappeared, I still wanted to know where it went. Too many tabs were only part of the problem. I did not trust an organization step I could not see.",
+      "The first version of Tabspace was direct: lay the tabs out as domain cards. Show me how many GitHub pages are open, which URLs repeat, and what will disappear if I close a group. Until I click Apply, the browser stays exactly as it is.",
+      "I kept the same rule when I added bookmark cleanup. Bulk moves, duplicate detection, and folder suggestions are useful, but I want a list of changes first. That extra step is slower. It is also much easier than hunting for something after a cleanup.",
+      "Reader Assist grew out of the same project. It is 837 lines of plain JavaScript doing a deliberately small job: highlight the paragraph I am reading and quiet the rest of the page. It does not claim to have read the article for me. It helps me avoid opening eight more tabs from the one I already have.",
+      "When version 0.1.0 reached the Chrome Web Store, all organization happened locally. The publication email made me more nervous than the coding. Someone could now install this thing inside their own already-messy browser.",
+      "The project wandered after that. I built a Focus Assistant and later removed it. Optional AI suggestions appeared in a later repository version, but never entered the store release. They send tab ID, title, hostname, and current group only after an explicit click—not full URLs or page content. The returned suggestion still waits for the user to press Apply.",
+      "Preview before apply was not a polished product principle I wrote on a whiteboard at the beginning. It was what remained after I stood in front of a hundred tabs and repeatedly failed to press Close.",
+      "> Current status: the Chrome Web Store 0.1.0 release organizes locally; optional AI suggestions in the repository are a later experiment."
     ]]
   },
   {
@@ -91,15 +89,17 @@ window.CASSIE_ARTICLES = [
       "The Little Idle Mushroom"
     ],
     "meta": [
-      "随笔 · 五集重构版",
-      "ESSAY · FIVE-EPISODE EDITION"
+      "五集文字版 · 漫画生成中",
+      "FIVE TEXT EPISODES · COMIC IN PROGRESS"
     ],
     "deck": [
-      "一颗长期待机的小蘑菇，怎样停止空转，重新开始行动。",
-      "How a little mushroom stuck in idle mode learns to stop spinning and start moving."
+      "五集最新文字版：一颗长期待机的小蘑菇，怎样停止空转，重新开始行动。",
+      "The latest five-episode text: how a little mushroom stuck in idle mode learns to start moving again."
     ],
+    "galleryPending": true,
     "body": [
       [
+        "这里收录的是《待机小蘑菇》五集最新文字版。漫画版还在生成：小工头、小C和小E会把脑内那些说不清的声音，搬进一间真的看得见的控制室。",
         "## 第一集：先按下去",
         "网申页面终于走到最后一步。",
         "<strong>Step 12 of 12：Upload Resume</strong>",
@@ -299,6 +299,7 @@ window.CASSIE_ARTICLES = [
         "这一次，脑子和手在同一个地方。"
       ],
       [
+        "This page contains the latest text edition of all five episodes of <em>The Little Idle Mushroom</em>. The comic is still being created: the foreman, Little C, and Little E will turn the hard-to-name voices in my head into a control room I can actually see.",
         "## Episode One: Just Click It",
         "The application finally reached its last step.",
         "<strong>Step 12 of 12: Upload Resume</strong>",
@@ -507,24 +508,24 @@ window.CASSIE_ARTICLES = [
     deck: ["我不是一路规划着来到这里的，只是每到一个阶段，都决定再往前走一点。", "I did not plan the whole route here. At each stage, I chose to move a little farther."],
     body: [[
       "我不是一路规划着来到这里的。如果十八岁的时候有人把哈密、上海、杭州和 San Jose 连成一条线给我看，我大概也不会相信。很多决定当时没有一个很漂亮的解释，只是觉得：要不再往前走一点。",
-      "我在哈密长大。风很大，天很蓝，日子也慢。小时候我会在网上学修手机、折纸，也给陌生人做动态签名。那时候当然没有人把这些叫作‘产品意识’或者‘工程兴趣’，我只是天然觉得东西可以拆开，也可以重新做一遍。",
+      "我在哈密长大。小时候兴趣很多：在网上学修手机、折纸，也给陌生人做动态签名。没有什么职业规划，我就是单纯好奇。对一件事感兴趣，就自己去找来学；学会以后，很快又会想试下一件。",
       "十八岁以后去了上海，在上财读国际会计，后来进德勤生命科学与医疗组。会计没有成为我的终点，但审计留下了很顽固的习惯：这个数从哪里来？为什么应该相信它？材料再乱，也要找到一条能复核的证据链。",
-      "我写第一行 Python 的动机也没有多高尚，只是想少加一点班。后来自动化总账映射、异常检测，再后来做出一个别的团队也愿意继续用的工具。不是先决定转行再开始写代码，而是先解决了一个眼前的问题，门才开了一点。",
+      "我写第一行 Python 的动机也没有多高尚，只是想少加一点班。后来我把总账映射、异常检查和结果校验写进自己的工作流。那是我第一次看到：眼前的工作方式也可以被自己改掉。",
       "杭州是履历里最难用一句话讲清楚的部分。我注册公司、开过店、参加创业比赛，也把一些想法做成真的能打开的产品。那段时间并不稳定，我也没有突然想明白人生，只是把能推的门都推了一遍。",
       "我原来以为自己在不断换方向。后来才发现，行业确实在换，但我总会绕回同一批问题：人为什么会卡住？工具能不能让一个复杂动作变得更清楚？我真正喜欢的，是把问题拆开，再做出一个可以被使用的东西。",
       "2025 年到了 San Jose。在 Smith-Kettlewell 的 YouDescribe 项目里，我参与了 30 人研究；新的工作流把人工撰写时间缩短了 64%。这段经历第一次让我看见，技术不是简历上的新标签，它真的可以改变一个人完成任务的方式。",
       "现在我在 Northeastern 读人工智能硕士，补以前没有系统学过的计算机基础，也继续做自己的 app。来这里不是为了把会计和审计重新包装成技术故事，而是承认基础不够，然后从底下重新学一遍。",
-      "这四个地方不是履历上的四个点。哈密给了我拆开看看的习惯，上海给了我商业和证据，杭州让我开始造东西，San Jose 让我重新打地基。我说不清下一站在哪里，但现在我不再要求整条路先有答案。环境对了，人会长出原来想不到的部分。"
+      "这四个地方不是履历上的四个点。哈密给了我好奇心，上海让我学会协作和用数据做判断，杭州教我从 0 到 1，也让我爱上技术，San Jose 则给了我更大的视野和更扎实的技术训练。我说不清下一站在哪里，但现在我不再要求整条路先有答案。"
     ], [
       "I did not plan the route that brought me here. If someone had connected Hami, Shanghai, Hangzhou, and San Jose on a map when I was eighteen, I probably would not have believed it. Many choices had no elegant explanation at the time. I simply wondered if I should move a little farther.",
-      "I grew up in Hami, where the wind is strong, the sky is blue, and days move slowly. I learned phone repair and origami online and made animated forum signatures for strangers. No one called that product instinct or engineering interest. I just believed things could be opened and made again.",
+      "I grew up in Hami with many interests. I learned phone repair and origami online and made animated forum signatures for strangers. There was no career plan behind any of it. I was simply curious: when something interested me, I went looking for a way to learn it, then soon wanted to try the next thing.",
       "At eighteen I moved to Shanghai to study international accounting at SUFE, then joined Deloitte's Life Sciences and Health Care practice. Accounting was not the destination, but audit left a stubborn habit: where did this number come from, and why should anyone trust it? Messy material still needs a traceable evidence chain.",
-      "My reason for writing the first line of Python was not noble. I wanted less overtime. General-ledger mapping led to anomaly checks, and eventually to a tool another team wanted to keep using. I did not decide on a career change and then begin coding. I solved an immediate problem, and a door opened slightly.",
+      "My reason for writing the first line of Python was not noble. I wanted less overtime. I put ledger mapping, exception checks, and reconciliation into my own workflow. It showed me for the first time that I could change the way the work itself was done.",
       "Hangzhou is the hardest chapter to summarize on a résumé. I registered a company, opened a store, entered startup competitions, and turned a few ideas into products that could actually be opened. It was not stable, and I did not suddenly understand my life. I simply pushed every door I could find.",
       "I used to think I kept changing direction. Later I noticed that the industries changed while the questions did not. Why do people get stuck? Can a tool make a complicated action clearer? What I enjoy is taking a problem apart and building something another person can use.",
       "In 2025 I arrived in San Jose and worked on YouDescribe at Smith-Kettlewell. I participated in a thirty-person study, and the new workflow reduced manual writing time by 64 percent. It was the first time I saw technology not as a new label for my résumé, but as a real change in how someone completes a task.",
       "I now study artificial intelligence at Northeastern, rebuilding computer science foundations I had never learned systematically while continuing to deepen my own apps. I did not come here to repackage accounting and audit as a technology story. I came to admit what I did not know and learn it from the bottom.",
-      "These places are not four résumé points. Hami gave me the habit of opening things up. Shanghai gave me business and evidence. Hangzhou made me start building. San Jose made me rebuild the foundation. I do not know the next stop yet, but I no longer need the entire road to explain itself in advance."
+      "These places are more than four résumé points. Hami gave me curiosity. Shanghai taught me collaboration and data-informed judgment. Hangzhou taught me how to go from zero to one and made me fall in love with technology. San Jose has given me a wider view of the world and stronger technical training. I do not know the next stop yet, but I no longer need the entire route to have an answer in advance."
     ]]
   },
   {
@@ -645,7 +646,7 @@ window.CASSIE_ARTICLES = [
   },
   {
     "id": "hema-recommendation",
-    "cat": "life",
+    "cat": "reflection",
     "title": [
       "盒马实习：一条推荐理由怎样连接商品、菜谱和购物篮",
       "Hema: connecting a product, a recipe, and a basket"
@@ -681,7 +682,7 @@ window.CASSIE_ARTICLES = [
   },
   {
     "id": "deloitte-mapping",
-    "cat": "life",
+    "cat": "reflection",
     "title": [
       "德勤审计：我第一次把一套人工作业写成工具",
       "Deloitte: the first workflow I turned into a tool"
@@ -700,7 +701,7 @@ window.CASSIE_ARTICLES = [
         "## 真正费时间的不是匹配",
         "不同客户的表头、金额格式、科目层级和命名都不一样。我用 Python 和 Pandas 处理读取、清洗、映射与校验，再通过 VBA 把结果放回审计员熟悉的 Excel。流程是：异构总账 → 统一字段 → 分级匹配 → 人工复核 → 勾稽校验。",
         "自动化不应该替人猜。确定性高的项目可以自动处理，模糊部分必须留下来交给审计员判断。完成映射后，系统还要重新计算并确认结果与源数据一致。",
-        "这套工具覆盖过多家客户的不同格式，但没有推广到其他审计组，也没有成为正式团队工具。它证明的是我能把个人的重复操作变成可重复、可检查的工作流，而不是组织范围的影响力。",
+        "这套工具需要处理多家客户的不同格式，也把每一步检查留在审计员熟悉的 Excel 工作流里。它让我第一次把一次性的人工作业整理成了可重复、可检查的流程。",
         "它给我留下一个后来一直使用的标准：程序输出一个数字，不代表数字天然可信。自动化还要让规则一致、异常可见、结果可以被复核。"
       ],
       [
@@ -708,7 +709,7 @@ window.CASSIE_ARTICLES = [
         "## Matching was not the expensive part",
         "Headers, amount formats, account hierarchies, and names changed across clients. I used Python and Pandas for reading, cleaning, mapping, and checks, then VBA to return the result to the familiar Excel workflow: heterogeneous ledgers → normalized fields → layered matching → human review → reconciliation.",
         "Automation should not guess on a person's behalf. High-confidence items can move automatically; ambiguous accounts stay visible for an auditor. After mapping, a separate calculation checks that the result still reconciles to the source.",
-        "The tool handled formats from several clients, but it did not spread to other audit teams or become an official team product. The honest claim is narrower: I turned my own repetitive operation into a repeatable, reviewable workflow.",
+        "The tool handled formats from several clients while keeping each check inside the Excel workflow auditors already knew. It was the first time I turned a one-off manual task into a repeatable, reviewable process.",
         "It left me with a standard I still use: a program producing a number does not make the number trustworthy. Automation should also make rules consistent, exceptions visible, and results reviewable."
       ]
     ]
@@ -734,7 +735,7 @@ window.CASSIE_ARTICLES = [
         "## 解锁是一条确定性规则",
         "解锁条件直接写成布尔逻辑：必做任务全部完成，选做任务达到目标数。条件不满足就返回 false。温和模式允许解锁后不因修改清单重新锁上；严格模式会重新检查。",
         "截图证明使用设备端 Vision OCR，不上传图片。AI 生成的任务建议必须经过用户勾选才进入清单，AI 服务没有调用解锁函数；发布配置里 AI 伴侣也默认关闭。",
-        "当前边界必须说清：Locki Lite 正在准备 TestFlight；系统级 Family Controls、DeviceActivity 和真正的 app shield 仍需要 Apple capability 与真机验收，不能当成已发布能力。",
+        "Locki Lite 正在准备 TestFlight。系统级 Family Controls、DeviceActivity 和真正的 app shield 仍需要 Apple capability 与真机验收。",
         "我最初想让 AI 判断用户是否应该解锁，后来意识到这正是最不该外包给黑盒的权力。工具可以帮助人行动，最终行为边界仍然应该透明、可预测，并由人掌握。"
       ],
       [
@@ -742,7 +743,7 @@ window.CASSIE_ARTICLES = [
         "## Unlocking is a deterministic rule",
         "The condition is explicit Boolean logic: all required tasks plus the target number of optional tasks. If the condition is false, the function returns false. Gentle mode keeps the day unlocked after later edits; strict mode checks again.",
         "Screenshot proof uses on-device Vision OCR and never uploads the image. AI-generated task suggestions enter the list only after the user selects them, and the AI service never calls the unlock function. The release configuration disables the AI companion by default.",
-        "The boundary matters: Locki Lite is preparing for TestFlight. System-level Family Controls, DeviceActivity, and a real app shield still require Apple capabilities and device acceptance testing, so they are not presented as shipped.",
+        "Locki Lite is preparing for TestFlight. System-level Family Controls, DeviceActivity, and a real app shield still require Apple capabilities and device acceptance testing.",
         "I first imagined letting AI decide whether a person deserved to unlock a phone. I later realized that was exactly the power a black box should not receive. A tool can support action, but the behavioral boundary should stay transparent and human-controlled."
       ]
     ]
@@ -751,33 +752,37 @@ window.CASSIE_ARTICLES = [
     "id": "mindbridge",
     "cat": "build",
     "title": [
-      "MindBridge：人在难受的时候，需要怎样的 AI 陪伴？",
-      "MindBridge: what should AI support feel like when someone is hurting?"
+      "MindBridge：让不同 AI 读到同一段长期记忆",
+      "MindBridge: one long-term memory store for different AI tools"
     ],
     "meta": [
-      "BUILD LOG · 前端原型",
-      "BUILD LOG · FRONTEND PROTOTYPE"
+      "BUILD LOG · 本地优先记忆引擎",
+      "BUILD LOG · LOCAL-FIRST MEMORY ENGINE"
     ],
     "deck": [
-      "可见的记忆、具体的反思，以及不假装治疗的边界。",
-      "Visible memory, concrete reflection, and a boundary that never pretends to be therapy."
+      "读取本地对话日志，把一天压成记忆卡，再通过 MCP 交给不同客户端调用。",
+      "Parse local transcripts, turn a day into a memory card, and serve the same store to different MCP clients."
     ],
     "body": [
       [
-        "MindBridge 追问的是：人在难受的时候，需要怎样的陪伴？我以前在 Know Yourself 尝试把人组织起来；这个原型则探索一段 AI 对话应该怎样反思、记忆和保持边界。",
-        "## 先把完成度说清楚",
-        "当前版本是 Next.js 前端产品 demo。回复、建议和反思卡片都是确定性样例，没有后端、数据库、模型 SDK 或网络请求。它展示的是产品语言和交互原则，不是已经运行的 AI 服务。",
-        "原型把记忆来源直接挂在消息下面，让用户看见某句话连接到哪一段旧内容；Reflection 视图给出观察到的模式、更温和的重述和一个两分钟动作，而不是只做笼统安慰。",
-        "页面明确写着它不是治疗、诊断或紧急救助。五条原则比模型能力更重要：反思优先、记忆可见、下一步具体、安全与隐私优先、不把 AI 呈现成持照专业人士。",
-        "这个 demo 还没有证明模型能做到这些。它先把一条产品标准画了出来：AI 可以陪着想，但不能靠隐藏画像、过度附和或专业身份幻觉换取信任。"
+        "Claude Code 和 Codex CLI 已经把对话写在本地磁盘上，但换一个会话、换一个客户端，那些上下文通常就断了。MindBridge 从这里开始：把已有日志整理成一套可以被不同 AI 工具共同读取的长期记忆。",
+        "## 两条路径，三层记忆",
+        "被动路径会增量读取本地 transcript，把原始 turn 放进 T1，再重建每天或每个 session 的 T2 记忆卡；主动路径则把 MindBridge 挂成 MCP server，让 Claude Desktop、Claude Code、Cursor 或 VS Code 在对话中写入偏好、按时间查询旧记忆。",
+        "T3 保存长期偏好。每条记录都有 created_at 和 valid_at，旧偏好会随时间退出检索；写入前先做相似度检查，避免同一件事重复占很多行。两条路径最终都经过同一个 MemoryService，所以 API 与 MCP 不会各自长出一套规则。",
+        "## 本地优先要把例外写清楚",
+        "日志解析、存储和 MLX 本地提取都留在机器上。使用 OpenAI、Gemini 或 Claude Code CLI 做 hosted extraction 时，系统要求显式打开发送开关；dry run 会先打印将要发送的内容。Transcript 只读挂载，文本入库前还会先做密钥形态遮蔽。",
+        "当前前端、增量 ingest、三层记忆服务、MCP 与本地 3B MLX 提取链路已经建成。固定的 45 条 holdout 上，本地模型首轮 schema 合规率是 86.7%，同组 teacher 是 82.2%；相差两条样本不足以证明谁更强，所以公开指标仍标记为进行中。",
+        "线上 Diary 会在后端可达时显示真实 T1、T2、T3 数据；部署站点连不到这台 Mac 时，就明确切回 sample data。对我来说，长期记忆需要同时交代来源、时间、当前状态和数据边界。"
       ],
       [
-        "MindBridge asks what support should feel like when someone is hurting. I once explored that question by organizing people at Know Yourself; this prototype asks how an AI conversation should reflect, remember, and hold boundaries.",
-        "## State the completion level first",
-        "The current version is a Next.js frontend demo. Replies, suggestions, and reflection cards are deterministic samples. There is no backend, database, model SDK, or network request. It demonstrates product language and interaction principles, not a live AI service.",
-        "Memory provenance appears directly under a message so the user can see what earlier material it connects to. The Reflection view offers an observed pattern, a gentler reframe, and a two-minute action instead of generic reassurance.",
-        "The interface says clearly that it is not therapy, diagnosis, or crisis support. Its five principles matter more than model capability: reflection first, visible memory, concrete next steps, safety and privacy first, and no imitation of a licensed professional.",
-        "The demo has not yet proven that a model can deliver those standards. It first draws the product boundary: AI may help someone think, but it should not earn trust through hidden profiling, endless agreement, or professional-role illusion."
+        "Claude Code and Codex CLI already write conversations to local disk, but that context usually breaks when I begin another session or switch clients. MindBridge starts there: it turns existing logs into a long-term memory store that different AI tools can share.",
+        "## Two paths, three memory tiers",
+        "The passive path incrementally reads local transcripts, stores raw turns in T1, and rebuilds a T2 card for each day or session. The active path mounts MindBridge as an MCP server, allowing Claude Desktop, Claude Code, Cursor, or VS Code to write preferences and query older memories during a conversation.",
+        "T3 holds durable preferences. Every record carries created_at and valid_at so superseded preferences can decay out of recall. A similarity check runs before each write to prevent one preference from filling several rows. Both paths call the same MemoryService, so the API and MCP transports cannot drift into different rules.",
+        "## Local-first means naming the exception",
+        "Parsing, storage, and the MLX extraction path stay on the machine. Hosted extraction through OpenAI, Gemini, or Claude Code CLI requires an explicit send flag, and dry run prints exactly what would be transmitted first. Transcripts are mounted read-only, and likely secret patterns are masked before text enters storage.",
+        "The frontend, incremental ingestion, three-tier memory service, MCP transport, and local 3B MLX extraction loop are built. On a fixed 45-prompt holdout, the local model reached 86.7% first-attempt schema compliance against 82.2% for the teacher on the same set. A two-prompt difference is not evidence of superiority, so the public metric remains marked in progress.",
+        "The Diary shows real T1, T2, and T3 data when its backend is reachable; when the deployed site cannot reach the database and model on this Mac, it explicitly falls back to sample data. For me, useful long-term memory must keep its source, time, current state, and data boundary visible."
       ]
     ]
   },
@@ -869,14 +874,14 @@ window.CASSIE_ARTICLES = [
         "AuditFlow 是一个 Django 发票审核后端。我把在审计里见过的判断拆成四张表、七条规则和三档处置：直接拦截、要求人工确认、只记录备查。",
         "重复发票和采购单供应商不一致会被阻断；名称不一致需要再次确认；高风险供应商、缺少采购单、金额超限和高价值发票会形成 finding。OCR 是可选输入，失败时仍可以使用人工录入内容。",
         "Redis 队列负责异步处理，worker 用数据库行锁避免重复完成；LLM 只根据已经结构化的供应商、金额、规则命中和 OCR 文本生成审核摘要，不决定规则是否通过。",
-        "完成边界必须说清：仓库的 Django、Postgres、Redis、Docker 和监控骨架来自课程项目；发票数据模型、七条规则、三档异常和 OCR 流程是后来替换进去的业务判断。",
+        "仓库的 Django、Postgres、Redis、Docker 和监控骨架来自课程项目；发票数据模型、七条规则、三档异常和 OCR 流程是后来替换进去的业务判断。",
         "我最喜欢的不是 OCR 或 LLM，而是“拦、提醒、记录”的区别。一个系统不仅要发现异常，还要解释为什么这件事必须停、需要人看，还是只需留下证据。"
       ],
       [
         "AuditFlow is a Django invoice-review backend. I translated audit judgment into four tables, seven rules, and three enforcement levels: block the action, require human confirmation, or record a finding.",
         "Duplicate invoices and purchase-order vendor mismatches are blocked. Name mismatches require confirmation. High-risk vendors, missing purchase orders, excess amounts, and high-value invoices create findings. OCR is optional, and manual text remains usable when extraction fails.",
         "A Redis queue handles asynchronous processing, while a database row lock prevents duplicate completion. The LLM writes a review summary from already structured vendor, amount, rule, and OCR evidence; it does not decide whether a rule passes.",
-        "The boundary matters: the Django, Postgres, Redis, Docker, and monitoring skeleton came from a course project. The invoice schema, seven rules, three exception levels, and OCR workflow are the business judgment I added later.",
+        "The Django, Postgres, Redis, Docker, and monitoring skeleton came from a course project. The invoice schema, seven rules, three exception levels, and OCR workflow are the business judgment I added later.",
         "The part I value most is not OCR or the LLM. It is the difference between block, warn, and record. A system should explain why something must stop, needs a person's attention, or only needs an evidence trail."
       ]
     ]
@@ -885,8 +890,8 @@ window.CASSIE_ARTICLES = [
     "id": "leetcode-learning",
     "cat": "build",
     "title": [
-      "LeetCode Learning Platform：让提示停在下一步",
-      "LeetCode Learning Platform: hints that stop at the next step"
+      "AlgoMentor：把 AI 提示停在下一步",
+      "AlgoMentor: keep the AI hint at the next step"
     ],
     "meta": [
       "COURSE PROJECT → PORTFOLIO",
@@ -898,20 +903,22 @@ window.CASSIE_ARTICLES = [
     ],
     "body": [
       [
-        "这个项目从 CS5001 课程作业开始，后来继续扩成个人作品集。课程阶段完成全栈骨架、认证、代码执行、算法文章和测试；第二阶段加入课程内容检索、三级 AI 提示和代码检查。",
+        "AlgoMentor 从课程项目延伸而来，后来继续整理成一套 LeetCode 风格的全栈练习平台。它把 89 道题、13 个算法主题、文章、代码执行和提交记录放在同一条学习路径里。",
         "## 提示分三级",
-        "第一层只指出应该观察什么，第二层提示可能的数据结构或模式，第三层才接近伪代码。目标不是让模型最快交出答案，而是让学习者在卡住时还能保留下一步思考。",
-        "题目数据来自手写 seed，不是爬虫。仓库里存在多套历史 seed 和内容脚本，反复运行可能产生重复；后来的查询层去重是真的，也暴露出生成脚本没有收敛。",
-        "已有 110 个测试主要覆盖课程阶段的认证、模型、schema、知识路由和执行路由。后来增加的 RAG、Gemini 和代码检查没有对应测试，工作区的新组件也尚未全部进入 GitHub。",
-        "因此它适合被描述为一个仍在整理的学习平台，而不是完成的在线判题系统。最值得保留的产品选择，是让提示停在“下一步”，不要用一次漂亮的答案替代学习。"
+        "第一层只问一个苏格拉底式问题，不报算法名；第二层给出模式和解题方向，不写代码；第三层才提供带 TODO 的伪代码和复杂度提示。生成提示时会同时读取当前代码与失败用例，让提示对准这一次卡住的地方。",
+        "13 篇课程文章会被切块、向量化并存入 pgvector。每次 AI 对话从课程材料里取回最相关的内容，再交给 Gemini 生成回答；来源标签会告诉学习者它参考了哪一个主题。",
+        "练习区使用 Monaco Editor，支持 Python、JavaScript、Java 和 C++。代码通过 Piston 隔离执行，限制为 3 秒、128 MB，并关闭网络；Run 显示测试反馈，Submit 完成完整评测并保存提交历史。",
+        "我最想保留的产品选择，是让提示停在下一步。学习者仍然要自己跨过那一步，工具只负责让卡住的位置变得可见。",
+        "> 当前状态：AlgoMentor 是课程项目的后续整理版本，仍在收拢中；目前没有独立 landing page，也没有可以核实的公开产品地址。"
       ],
       [
-        "This project began as a CS5001 assignment and later grew into a portfolio project. The course phase delivered the full-stack skeleton, authentication, code execution, algorithm articles, and tests. A second phase added course-content retrieval, three levels of AI hints, and code checking.",
+        "AlgoMentor grew out of a course project and is now being consolidated into a full-stack, LeetCode-style practice platform. It brings 89 problems, 13 algorithm topics, articles, code execution, and submission history into one learning path.",
         "## Hints come in three levels",
-        "The first points to what to observe, the second suggests a data structure or pattern, and the third approaches pseudocode. The goal is not to let the model produce the fastest answer; it is to preserve the learner's next reasoning step.",
-        "Question data comes from hand-written seed files, not scraping. Several historical seed and content scripts coexist, and repeated runs can create duplicates. Query-time deduplication works, but it also reveals that the data-generation path never converged.",
-        "The 110 existing tests mainly cover the course phase: authentication, models, schemas, knowledge routes, and execution routes. Later RAG, Gemini, and code-checking work is not covered, and some newer components have not reached GitHub.",
-        "It should therefore be presented as a learning platform still being consolidated, not a finished online judge. Its strongest product choice is keeping the hint at the next step instead of replacing learning with a polished answer."
+        "Level one asks a single Socratic question without naming the algorithm. Level two gives the pattern and direction without code. Level three provides pseudocode with TODOs and a complexity note. Each hint also receives the learner's current code and failing cases, so it can address the point where this attempt became stuck.",
+        "The 13 course articles are chunked, embedded, and stored in pgvector. Each AI conversation retrieves relevant course material before Gemini writes a response, and source badges show which topic informed the answer.",
+        "The practice room uses Monaco Editor and supports Python, JavaScript, Java, and C++. Piston runs code in isolation with a three-second timeout, 128 MB of memory, and no network. Run returns test feedback; Submit performs the full evaluation and saves the attempt to submission history.",
+        "The product choice I want to keep is stopping the hint at the next step. The learner still has to cross that step; the tool only makes the stuck point visible.",
+        "> Current status: AlgoMentor is a follow-on consolidation of a course project and remains in progress. It does not yet have an independent landing page or a verifiable public product URL."
       ]
     ]
   },
