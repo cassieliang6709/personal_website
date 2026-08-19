@@ -21,12 +21,12 @@ const source = join(root, 'index.html');
 const target = join(root, 'en', 'index.html');
 
 const EN = {
-  title: 'Yue (Cassie) Liang · AI student and independent builder',
+  title: 'Yue(Cassie) Liang · AI student and independent builder',
   description:
-    'Yue (Cassie) Liang is an AI master’s student and independent builder with ' +
+    'Yue(Cassie) Liang is an AI master’s student and independent builder with ' +
     'experience in product operations, product management, business analysis, and audit.',
   ogDescription:
-    'Explore Cassie Liang’s projects, experience, and writing across AI, product, ' +
+    'Explore Yue(Cassie) Liang’s projects, experience, and writing across AI, product, ' +
     'business analysis, and audit.'
 };
 
