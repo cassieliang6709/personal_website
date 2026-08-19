@@ -25,7 +25,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600&family=Noto+Serif+SC:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css">
   <link rel="stylesheet" href="design-system/tokens.css">
-  <link rel="stylesheet" href="studio.css?v=20260820-motion4">
+  <link rel="stylesheet" href="studio.css?v=20260820-rows1">
 </head>
 <body>
   <a class="skip-link" href="#main" data-zh="跳到主要内容" data-en="Skip to main content"></a>
@@ -224,58 +224,60 @@
             <p data-zh="点名字直接打开；点桌上的物件看看它的故事。" data-en="Open a name directly, or choose an object on the desk for its story."></p>
           </header>
 
-          <a class="project-demo-cue" href="https://mindbridge.liangyue.site/interview-demo/zh" data-href-zh="https://mindbridge.liangyue.site/interview-demo/zh" data-href-en="https://mindbridge.liangyue.site/interview-demo" target="_blank" rel="noreferrer">
-            <i class="ph ph-play-circle" aria-hidden="true"></i>
-            <span>
-              <strong data-zh="想直接看一个跑起来的东西？打开 MindBridge 面试演示" data-en="Want to see something actually running? Open the MindBridge interview demo"></strong>
-              <small data-zh="约 60 秒 · 不需登录 · 使用固定合成数据，不连接任何私人记录" data-en="About 60 seconds · no login · fixed synthetic data, never connected to private records"></small>
-            </span>
-            <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
-          </a>
-
           <nav class="project-index-list" aria-label="项目直达目录">
-            <button type="button" data-entry="mindbridge-note"><span>01</span><strong>MindBridge</strong><small data-zh="透明可追溯的长期记忆 · MCP" data-en="Transparent long-term memory · MCP"></small><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
-            <button type="button" data-entry="vance-note"><span>02</span><strong>Vance</strong><small data-zh="受控 Tool Calling · iOS + Worker" data-en="Controlled tool calling · iOS + Worker"></small><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
-            <button type="button" data-entry="corpcheck-note"><span>03</span><strong>CorpCheck</strong><small data-zh="SEC 混合检索 · 版本治理与确定性拒答" data-en="SEC hybrid retrieval · versioning and refusal"></small><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
-            <a href="https://1day.liangyue.site" target="_blank" rel="noreferrer"><span>04</span><strong>1Day</strong><small>iOS · private beta</small><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
-            <a href="https://chromewebstore.google.com/detail/tabspace/pigfllmaggabolcjieedkilhpdfcddai?hl=en" target="_blank" rel="noreferrer"><span>05</span><strong>Tabspace</strong><small data-zh="Chrome 商店 · 已上架" data-en="Chrome Store · shipped"></small><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
-            <a href="https://github.com/cassieliang6709/cassie-capture" target="_blank" rel="noreferrer"><span>06</span><strong>Cassie Capture</strong><small data-zh="代码与说明 · 发布包已准备" data-en="Code & notes · release prepared"></small><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
-            <button type="button" data-entry="mushroom-note"><span>07</span><strong data-zh="待机小蘑菇" data-en="The Little Idle Mushroom"></strong><small data-zh="五集漫画已上线 · 37 页完整可读" data-en="Five comic episodes · 37 pages available"></small><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
+            <div class="project-row">
+              <button class="project-row-open" type="button" data-story="mindbridge"><span>01</span><strong>MindBridge</strong><small data-zh="透明可追溯的长期记忆 · MCP" data-en="Transparent long-term memory · MCP"></small><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
+              <div class="project-row-links">
+                <a href="https://mindbridge.liangyue.site/interview-demo/zh" data-href-zh="https://mindbridge.liangyue.site/interview-demo/zh" data-href-en="https://mindbridge.liangyue.site/interview-demo" target="_blank" rel="noreferrer"><i class="ph ph-play-circle" aria-hidden="true"></i><span data-zh="面试演示 60 秒" data-en="Interview demo · 60s"></span></a>
+                <a href="https://mindbridge.liangyue.site" target="_blank" rel="noreferrer"><i class="ph ph-globe" aria-hidden="true"></i><span data-zh="官网" data-en="Site"></span></a>
+                <a href="https://github.com/cassieliang6709/mindbridge" target="_blank" rel="noreferrer"><i class="ph ph-github-logo" aria-hidden="true"></i><span data-zh="源码" data-en="Code"></span></a>
+              </div>
+            </div>
+            <div class="project-row">
+              <button class="project-row-open" type="button" data-story="vance"><span>02</span><strong>Vance</strong><small data-zh="受控 Tool Calling · iOS + Worker" data-en="Controlled tool calling · iOS + Worker"></small><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
+              <div class="project-row-links">
+                <a href="https://fitness-coach-demo.pages.dev" target="_blank" rel="noreferrer"><i class="ph ph-globe" aria-hidden="true"></i><span data-zh="Web Demo（脚本化）" data-en="Web demo (scripted)"></span></a>
+                <a href="https://github.com/cassieliang6709/fitness-coach-ios" target="_blank" rel="noreferrer"><i class="ph ph-github-logo" aria-hidden="true"></i><span data-zh="源码" data-en="Code"></span></a>
+                <a href="https://github.com/cassieliang6709/fitness-coach-ios/releases" target="_blank" rel="noreferrer"><i class="ph ph-download-simple" aria-hidden="true"></i><span data-zh="下载" data-en="Download"></span></a>
+              </div>
+            </div>
+            <div class="project-row">
+              <button class="project-row-open" type="button" data-story="corpcheck"><span>03</span><strong>CorpCheck</strong><small data-zh="SEC 混合检索 · 版本治理与确定性拒答" data-en="SEC hybrid retrieval · versioning and refusal"></small><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
+              <div class="project-row-links">
+                <a href="https://corpcheck.liangyue.site" target="_blank" rel="noreferrer"><i class="ph ph-globe" aria-hidden="true"></i><span data-zh="证据控制台" data-en="Evidence console"></span></a>
+                <a href="https://github.com/cassieliang6709/corpcheck" target="_blank" rel="noreferrer"><i class="ph ph-github-logo" aria-hidden="true"></i><span data-zh="源码" data-en="Code"></span></a>
+              </div>
+            </div>
+            <div class="project-row">
+              <button class="project-row-open" type="button" data-story="1day"><span>04</span><strong>1Day</strong><small>iOS · private beta</small><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
+              <div class="project-row-links">
+                <a href="https://1day.liangyue.site" target="_blank" rel="noreferrer"><i class="ph ph-globe" aria-hidden="true"></i><span data-zh="官网" data-en="Site"></span></a>
+                <a href="https://github.com/cassieliang6709/1day-ios" target="_blank" rel="noreferrer"><i class="ph ph-github-logo" aria-hidden="true"></i><span data-zh="源码" data-en="Code"></span></a>
+              </div>
+            </div>
+            <div class="project-row">
+              <button class="project-row-open" type="button" data-story="tabspace"><span>05</span><strong>Tabspace</strong><small data-zh="Chrome 商店 · 已上架" data-en="Chrome Store · shipped"></small><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
+              <div class="project-row-links">
+                <a href="https://cassieliang6709.github.io/tabspace-site/" target="_blank" rel="noreferrer"><i class="ph ph-globe" aria-hidden="true"></i><span data-zh="官网" data-en="Site"></span></a>
+                <a href="https://chromewebstore.google.com/detail/tabspace/pigfllmaggabolcjieedkilhpdfcddai?hl=en" target="_blank" rel="noreferrer"><i class="ph ph-download-simple" aria-hidden="true"></i><span data-zh="商店下载" data-en="Web Store"></span></a>
+                <a href="https://github.com/cassieliang6709/tabspace-newtab" target="_blank" rel="noreferrer"><i class="ph ph-github-logo" aria-hidden="true"></i><span data-zh="源码" data-en="Code"></span></a>
+              </div>
+            </div>
+            <div class="project-row">
+              <button class="project-row-open" type="button" data-story="capture"><span>06</span><strong>Cassie Capture</strong><small data-zh="代码与说明 · 发布包已准备" data-en="Code & notes · release prepared"></small><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
+              <div class="project-row-links">
+                <a href="https://github.com/cassieliang6709/cassie-capture" target="_blank" rel="noreferrer"><i class="ph ph-github-logo" aria-hidden="true"></i><span data-zh="源码" data-en="Code"></span></a>
+                <a href="https://github.com/cassieliang6709/cassie-capture/releases" target="_blank" rel="noreferrer"><i class="ph ph-download-simple" aria-hidden="true"></i><span data-zh="下载" data-en="Download"></span></a>
+              </div>
+            </div>
+            <div class="project-row">
+              <button class="project-row-open" type="button" data-story="mushroom"><span>07</span><strong data-zh="待机小蘑菇" data-en="The Little Idle Mushroom"></strong><small data-zh="五集漫画已上线 · 37 页完整可读" data-en="Five comic episodes · 37 pages available"></small><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
+              <div class="project-row-links">
+                <a href="https://xiaomogu-website.vercel.app" target="_blank" rel="noreferrer"><i class="ph ph-globe" aria-hidden="true"></i><span data-zh="漫画网页版" data-en="Comic edition"></span></a>
+              </div>
+            </div>
           </nav>
 
-          <section class="project-link-shelf" aria-label="开源项目入口">
-            <header>
-              <div>
-                <p class="eyebrow" data-zh="开源项目 · 作品入口" data-en="Open-source project links"></p>
-                <h2 data-zh="分开点开：官网、GitHub、下载或体验" data-en="Open links separately: landing page, GitHub, download/try"></h2>
-                <p class="meta" data-zh="同一项目的不同入口分开放，想点哪个就点哪个。" data-en="Each project has separate endpoints, so you can choose exactly what to open."></p>
-              </div>
-              <a href="https://github.com/cassieliang6709" target="_blank" rel="noreferrer"><i class="ph ph-github-logo" aria-hidden="true"></i><span data-zh="GitHub 汇总" data-en="GitHub collections"></span></a>
-            </header>
-
-            <div class="project-links">
-              <a href="https://cassieliang6709.github.io/tabspace-site/" target="_blank" rel="noreferrer"><span data-zh="官网" data-en="Landing"></span><span><strong>Tabspace</strong><small data-zh="Tabspace 主页：上手教程与演示" data-en="Tabspace homepage with onboarding and demos"></small></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
-              <a href="https://chromewebstore.google.com/detail/tabspace/pigfllmaggabolcjieedkilhpdfcddai?hl=en" target="_blank" rel="noreferrer"><span data-zh="下载" data-en="Download"></span><span><strong>Tabspace</strong><small data-zh="Chrome Web Store：已上架" data-en="Chrome Web Store: shipped"></small></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
-              <a href="https://github.com/cassieliang6709/tabspace-newtab" target="_blank" rel="noreferrer"><span data-zh="源码" data-en="Source"></span><span><strong>Tabspace</strong><small data-zh="GitHub 仓库与更新记录" data-en="GitHub repository and updates"></small></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
-
-              <a href="https://1day.liangyue.site" target="_blank" rel="noreferrer"><span data-zh="官网" data-en="Landing"></span><span><strong>1Day</strong><small data-zh="1Day 产品页面：说明与体验入口" data-en="1Day product page: introduction and tryout entry"></small></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
-              <a href="https://github.com/cassieliang6709/1day-ios" target="_blank" rel="noreferrer"><span data-zh="源码" data-en="Source"></span><span><strong>1Day</strong><small data-zh="iOS 客户端源码" data-en="iOS client source code"></small></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
-
-              <a href="https://github.com/cassieliang6709/cassie-capture" target="_blank" rel="noreferrer"><span data-zh="源码" data-en="Source"></span><span><strong>Cassie Capture</strong><small data-zh="插件源码 + 问题清单" data-en="Extension source + issue list"></small></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
-              <a href="https://github.com/cassieliang6709/cassie-capture/releases" target="_blank" rel="noreferrer"><span data-zh="下载" data-en="Download"></span><span><strong>Cassie Capture</strong><small data-zh="Release 包与历史构建" data-en="Release package and build history"></small></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
-
-              <a href="https://mindbridge.liangyue.site/interview-demo/zh" data-href-zh="https://mindbridge.liangyue.site/interview-demo/zh" data-href-en="https://mindbridge.liangyue.site/interview-demo" target="_blank" rel="noreferrer"><span data-zh="演示" data-en="Demo"></span><span><strong>MindBridge</strong><small data-zh="面试演示：约 60 秒，固定合成数据" data-en="Interview demo: ~60s, fixed synthetic data"></small></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
-              <a href="https://mindbridge.liangyue.site" target="_blank" rel="noreferrer"><span data-zh="官网" data-en="Landing"></span><span><strong>MindBridge</strong><small data-zh="演示站与说明文档入口" data-en="Demo site and docs entry"></small></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
-              <a href="https://github.com/cassieliang6709/mindbridge" target="_blank" rel="noreferrer"><span data-zh="源码" data-en="Source"></span><span><strong>MindBridge</strong><small data-zh="核心代码与本地化部署说明" data-en="Core code and local deployment docs"></small></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
-
-              <a href="https://fitness-coach-demo.pages.dev" target="_blank" rel="noreferrer"><span data-zh="官网" data-en="Landing"></span><span><strong>Vance</strong><small data-zh="Web Demo：脚本化早期版本，非真实推理" data-en="Web demo: scripted early version, not live inference"></small></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
-              <a href="https://github.com/cassieliang6709/fitness-coach-ios" target="_blank" rel="noreferrer"><span data-zh="源码" data-en="Source"></span><span><strong>Vance</strong><small data-zh="iOS App 与服务端主仓库" data-en="iOS app and backend repository"></small></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
-              <a href="https://github.com/cassieliang6709/fitness-coach-ios/releases" target="_blank" rel="noreferrer"><span data-zh="下载" data-en="Download"></span><span><strong>Vance</strong><small data-zh="Release 与安装包入口" data-en="Release packages"></small></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
-
-              <a href="https://corpcheck.liangyue.site" target="_blank" rel="noreferrer"><span data-zh="官网" data-en="Landing"></span><span><strong>CorpCheck</strong><small data-zh="证据控制台：为什么回答，或为什么拒答" data-en="Evidence console: why it answers, or why it refuses"></small></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
-              <a href="https://github.com/cassieliang6709/corpcheck" target="_blank" rel="noreferrer"><span data-zh="源码" data-en="Source"></span><span><strong>CorpCheck</strong><small data-zh="检索、评测与治理层代码" data-en="Retrieval, evaluation, and governance code"></small></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
-            </div>
-          </section>
 
           <footer class="project-index-footer">
             <a href="https://github.com/cassieliang6709" target="_blank" rel="noreferrer"><i class="ph ph-github-logo" aria-hidden="true"></i><span data-zh="更多项目" data-en="More projects"></span></a>
@@ -350,6 +352,6 @@
 
   <noscript><p class="noscript">这个房间需要 JavaScript 才能打开物件。你仍然可以阅读页面里的主要文字。</p></noscript>
   <script src="articles.js?v=20260820-vault1"></script>
-  <script src="studio.js?v=20260820-motion4"></script>
+  <script src="studio.js?v=20260820-rows1"></script>
 </body>
 </html>

@@ -520,3 +520,27 @@ body.is-changing-scene .house-map{transform:translateX(-50%) translateY(4px) rot
   .room-world.is-active .project-index-list>*,.room-world.is-active .city-switcher button{animation:none!important}
   .scene-sparkles{display:none}
 }
+
+/* ============================================================================
+   Project rows: each project carries its own destinations inline, so there is
+   no separate link shelf and no standalone demo banner.
+   The title button keeps the original row markup, so the coral bar, sweep,
+   status dot and arrow slide all still apply to it unchanged.
+   ========================================================================== */
+.project-index-list .project-row{border-bottom:1px solid var(--line)}
+.project-index-list .project-row .project-row-open{border-bottom:0;padding-bottom:9px}
+.project-index-list .project-row-links{display:flex;flex-wrap:wrap;gap:6px;padding:0 4px 14px 48px}
+
+/* Chips opt out of the full-width row styling they would otherwise inherit. */
+.project-index-list .project-row-links a{width:auto;display:inline-flex;grid-template-columns:none;align-items:center;gap:5px;padding:5px 11px;border:1px solid #e2d5c8;border-bottom:1px solid #e2d5c8;border-radius:999px;background:#fdf6ee;color:#9a6440;font:500 10px/1 var(--sans);white-space:nowrap;text-decoration:none;overflow:visible;transition:transform .18s cubic-bezier(.24,1.3,.38,1),background .18s ease,border-color .18s ease,box-shadow .18s ease}
+.project-index-list .project-row-links a::before,.project-index-list .project-row-links a::after{content:none;display:none;animation:none}
+.project-index-list .project-row-links a>i{grid-column:auto;grid-row:auto;color:#b3773f;font-size:13px;transition:none}
+.project-index-list .project-row-links a>span{grid-row:auto;color:inherit;font:inherit}
+.project-index-list .project-row-links a:hover,.project-index-list .project-row-links a:focus-visible{transform:translateY(-2px) scale(1.03);padding:5px 11px;border-color:#c98b5e;background:#fbead9;color:#8a5730;box-shadow:0 6px 14px rgba(174,110,74,.16)}
+.project-index-list .project-row-links a:hover>i,.project-index-list .project-row-links a:focus-visible>i{transform:none;filter:none}
+.project-index-list .project-row-links a:active{transform:scale(.96)}
+
+@media(max-width:640px){
+  .project-index-list .project-row-links{padding-left:4px}
+  .project-index-list .project-row-links a{font-size:9px;padding:5px 9px}
+}
