@@ -16,8 +16,9 @@ The site is deployed to two hosts:
 - a warm miniature musical-stage visual system built around cream, coral,
   apricot, pale wood, footlights, and gentle scene-change motion;
 - a four-city timeline from Hami to Shanghai, Hangzhou, and San Jose;
-- direct, truthful project destinations for Tabspace, 1Day, Cassie Capture,
-  MindBridge, and Vance;
+- direct, truthful project destinations for MindBridge, Vance, CorpCheck, 1Day,
+  Tabspace, and Cassie Capture, ordered to match the résumé rather than release
+  date, plus an openable MindBridge interview demo (~60s, fixed synthetic data);
 - fifteen curated bilingual public articles rendered in a distraction-free
   reader, grouped into building notes, reflections, and life archive;
 - current Chinese AI/SDE and AI Product résumé PDFs;

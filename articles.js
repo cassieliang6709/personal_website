@@ -1138,4 +1138,172 @@ window.CASSIE_ARTICLES = [
       ]
     ]
   },
+  {
+    "id": "interest-chooses-direction",
+    "cat": "reflection",
+    "title": [
+      "我用兴趣选方向，再用逻辑找路",
+      "I let interest choose the direction, then use logic to find the route"
+    ],
+    "meta": [
+      "FROM MY VAULT · 我的原则",
+      "FROM MY VAULT · MY PRINCIPLES"
+    ],
+    "deck": [
+      "没有任务、考核和夸奖，我还会不会主动靠近它？",
+      "Without an assignment, evaluation, or praise, would I still move toward it?"
+    ],
+    "body": [
+      [
+        "小时候我在 B 站学修手机、折纸，也在贴吧给陌生人做动态签名图。没有课程要求我学这些，也没有人告诉我它们以后能做什么。我只是感兴趣，就自己去找。",
+        "后来做选择时，我很容易先列利弊、算概率、画路径。逻辑可以证明一件事可行，却不能替我决定自己是否想长期做它。",
+        "## 先真实试做",
+        "我现在会问：没有任务、考核和夸奖，我还会不会主动靠近它？这个问题不能靠想象回答。我需要先做一段时间，看看自己是否也愿意承受其中具体、重复和无聊的部分。",
+        "## 转向时，不急着否定过去",
+        "新的方向至少应该继承一些已有的东西：能力、经验、作品、关系或判断框架。会计、审计、产品和代码没有互相作废，它们只是被带进了下一段路。",
+        "> 兴趣负责选择方向。方向确定以后，分析和规划再负责把路走清楚。"
+      ],
+      [
+        "As a child I learned phone repair and origami on Bilibili and made animated forum signatures for strangers. No course required it, and nobody told me what it might become. I was interested, so I went looking.",
+        "Later, when making decisions, I often began with pros and cons, probabilities, and a route. Logic can show that something is feasible, but it cannot decide whether I want to live with the work for years.",
+        "## Try the real work first",
+        "I now ask: without an assignment, evaluation, or praise, would I still move toward it? Imagination cannot answer that. I need a real period of doing, including the concrete, repetitive, and boring parts.",
+        "## A change of direction does not erase the past",
+        "A new direction should inherit something: a skill, experience, work, relationships, or a way of judging. Accounting, audit, product, and code did not cancel one another. Each came with me into the next chapter.",
+        "> Interest chooses the direction. Once the direction is real, analysis and planning can improve the route."
+      ]
+    ]
+  },
+  {
+    "id": "two-way-door",
+    "cat": "reflection",
+    "title": [
+      "先问这扇门能不能退",
+      "First ask whether the door swings both ways"
+    ],
+    "meta": [
+      "FROM MY VAULT · 决策卡",
+      "FROM MY VAULT · DECISION CARD"
+    ],
+    "deck": [
+      "可逆决定快做，不可逆决定慢判断。",
+      "Move quickly on reversible decisions; slow down for irreversible ones."
+    ],
+    "body": [
+      [
+        "我不想用同一种流程处理所有决定。先问门能不能退，会直接改变我接下来需要想多久。",
+        "## 双向门",
+        "可逆、损失可控、反馈快的决定，信息够用就行动。我会先限定最大损失和复盘时间，做错以后尽快纠正，也不把第一次选择变成身份。",
+        "## 单向门",
+        "健康、法律、移民、长期债务和不可逆的声誉风险，需要更高的证据标准。我会寻找一手信息和真正有经验的人，假设未来失败，再倒推最可能的原因。",
+        "无论是哪一种门，我都会写下最承重的假设、最小真实试验、完成线、退出条件和复盘日期。想清楚最终要落到一个会留下证据的动作。",
+        "> 困难本身不是退出信号。事先写下的退出条件才是。"
+      ],
+      [
+        "I do not want to use the same process for every decision. Asking whether the door swings both ways changes how long I need to think.",
+        "## Two-way doors",
+        "When a decision is reversible, the downside is limited, and feedback is fast, enough information is enough. I cap the possible loss, set a review date, correct quickly, and avoid turning the first choice into an identity.",
+        "## One-way doors",
+        "Health, law, immigration, long-term debt, and irreversible reputation risk deserve a higher evidence standard. I look for first-hand information and people with real experience, imagine failure, and work backward to its likely causes.",
+        "For either kind of door, I write the assumption carrying the most weight, the smallest real test, the finish line, the exit condition, and the review date. Thinking has to become an action that leaves evidence.",
+        "> Difficulty alone is not an exit signal. A condition written in advance is."
+      ]
+    ]
+  },
+  {
+    "id": "zhubei-fieldwork",
+    "cat": "life",
+    "title": [
+      "在朱备待了一周以后，我开始怀疑漂亮的模型",
+      "A week in Zhubei made me question beautiful models"
+    ],
+    "meta": [
+      "VAULT · 学生时期",
+      "VAULT · STUDENT YEARS"
+    ],
+    "deck": [
+      "现场信息会把一份结构完整的方案重新打散。",
+      "Information from the field can pull apart a perfectly structured plan."
+    ],
+    "body": [
+      [
+        "大二时，我参加长三角特色小镇创新创业大赛，在朱备做了一周田野调查。我们和当地居民、政府人员及经营者交流。那是我第一次明显感觉到，现场的信息和坐在学校里查到的资料不是同一种东西。",
+        "同一时期，我们也为丰巢设计过社区团购方案。方案有市场研究、业务模式和五年财务模型，还提出用快递柜降低履约对团长的依赖。结构很完整，许多数字却建立在研报和一层层假设上。",
+        "模型会让一件事看起来已经被解释清楚。真正走到现场以后，我才会听见那些没有进入表格的问题：谁实际执行、流程在哪一步停住、一个假设对当地人是不是成立。",
+        "这段经历后来反复出现在我的工作里。无论做产品、商业分析还是 AI，最承重的变量都需要回到用户和现场验证。",
+        "> 有分析框架不等于理解了真实业务。"
+      ],
+      [
+        "During my sophomore year, I spent a week doing field research in Zhubei for a Yangtze River Delta town-innovation competition. We spoke with residents, local officials, and business owners. It was the first time I clearly felt that field information and desk research were different kinds of knowledge.",
+        "Around the same time, our team designed a community group-buying proposal for Hive Box. It included market research, a business model, a five-year financial model, and an idea to use parcel lockers to reduce dependence on group leaders. The structure was complete; many numbers still rested on reports and layered assumptions.",
+        "A model can make a problem look explained. In the field, other questions appear: who actually does the work, where the process stops, and whether a key assumption is true for the people there.",
+        "That experience kept returning in product, business analysis, and AI work. The variable carrying the most weight still has to meet a user and a real setting.",
+        "> Having an analytical framework is not the same as understanding the business."
+      ]
+    ]
+  },
+  {
+    "id": "hangzhou-information-source",
+    "cat": "life",
+    "title": [
+      "在杭州，我的信息来源从网页变成了人",
+      "In Hangzhou, people became my source of information"
+    ],
+    "meta": [
+      "VAULT · 2025 杭州",
+      "VAULT · HANGZHOU, 2025"
+    ],
+    "deck": [
+      "别人正在做什么、卡在哪里，常常比再查十份资料更有用。",
+      "What people are building and where they are stuck often beats ten more documents."
+    ],
+    "body": [
+      [
+        "离开德勤以后，我去了杭州，注册公司、开网店，也尝试自媒体和创业项目。春节物流停运时，我开始集中研究 coding，把原来写在文档里的想法做成真正能打开的东西。",
+        "我也在这里认识了很多独立开发者。以前遇到一个问题，我会继续查资料；进入当地创业和技术社群以后，我开始直接问：你现在用什么工具？哪里最麻烦？这个功能真的有人需要吗？",
+        "这一阶段，我做过微信小程序「正在帮助」，参与开发 ToGoal，也带着 Becoming 参加创业森林并获得二等奖。后来在 AdventureX 获得赛道最佳技术奖，我更熟悉了怎样迅速把一个想法做成原型。",
+        "快速反馈也暴露了我的老问题。新题目一直很诱人，作品却容易停在演示阶段。做得快和做得完，是两种不同的能力。",
+        "> 杭州让我爱上技术，也让我开始认真练习完成。"
+      ],
+      [
+        "After leaving Deloitte, I moved to Hangzhou, registered a company, opened an online shop, and tried media and startup projects. When shipping paused during Lunar New Year, I studied coding intensely and turned ideas from documents into things I could actually open.",
+        "I also met many independent developers there. I used to respond to a problem by reading more. In Hangzhou's startup and technology communities, I began asking directly: what tool are you using, where are you stuck, and does anyone truly need this feature?",
+        "During that period I built the WeChat mini program Helping, contributed to ToGoal, and brought Becoming to Startup Forest, where it won second prize. Later, a Best Technology track award at AdventureX made me faster at turning an idea into a prototype.",
+        "Fast feedback exposed an old problem too. New topics stayed tempting, while work could stop at the demo stage. Building quickly and finishing are different abilities.",
+        "> Hangzhou made me love technology and take finishing seriously."
+      ]
+    ]
+  },
+  {
+    "id": "a-specific-user",
+    "cat": "life",
+    "title": [
+      "后来，“用户”变成了一个看不见屏幕的人",
+      "Then “the user” became someone who could not see the screen"
+    ],
+    "meta": [
+      "VAULT · SAN JOSE",
+      "VAULT · SAN JOSE"
+    ],
+    "deck": [
+      "代码最后为谁而写，在一个具体的人面前会变得更清楚。",
+      "Who the code is for becomes clearer in front of a specific person."
+    ],
+    "body": [
+      [
+        "来到 San Jose 以后，我在 Northeastern 读人工智能硕士，也参与 Smith-Kettlewell Eye Research Institute 的 YouDescribe / YouDescribeX 项目，为盲人和低视力用户生成视频画面描述。",
+        "描述需要插在原片对话的空隙里。它要准确，也必须在有限时间里念完。写得太长时，系统需要在不中断原片的 inline 模式和暂停原片的 extended 模式之间做取舍。",
+        "模型可以生成候选内容，确定性的时长测量和播放规则决定它能不能真的被使用。这些看起来很小的限制，把“生成一段不错的文字”变成了一个完整的产品问题。",
+        "我以前也会说用户、指标和群体。到了这里，“用户”变成了一个具体的、无法看见屏幕的人。",
+        "> 代码为谁而写，因此不再是一个抽象问题。"
+      ],
+      [
+        "After moving to San Jose, I began an AI master's degree at Northeastern and joined the YouDescribe / YouDescribeX work at the Smith-Kettlewell Eye Research Institute, generating video descriptions for blind and low-vision users.",
+        "A description has to fit into gaps in the original dialogue. It must be accurate and short enough to speak in the available time. When it is too long, the system must choose between an inline mode that preserves playback and an extended mode that pauses the video.",
+        "A model can generate candidate text. Deterministic duration measurements and playback rules decide whether anyone can actually use it. Those small constraints turn 'generate a good paragraph' into a complete product problem.",
+        "I had used words such as users, metrics, and groups before. Here, 'the user' became a specific person who could not see the screen.",
+        "> Who the code is for stopped being an abstract question."
+      ]
+    ]
+  },
 ];

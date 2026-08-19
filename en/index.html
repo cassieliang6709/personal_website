@@ -25,7 +25,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600&family=Noto+Serif+SC:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css">
   <link rel="stylesheet" href="design-system/tokens.css">
-  <link rel="stylesheet" href="studio.css?v=20260819-mushroom1">
+  <link rel="stylesheet" href="studio.css?v=20260820-projects1">
 </head>
 <body>
   <a class="skip-link" href="#main" data-zh="跳到主要内容" data-en="Skip to main content"></a>
@@ -47,6 +47,10 @@
     <nav class="utility-links" aria-label="站点工具">
       <a href="mailto:liangyue3666@gmail.com" data-zh="写信" data-en="Say hi">写信</a>
       <a href="https://github.com/cassieliang6709" target="_blank" rel="noreferrer">GitHub</a>
+      <a id="localizedResumeLink" class="utility-resume" href="assets/resume/Cassie-SDE-CN.pdf" target="_blank" rel="noreferrer" data-resume-cn="assets/resume/Cassie-SDE-CN.pdf" data-resume-en="assets/resume/Cassie-SDE-EN.pdf">
+        <i class="ph ph-file-pdf" aria-hidden="true"></i>
+        <span data-zh="我的简历（中文）" data-en="My Resume (EN)"></span>
+      </a>
       <button class="utility-button" id="soundToggle" type="button" aria-pressed="false" data-zh="音乐关" data-en="Music off"></button>
       <button class="utility-button" id="languageToggle" type="button" aria-label="Switch language">EN</button>
     </nav>
@@ -61,7 +65,7 @@
         </div>
         <div class="stage-story">
           <p data-zh="我做过产品运营、产品经理、商业分析和审计，现在主要写代码。这里放着我的项目、经历和文章。" data-en="I have worked in product operations, product management, business analysis, and audit. These days I mostly write code. This site holds my projects, experience, and writing."></p>
-          <p class="stage-support" data-zh="可以直接看作品，也可以从我的经历开始。" data-en="You can go straight to the work or start with my path here."></p>
+          <p class="stage-support" data-zh="现在在 Smith-Kettlewell Eye Research Institute 做 Research Assistant，预计 2027 年 12 月从 Northeastern MSAI 毕业。可以直接看作品，也可以从我的经历开始。" data-en="I am a Research Assistant at the Smith-Kettlewell Eye Research Institute and expect to finish Northeastern’s MSAI in December 2027. You can go straight to the work or start with my path here."></p>
           <div class="stage-actions">
             <button class="stage-primary" type="button" data-room-link="profile"><span data-zh="从第一幕开始" data-en="Start with scene one"></span><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
             <button class="stage-secondary" type="button" data-room-link="works"><span data-zh="先看代表作" data-en="See selected work"></span></button>
@@ -105,7 +109,8 @@
       </div>
       <div class="home-resume-strip" aria-label="简历入口" data-aria-zh="简历入口" data-aria-en="Resume links">
         <span class="home-resume-label" data-zh="简历 / RESUME" data-en="RESUME"></span>
-        <a href="assets/resume/Cassie-SDE-CN.pdf" target="_blank" rel="noreferrer"><span data-zh="AI / SDE 简历" data-en="AI / SDE · CN"></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+        <a href="assets/resume/Cassie-SDE-CN.pdf" target="_blank" rel="noreferrer"><span data-zh="AI / SDE 简历（中文）" data-en="AI / SDE · CN"></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+        <a href="assets/resume/Cassie-SDE-EN.pdf" target="_blank" rel="noreferrer"><span data-zh="AI / SDE 简历（英文）" data-en="AI / SDE · EN"></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
         <a href="assets/resume/Cassie-PM-CN.pdf" target="_blank" rel="noreferrer"><span data-zh="AI Product 简历" data-en="AI Product · CN"></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
       </div>
     </section>
@@ -127,13 +132,17 @@
         <article class="story-panel about-panel">
           <p class="eyebrow" data-zh="关于我 · ABOUT" data-en="ABOUT"></p>
           <h1 id="aboutTitle" data-zh="Yue(Cassie) Liang" data-en="Yue(Cassie) Liang"></h1>
-          <p class="lede" data-zh="我现在在湾区读人工智能硕士，想成为一名可以独立把产品做出来的工程师。" data-en="I am an AI master's student in the Bay Area, working toward becoming an engineer who can take a product from idea to release independently."></p>
+          <p class="lede" data-zh="我在东北大学（Northeastern University）硅谷校区读MSAI，想成为一名可以独立把产品做出来的工程师。" data-en="I am studying MSAI at Northeastern University’s Silicon Valley campus, working toward becoming an engineer who can take a product from idea to release independently."></p>
+          <p><a href="https://www.linkedin.com/in/yue-liang-cassie/" class="about-link" target="_blank" rel="noopener noreferrer"><i class="ph ph-linkedin-logo" aria-hidden="true"></i><span data-zh="在 LinkedIn 认识我：yue-liang-cassie" data-en="Find me on LinkedIn: yue-liang-cassie"></span></a></p>
           <p data-zh="我是新疆人，本科在上海读国际会计。后来在盒马、KnowYourself、美团和德勤工作，做过产品运营、产品经理、商业分析和审计。" data-en="I am from Xinjiang and studied international accounting in Shanghai. I later worked at Hema, KnowYourself, Meituan, and Deloitte in product operations, product management, business analysis, and audit."></p>
           <p data-zh="离开德勤以后，我去了杭州，注册公司、开网店，也开始认真学 coding。Tabspace 已经上架 Chrome 商店，1Day 正在 private beta，Cassie Capture 的发布包也已经准备好。我现在一边继续做这些产品，一边补计算机和 AI 的基础。" data-en="After Deloitte, I moved to Hangzhou, registered a company, opened an online shop, and began learning to code seriously. Tabspace is live in the Chrome Web Store, 1Day is in private beta, and the release package for Cassie Capture is ready. I keep building these products while strengthening my foundations in computer science and AI."></p>
 
+          <p data-zh="读研以后，我以 Research Assistant 的身份加入 Smith-Kettlewell Eye Research Institute，参与 YouDescribe —— 一个把 YouTube 画面转成音频描述、服务盲人和低视力用户的项目。我参与搭建从场景切分、画面理解、描述生成到时长校验的链路，并完成 FastAPI 服务和 React 审核编辑器；在一次 30 人的用户研究中，人工撰写时间减少了 64%。" data-en="During graduate school I joined the Smith-Kettlewell Eye Research Institute as a Research Assistant, working on YouDescribe, which turns YouTube footage into audio description for blind and low-vision users. I helped build the pipeline from scene segmentation and visual understanding to description generation and duration checking, and wrote the FastAPI services and the React review editor. In a 30-participant user study, human writing time dropped by 64%."></p>
+
           <div class="fact-list" aria-label="关于 Cassie 的几个事实">
             <span data-zh="新疆人" data-en="From Xinjiang"></span>
-            <span data-zh="NEU MSAI 在读" data-en="NEU MSAI"></span>
+            <span data-zh="NEU MSAI · 预计 2027.12 毕业" data-en="NEU MSAI · expected Dec 2027"></span>
+            <span data-zh="Smith-Kettlewell Research Assistant" data-en="Smith-Kettlewell Research Assistant"></span>
             <span data-zh="做过产品经理" data-en="Product manager experience"></span>
             <span data-zh="独立开发中" data-en="Building independently"></span>
           </div>
@@ -212,14 +221,58 @@
             <p data-zh="点名字直接打开；点桌上的物件看看它的故事。" data-en="Open a name directly, or choose an object on the desk for its story."></p>
           </header>
 
+          <a class="project-demo-cue" href="https://mindbridge.liangyue.site/interview-demo/zh" data-href-zh="https://mindbridge.liangyue.site/interview-demo/zh" data-href-en="https://mindbridge.liangyue.site/interview-demo" target="_blank" rel="noreferrer">
+            <i class="ph ph-play-circle" aria-hidden="true"></i>
+            <span>
+              <strong data-zh="想直接看一个跑起来的东西？打开 MindBridge 面试演示" data-en="Want to see something actually running? Open the MindBridge interview demo"></strong>
+              <small data-zh="约 60 秒 · 不需登录 · 使用固定合成数据，不连接任何私人记录" data-en="About 60 seconds · no login · fixed synthetic data, never connected to private records"></small>
+            </span>
+            <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
+          </a>
+
           <nav class="project-index-list" aria-label="项目直达目录">
-            <a href="https://chromewebstore.google.com/detail/tabspace/pigfllmaggabolcjieedkilhpdfcddai?hl=en" target="_blank" rel="noreferrer"><span>01</span><strong>Tabspace</strong><small data-zh="Chrome 商店 · 已上架" data-en="Chrome Store · shipped"></small><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
-            <a href="https://1day.liangyue.site" target="_blank" rel="noreferrer"><span>02</span><strong>1Day</strong><small>iOS · private beta</small><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
-            <a href="https://github.com/cassieliang6709/cassie-capture" target="_blank" rel="noreferrer"><span>03</span><strong>Cassie Capture</strong><small data-zh="代码与说明 · 发布包已准备" data-en="Code & notes · release prepared"></small><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
-            <a href="https://mindbridge.liangyue.site" target="_blank" rel="noreferrer"><span>04</span><strong>MindBridge</strong><small data-zh="本地优先 · AI 长期记忆" data-en="Local-first · long-term AI memory"></small><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
-            <button type="button" data-entry="vance-note"><span>05</span><strong>Vance</strong><small data-zh="个人项目 · 整理中" data-en="Personal project · being organized"></small><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
-            <button type="button" data-entry="mushroom-note"><span>06</span><strong data-zh="待机小蘑菇" data-en="The Little Idle Mushroom"></strong><small data-zh="五集漫画已上线 · 37 页完整可读" data-en="Five comic episodes · 37 pages available"></small><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
+            <button type="button" data-entry="mindbridge-note"><span>01</span><strong>MindBridge</strong><small data-zh="透明可追溯的长期记忆 · MCP" data-en="Transparent long-term memory · MCP"></small><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
+            <button type="button" data-entry="vance-note"><span>02</span><strong>Vance</strong><small data-zh="受控 Tool Calling · iOS + Worker" data-en="Controlled tool calling · iOS + Worker"></small><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
+            <button type="button" data-entry="corpcheck-note"><span>03</span><strong>CorpCheck</strong><small data-zh="SEC 混合检索 · 版本治理与确定性拒答" data-en="SEC hybrid retrieval · versioning and refusal"></small><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
+            <a href="https://1day.liangyue.site" target="_blank" rel="noreferrer"><span>04</span><strong>1Day</strong><small>iOS · private beta</small><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+            <a href="https://chromewebstore.google.com/detail/tabspace/pigfllmaggabolcjieedkilhpdfcddai?hl=en" target="_blank" rel="noreferrer"><span>05</span><strong>Tabspace</strong><small data-zh="Chrome 商店 · 已上架" data-en="Chrome Store · shipped"></small><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+            <a href="https://github.com/cassieliang6709/cassie-capture" target="_blank" rel="noreferrer"><span>06</span><strong>Cassie Capture</strong><small data-zh="代码与说明 · 发布包已准备" data-en="Code & notes · release prepared"></small><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+            <button type="button" data-entry="mushroom-note"><span>07</span><strong data-zh="待机小蘑菇" data-en="The Little Idle Mushroom"></strong><small data-zh="五集漫画已上线 · 37 页完整可读" data-en="Five comic episodes · 37 pages available"></small><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
           </nav>
+
+          <section class="project-link-shelf" aria-label="开源项目入口">
+            <header>
+              <div>
+                <p class="eyebrow" data-zh="开源项目 · 作品入口" data-en="Open-source project links"></p>
+                <h2 data-zh="分开点开：官网、GitHub、下载或体验" data-en="Open links separately: landing page, GitHub, download/try"></h2>
+                <p class="meta" data-zh="同一项目的不同入口分开放，想点哪个就点哪个。" data-en="Each project has separate endpoints, so you can choose exactly what to open."></p>
+              </div>
+              <a href="https://github.com/cassieliang6709" target="_blank" rel="noreferrer"><i class="ph ph-github-logo" aria-hidden="true"></i><span data-zh="GitHub 汇总" data-en="GitHub collections"></span></a>
+            </header>
+
+            <div class="project-links">
+              <a href="https://cassieliang6709.github.io/tabspace-site/" target="_blank" rel="noreferrer"><span data-zh="官网" data-en="Landing"></span><span><strong>Tabspace</strong><small data-zh="Tabspace 主页：上手教程与演示" data-en="Tabspace homepage with onboarding and demos"></small></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+              <a href="https://chromewebstore.google.com/detail/tabspace/pigfllmaggabolcjieedkilhpdfcddai?hl=en" target="_blank" rel="noreferrer"><span data-zh="下载" data-en="Download"></span><span><strong>Tabspace</strong><small data-zh="Chrome Web Store：已上架" data-en="Chrome Web Store: shipped"></small></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+              <a href="https://github.com/cassieliang6709/tabspace-newtab" target="_blank" rel="noreferrer"><span data-zh="源码" data-en="Source"></span><span><strong>Tabspace</strong><small data-zh="GitHub 仓库与更新记录" data-en="GitHub repository and updates"></small></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+
+              <a href="https://1day.liangyue.site" target="_blank" rel="noreferrer"><span data-zh="官网" data-en="Landing"></span><span><strong>1Day</strong><small data-zh="1Day 产品页面：说明与体验入口" data-en="1Day product page: introduction and tryout entry"></small></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+              <a href="https://github.com/cassieliang6709/1day-ios" target="_blank" rel="noreferrer"><span data-zh="源码" data-en="Source"></span><span><strong>1Day</strong><small data-zh="iOS 客户端源码" data-en="iOS client source code"></small></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+
+              <a href="https://github.com/cassieliang6709/cassie-capture" target="_blank" rel="noreferrer"><span data-zh="源码" data-en="Source"></span><span><strong>Cassie Capture</strong><small data-zh="插件源码 + 问题清单" data-en="Extension source + issue list"></small></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+              <a href="https://github.com/cassieliang6709/cassie-capture/releases" target="_blank" rel="noreferrer"><span data-zh="下载" data-en="Download"></span><span><strong>Cassie Capture</strong><small data-zh="Release 包与历史构建" data-en="Release package and build history"></small></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+
+              <a href="https://mindbridge.liangyue.site/interview-demo/zh" data-href-zh="https://mindbridge.liangyue.site/interview-demo/zh" data-href-en="https://mindbridge.liangyue.site/interview-demo" target="_blank" rel="noreferrer"><span data-zh="演示" data-en="Demo"></span><span><strong>MindBridge</strong><small data-zh="面试演示：约 60 秒，固定合成数据" data-en="Interview demo: ~60s, fixed synthetic data"></small></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+              <a href="https://mindbridge.liangyue.site" target="_blank" rel="noreferrer"><span data-zh="官网" data-en="Landing"></span><span><strong>MindBridge</strong><small data-zh="演示站与说明文档入口" data-en="Demo site and docs entry"></small></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+              <a href="https://github.com/cassieliang6709/mindbridge" target="_blank" rel="noreferrer"><span data-zh="源码" data-en="Source"></span><span><strong>MindBridge</strong><small data-zh="核心代码与本地化部署说明" data-en="Core code and local deployment docs"></small></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+
+              <a href="https://fitness-coach-demo.pages.dev" target="_blank" rel="noreferrer"><span data-zh="官网" data-en="Landing"></span><span><strong>Vance</strong><small data-zh="Web Demo：脚本化早期版本，非真实推理" data-en="Web demo: scripted early version, not live inference"></small></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+              <a href="https://github.com/cassieliang6709/fitness-coach-ios" target="_blank" rel="noreferrer"><span data-zh="源码" data-en="Source"></span><span><strong>Vance</strong><small data-zh="iOS App 与服务端主仓库" data-en="iOS app and backend repository"></small></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+              <a href="https://github.com/cassieliang6709/fitness-coach-ios/releases" target="_blank" rel="noreferrer"><span data-zh="下载" data-en="Download"></span><span><strong>Vance</strong><small data-zh="Release 与安装包入口" data-en="Release packages"></small></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+
+              <a href="https://corpcheck.liangyue.site" target="_blank" rel="noreferrer"><span data-zh="官网" data-en="Landing"></span><span><strong>CorpCheck</strong><small data-zh="证据控制台：为什么回答，或为什么拒答" data-en="Evidence console: why it answers, or why it refuses"></small></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+              <a href="https://github.com/cassieliang6709/corpcheck" target="_blank" rel="noreferrer"><span data-zh="源码" data-en="Source"></span><span><strong>CorpCheck</strong><small data-zh="检索、评测与治理层代码" data-en="Retrieval, evaluation, and governance code"></small></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+            </div>
+          </section>
 
           <footer class="project-index-footer">
             <a href="https://github.com/cassieliang6709" target="_blank" rel="noreferrer"><i class="ph ph-github-logo" aria-hidden="true"></i><span data-zh="更多项目" data-en="More projects"></span></a>
@@ -292,7 +345,7 @@
   </section>
 
   <noscript><p class="noscript">这个房间需要 JavaScript 才能打开物件。你仍然可以阅读页面里的主要文字。</p></noscript>
-  <script src="articles.js?v=20260819-mushroom2"></script>
-  <script src="studio.js?v=20260819-music1"></script>
+  <script src="articles.js?v=20260820-vault1"></script>
+  <script src="studio.js?v=20260820-projects1"></script>
 </body>
 </html>

@@ -27,3 +27,7 @@ Temporary Items
 # every live scene is served from assets/room-spec/*.webp. Kept locally as
 # drafts only — archive elsewhere if worth keeping.
 assets/scenes/
+
+# Internal working files: QA output and browser-automation logs
+output/
+.playwright-cli/

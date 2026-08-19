@@ -12,3 +12,9 @@ design-system/references/
 # Source-quality and unused room artwork; production uses WebP assets
 assets/room-spec/*.png
 assets/scenes/
+
+# Internal working files: QA output, browser-automation logs, copy drafts, tooling
+output/
+.playwright-cli/
+content-polish-options.md
+scripts/
