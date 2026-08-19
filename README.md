@@ -40,6 +40,8 @@ Open `http://127.0.0.1:8765/`. The English route is `/en/`.
 - `articles.js` is the bilingual public article collection. Public adaptations
   preserve contribution boundaries and omit private vault material.
 - `assets/room-spec/` contains the final room artwork.
+- `assets/comics/mushroom/` contains the optimized five-episode, 37-page
+  edition of *The Little Idle Mushroom* used by the Writing reader.
 - `en/index.html` is **generated** — run `node scripts/build-en.mjs` after
   editing the `<head>` of `index.html`. Everything below `<head>` is copied
   verbatim, so the two routes cannot drift; only the metadata differs. The other

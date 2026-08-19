@@ -60,13 +60,13 @@ projects['1day']={
   quote:['我想让每一天都值得记住。','I want every day to feel worth remembering.'],
   url:'https://1day.liangyue.site'
 };
-projects.mushroom.meta=['文字五集可读 · 漫画生成中','Five text episodes · comic in progress'];
+projects.mushroom.meta=['五集漫画已上线 · 完整可读','Five comic episodes · now available'];
 projects.mushroom.body=[
-  '一颗长期待机的小蘑菇，怎样停止空转，重新开始行动。最新文字版已经收录五集；漫画版正在继续生成，这里先给它留一个位置。',
-  'How does a little mushroom stuck in idle mode stop spinning and begin to move again? The latest text edition contains five episodes; the comic is still being created, with a space reserved here for it.'
+  '一颗长期待机的小蘑菇，怎样停止空转，重新开始行动。五集、三十七页漫画已经全部上线，也保留了完整创作原文。',
+  'How does a little mushroom stuck in idle mode stop spinning and begin to move again? All five comic episodes—thirty-seven pages—are now available alongside the original prose.'
 ];
 projects.mushroom.links=[{
-  label:['读五集最新文字版 →','Read the latest five text episodes →'],
+  label:['读五集完整漫画 →','Read all five comic episodes →'],
   url:'#writing',
   article:'mushroom'
 }];
@@ -92,6 +92,22 @@ function renderReaderGallery(article){
     const title=locale==='zh'?'这里先给漫画留一个位置。':'A place is reserved for the comic.';
     const note=locale==='zh'?'完成后会把五集漫画放进来；下面的五集最新文字版已经可以阅读。':'The five comic episodes will appear here when they are ready. The latest five-episode text is available below.';
     return '<section class="reader-gallery-placeholder" aria-label="'+eyebrow+'"><span>'+eyebrow+'</span><strong>'+title+'</strong><p>'+note+'</p><i class="ph ph-sparkle" aria-hidden="true"></i></section>';
+  }
+  if(article.comicEpisodes){
+    return article.comicEpisodes.map((episode,episodeIndex)=>{
+      const episodeTitle=t(episode.title);
+      const items=Array.from({length:episode.pages},(_,pageIndex)=>{
+        const page=String(pageIndex+1).padStart(2,'0');
+        const alt=locale==='zh'
+          ?episodeTitle+'，第 '+(pageIndex+1)+' 页'
+          :episodeTitle+', page '+(pageIndex+1)+' (Chinese artwork)';
+        const loading=episodeIndex===0&&pageIndex===0?'eager':'lazy';
+        return '<figure><img src="'+episode.path+'/'+page+'.webp" alt="'+alt+'" loading="'+loading+'" width="960" height="1280"></figure>';
+      }).join('');
+      const count=locale==='zh'?episode.pages+' 页':episode.pages+' pages';
+      const hint=locale==='zh'?'向右滑动继续':'Swipe to continue · Chinese artwork';
+      return '<section class="reader-gallery" aria-label="'+episodeTitle+'"><header><span>'+episodeTitle+'</span><small>'+count+' · '+hint+'</small></header><div>'+items+'</div></section>';
+    }).join('');
   }
   if(!article.gallery)return '';
   const items=article.gallery.map(item=>{

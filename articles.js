@@ -89,17 +89,43 @@ window.CASSIE_ARTICLES = [
       "The Little Idle Mushroom"
     ],
     "meta": [
-      "五集文字版 · 漫画生成中",
-      "FIVE TEXT EPISODES · COMIC IN PROGRESS"
+      "五集漫画 · 创作原文",
+      "FIVE COMIC EPISODES · ORIGINAL TEXT"
     ],
     "deck": [
-      "五集最新文字版：一颗长期待机的小蘑菇，怎样停止空转，重新开始行动。",
-      "The latest five-episode text: how a little mushroom stuck in idle mode learns to start moving again."
+      "一颗长期待机的小蘑菇，怎样停止空转，重新开始行动。五集漫画已经可以完整阅读。",
+      "How does a little mushroom stuck in idle mode learn to move again? All five comic episodes are ready to read."
     ],
-    "galleryPending": true,
+    "comicEpisodes": [
+      {
+        "title": ["第一集：先按下去", "Episode 1: Press Submit"],
+        "path": "assets/comics/mushroom/episode-1",
+        "pages": 8
+      },
+      {
+        "title": ["第二集：麻辣香锅公司侥幸存活", "Episode 2: The Mala Hot Pot Company Survives"],
+        "path": "assets/comics/mushroom/episode-2",
+        "pages": 6
+      },
+      {
+        "title": ["第三集：地图只画了一条路", "Episode 3: The Map Had Only One Road"],
+        "path": "assets/comics/mushroom/episode-3",
+        "pages": 8
+      },
+      {
+        "title": ["第四集：不等心情开机", "Episode 4: Do Not Wait for the Mood to Boot"],
+        "path": "assets/comics/mushroom/episode-4",
+        "pages": 8
+      },
+      {
+        "title": ["第五集：把脑子放回身体里", "Episode 5: Put the Mind Back in the Body"],
+        "path": "assets/comics/mushroom/episode-5",
+        "pages": 7
+      }
+    ],
     "body": [
       [
-        "这里收录的是《待机小蘑菇》五集最新文字版。漫画版还在生成：小工头、小C和小E会把脑内那些说不清的声音，搬进一间真的看得见的控制室。",
+        "这里收录《待机小蘑菇》的五集完整漫画和创作原文。小工头、委屈宝宝和小翼，把脑内那些说不清的声音搬进了一间真的看得见的控制室。",
         "## 第一集：先按下去",
         "网申页面终于走到最后一步。",
         "<strong>Step 12 of 12：Upload Resume</strong>",
@@ -299,7 +325,7 @@ window.CASSIE_ARTICLES = [
         "这一次，脑子和手在同一个地方。"
       ],
       [
-        "This page contains the latest text edition of all five episodes of <em>The Little Idle Mushroom</em>. The comic is still being created: the foreman, Little C, and Little E will turn the hard-to-name voices in my head into a control room I can actually see.",
+        "This page contains all five comic episodes of <em>The Little Idle Mushroom</em> and the original prose. The Foreman, the Sensitive One, and Little Wing turn the hard-to-name voices in my head into a control room I can actually see. The comic artwork is currently in Chinese.",
         "## Episode One: Just Click It",
         "The application finally reached its last step.",
         "<strong>Step 12 of 12: Upload Resume</strong>",
