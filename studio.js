@@ -194,3 +194,20 @@ document.addEventListener('click',e=>{const room=e.target.closest('[data-room-li
 document.getElementById('languageToggle').addEventListener('click',()=>{let nextPath;if(locale==='zh'){nextPath=location.pathname.endsWith('/')?`${location.pathname}en/`:`${location.pathname}/en/`}else{nextPath=location.pathname.replace(/en\/?$/,'');if(!nextPath.endsWith('/'))nextPath+='/' }location.assign(`${nextPath}${location.hash}`)});document.getElementById('soundToggle').addEventListener('click',e=>{sound=!sound;e.currentTarget.setAttribute('aria-pressed',String(sound));if(sound)switchSoundtrack(current);else stopMusic();applyLocale()});document.getElementById('readerClose').addEventListener('click',closeReader);document.getElementById('roomDialog').addEventListener('close',()=>lastFocus?.focus());window.addEventListener('popstate',()=>go(location.hash.slice(1)||'home',false));window.addEventListener('hashchange',()=>go(location.hash.slice(1)||'home',false));document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!document.getElementById('reader').hidden)closeReader();else if(document.getElementById('roomDialog').open)document.getElementById('roomDialog').close();else if(current!=='home')go('home')}if(!e.metaKey&&!e.ctrlKey&&!e.altKey&&['1','2','3','4'].includes(e.key)&&document.getElementById('reader').hidden)go(rooms[Number(e.key)])});
 const initial=location.hash.slice(1)||'home';go(rooms.includes(initial)?initial:'home',false);applyLocale();
 })();
+
+/* Topbar resume menu: three PDFs, reachable from every scene. */
+(()=>{
+  const button=document.getElementById('resumeMenuButton'),menu=document.getElementById('resumeMenu');
+  if(!button||!menu)return;
+  const close=refocus=>{if(menu.hidden)return;menu.hidden=true;button.setAttribute('aria-expanded','false');if(refocus)button.focus()};
+  button.addEventListener('click',e=>{
+    e.stopPropagation();
+    const opening=menu.hidden;
+    menu.hidden=!opening;
+    button.setAttribute('aria-expanded',String(opening));
+    if(opening)menu.querySelector('a')?.focus();
+  });
+  menu.addEventListener('click',e=>{if(e.target.closest('a'))close(false)});
+  document.addEventListener('click',e=>{if(!e.target.closest('.utility-resume-menu'))close(false)});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!menu.hidden){e.stopPropagation();close(true)}});
+})();

@@ -544,3 +544,26 @@ body.is-changing-scene .house-map{transform:translateX(-50%) translateY(4px) rot
   .project-index-list .project-row-links{padding-left:4px}
   .project-index-list .project-row-links a{font-size:9px;padding:5px 9px}
 }
+
+/* ============================================================================
+   Topbar resume menu. Replaces both the single topbar resume link and the
+   home-only resume strip, so all three PDFs are reachable from every scene.
+   ========================================================================== */
+.utility-resume-menu{position:relative}
+.utility-resume-menu .utility-resume{padding:4px 2px;border:0;background:none;color:inherit;font:inherit}
+.utility-resume-menu .resume-caret{font-size:11px;transition:transform .18s ease}
+.utility-resume-menu .utility-resume[aria-expanded="true"] .resume-caret{transform:rotate(180deg)}
+
+.resume-menu{position:absolute;z-index:60;right:0;top:calc(100% + 10px);min-width:212px;display:grid;gap:3px;padding:7px;border:1px solid #e6d9ce;border-radius:14px;background:rgba(255,253,249,.98);box-shadow:0 16px 38px rgba(90,63,51,.18);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.resume-menu[hidden]{display:none}
+.resume-menu a{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:10px;color:var(--ink);text-decoration:none}
+.resume-menu a:hover,.resume-menu a:focus-visible{background:#fbead9;color:#8a5730;text-decoration:none}
+.resume-menu a>i{color:#b3773f;font-size:16px}
+.resume-menu strong{display:block;font:600 12px var(--sans)}
+.resume-menu small{display:block;margin-top:1px;color:var(--muted);font-size:9px}
+
+/* The topbar hides its plain links on narrow screens; menu items must stay. */
+@media(max-width:980px){
+  .utility-links .resume-menu a{display:flex}
+  .resume-menu{min-width:190px}
+}

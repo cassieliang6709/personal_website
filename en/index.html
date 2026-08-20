@@ -25,7 +25,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600&family=Noto+Serif+SC:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css">
   <link rel="stylesheet" href="design-system/tokens.css">
-  <link rel="stylesheet" href="studio.css?v=20260820-rows1">
+  <link rel="stylesheet" href="studio.css?v=20260820-resume1">
 </head>
 <body>
   <a class="skip-link" href="#main" data-zh="跳到主要内容" data-en="Skip to main content"></a>
@@ -47,10 +47,18 @@
     <nav class="utility-links" aria-label="站点工具">
       <a href="mailto:liangyue3666@gmail.com" data-zh="写信" data-en="Say hi">写信</a>
       <a href="https://github.com/cassieliang6709" target="_blank" rel="noreferrer">GitHub</a>
-      <a id="localizedResumeLink" class="utility-resume" href="assets/resume/Cassie-SDE-CN.pdf" target="_blank" rel="noreferrer" data-resume-cn="assets/resume/Cassie-SDE-CN.pdf" data-resume-en="assets/resume/Cassie-SDE-EN.pdf">
-        <i class="ph ph-file-pdf" aria-hidden="true"></i>
-        <span data-zh="我的简历（中文）" data-en="My Resume (EN)"></span>
-      </a>
+      <div class="utility-resume-menu">
+        <button class="utility-resume" id="resumeMenuButton" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="resumeMenu">
+          <i class="ph ph-file-pdf" aria-hidden="true"></i>
+          <span data-zh="简历" data-en="Resume"></span>
+          <i class="ph ph-caret-down resume-caret" aria-hidden="true"></i>
+        </button>
+        <div class="resume-menu" id="resumeMenu" role="menu" aria-label="简历文件" data-aria-zh="简历文件" data-aria-en="Resume files" hidden>
+          <a role="menuitem" href="assets/resume/Cassie-SDE-CN.pdf" target="_blank" rel="noreferrer"><i class="ph ph-file-pdf" aria-hidden="true"></i><span><strong>AI / SDE</strong><small data-zh="中文" data-en="Chinese"></small></span></a>
+          <a role="menuitem" href="assets/resume/Cassie-SDE-EN.pdf" target="_blank" rel="noreferrer"><i class="ph ph-file-pdf" aria-hidden="true"></i><span><strong>AI / SDE</strong><small data-zh="英文" data-en="English"></small></span></a>
+          <a role="menuitem" href="assets/resume/Cassie-PM-CN.pdf" target="_blank" rel="noreferrer"><i class="ph ph-file-pdf" aria-hidden="true"></i><span><strong>AI Product</strong><small data-zh="中文" data-en="Chinese"></small></span></a>
+        </div>
+      </div>
       <button class="utility-button" id="soundToggle" type="button" aria-pressed="false" data-zh="音乐关" data-en="Music off"></button>
       <button class="utility-button" id="languageToggle" type="button" aria-label="Switch language">EN</button>
     </nav>
@@ -106,12 +114,6 @@
           <p class="explore-hint"><i class="ph ph-hand-grabbing" aria-hidden="true"></i><span data-zh="选择一个物件，下一幕会从这里长出来" data-en="Choose an object and let the next scene grow from here"></span></p>
         </div>
         <button class="next-scene-cue" type="button" data-room-link="timeline"><span data-zh="下一幕" data-en="Next scene"></span><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
-      </div>
-      <div class="home-resume-strip" aria-label="简历入口" data-aria-zh="简历入口" data-aria-en="Resume links">
-        <span class="home-resume-label" data-zh="简历 / RESUME" data-en="RESUME"></span>
-        <a href="assets/resume/Cassie-SDE-CN.pdf" target="_blank" rel="noreferrer"><span data-zh="AI / SDE 简历（中文）" data-en="AI / SDE · CN"></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
-        <a href="assets/resume/Cassie-SDE-EN.pdf" target="_blank" rel="noreferrer"><span data-zh="AI / SDE 简历（英文）" data-en="AI / SDE · EN"></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
-        <a href="assets/resume/Cassie-PM-CN.pdf" target="_blank" rel="noreferrer"><span data-zh="AI Product 简历" data-en="AI Product · CN"></span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
       </div>
     </section>
 
@@ -352,6 +354,6 @@
 
   <noscript><p class="noscript">这个房间需要 JavaScript 才能打开物件。你仍然可以阅读页面里的主要文字。</p></noscript>
   <script src="articles.js?v=20260820-vault1"></script>
-  <script src="studio.js?v=20260820-rows1"></script>
+  <script src="studio.js?v=20260820-resume1"></script>
 </body>
 </html>
