@@ -31,3 +31,7 @@ assets/scenes/
 # Internal working files: QA output and browser-automation logs
 output/
 .playwright-cli/
+
+# Python helper caches
+__pycache__/
+*.pyc
