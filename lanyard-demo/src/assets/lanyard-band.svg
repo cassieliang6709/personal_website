@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="128" viewBox="0 0 1024 128">
+  <rect width="1024" height="128" fill="#a85f4f"/>
+  <rect y="8" width="1024" height="6" fill="#f1bd9f" opacity="0.7"/>
+  <rect y="114" width="1024" height="6" fill="#6f4138" opacity="0.55"/>
+  <text x="28" y="78" fill="#fff5e9" font-family="monospace" font-size="34" letter-spacing="5">CASSIE LIANG · HUMAN-STEERED SYSTEMS ·</text>
+</svg>
