@@ -15,6 +15,6 @@ Production build:
 npm run build
 ```
 
-Desktop renders the draggable WebGL/physics version. Viewports at or below 760px and browsers requesting reduced motion render a static pass instead. The 3D implementation is lazy-loaded so those fallback modes do not request the large Three.js bundle.
+Desktop defaults to a draggable, spring-returning compatibility preview that remains visible without WebGL. An optional “3D 物理” switch loads the original Three.js/Rapier version for capable browsers. Viewports at or below 760px and browsers requesting reduced motion render a static pass. The 3D implementation is lazy-loaded, so compatibility and fallback modes do not request the large Three.js bundle.
 
 The Lanyard component and original binary assets are adapted from [React Bits](https://github.com/DavidHDev/react-bits/tree/main/src/content/Components/Lanyard). See [THIRD_PARTY_LICENSES.md](./THIRD_PARTY_LICENSES.md).
