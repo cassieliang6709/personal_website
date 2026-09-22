@@ -22,7 +22,7 @@ function useStaticFallback() {
   return isStatic;
 }
 
-function CompatiblePass({ interactive = false }) {
+export function CompatiblePass({ interactive = false }) {
   const hostRef = useRef(null);
   const dragStart = useRef({ x: 0, y: 0, dx: 0, dy: 0 });
   const [size, setSize] = useState({ width: 320, height: 520 });
