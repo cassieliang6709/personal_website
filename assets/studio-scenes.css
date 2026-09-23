@@ -1,0 +1,125 @@
+/* Production workbench and travel passes. Keep the existing room navigation. */
+.timeline-shell > *, .projects-shell > * { min-width: 0; }
+.travel-table { background: #ece8df; min-height: 620px; position: sticky; top: 88px; align-self: start; }
+.travel-table > .scene-art, .travel-table > .scene-wash, .travel-table > .scene-sparkles { display: none; }
+.travel-table::before { content: 'PLACES THAT SHAPED ME / 01—04'; position: absolute; top: 110px; left: 8%; font: 11px var(--mono); letter-spacing: .12em; color: #776e62; }
+.travel-table::after { content: 'TRAVEL PASS · FOUR CHAPTERS'; position: absolute; bottom: 45px; left: 8%; font: 10px var(--mono); letter-spacing: .15em; color: #776e62; }
+.travel-table .timeline-photo-pins { position: absolute; inset: 190px 0 auto; height: 330px; display: block; }
+.travel-table .timeline-photo-pins .travel-pass { position: absolute; inset: 0 auto auto 50%; width: 175px; height: 295px; display: flex; flex-direction: column; align-items: stretch; padding: 0; overflow: hidden; border: 1px solid #d3c9b8; border-radius: 12px; background: #fffcf4; text-align: left; color: #49483d; box-shadow: 0 12px 22px #56473526; transform: translateX(calc(-50% + var(--offset) + var(--spread))) rotate(var(--angle)); transition: transform .45s cubic-bezier(.22,1.35,.4,1), box-shadow .2s; }
+.travel-table .timeline-photo-pins .travel-pass.is-raised { z-index: 6; transform: translate(calc(-50% + var(--offset)), -22px) rotate(0); box-shadow: 0 20px 28px #56473530; }
+.travel-pass-photo { flex: 0 0 118px; width: 100%; background: url('travel-cities-v2.png') 0 0 / 200% 200%; }
+.travel-pass:nth-child(2) .travel-pass-photo { background-position: 100% 0; }
+.travel-pass:nth-child(3) .travel-pass-photo { background-position: 0 100%; }
+.travel-pass:nth-child(4) .travel-pass-photo { background-position: 100% 100%; }
+.travel-table .timeline-photo-pins .travel-pass > span { position: static; width: auto; height: auto; clip: auto; padding: 12px 16px 6px; font: 10px var(--mono); color: #8c7760; background: none; }
+.travel-table .timeline-photo-pins .travel-pass strong { padding: 0 16px; font: 600 17px/1.5 var(--serif); }
+.travel-pass-city { padding: 7px 16px 14px; font: 10px var(--mono); letter-spacing: .1em; }
+.travel-table .timeline-photo-pins .travel-pass em { display: block; margin: auto 16px 0; padding: 13px 0; border-top: 1px dashed #cfc5b5; font: 10px var(--mono); }
+.travel-table .timeline-photo-pins .travel-pass[aria-pressed=true] { border-color: #8b9b82; background: #fffcf4; }
+.work-pass { --dx: 0px; --dy: 0px; --tilt: -7deg; position: absolute; z-index: 6; top: 0; left: 13%; width: clamp(115px, 15vw, 185px); height: 320px; pointer-events: none; }
+.work-pass-band { position: absolute; left: calc(50% - 8px); top: -15px; width: 16px; height: 115px; background: repeating-linear-gradient(0deg,#526451 0 25px,#71806a 25px 28px); transform-origin: top; transform: rotate(calc(var(--tilt)*-1)); }
+.work-pass-card { position: absolute; top: 94px; width: 100%; padding: 18px 12px 12px; border: 1px solid #d6c9ac; border-radius: 14px; background: #fff9e9; box-shadow: 0 10px 22px #453e3526; transform: translate(var(--dx),var(--dy)) rotate(var(--tilt)); transition: transform .6s cubic-bezier(.22,1.35,.4,1); cursor: grab; touch-action: none; pointer-events: auto; user-select: none; }
+.work-pass.is-dragging .work-pass-card { transition: none; cursor: grabbing; }
+.work-pass-clip { position: absolute; top: -9px; left: calc(50% - 14px); width: 28px; height: 13px; border: 4px solid #a5a39b; border-radius: 5px; background: #e8e4d8; }
+.work-pass-card small { display: block; font: 8px var(--mono); letter-spacing: .12em; }
+.work-pass-card img { width: 72%; aspect-ratio: 1; object-fit: contain; margin: 10px auto; pointer-events: none; }
+.work-pass-card strong { display: block; font: 600 clamp(14px,1.7vw,21px) var(--serif); }
+.work-pass-card > span:not(.work-pass-clip) { display: block; margin-top: 8px; font: 7px var(--mono); }
+.work-pass-card em { display: block; margin-top: 14px; padding-top: 10px; border-top: 1px dashed #c8bfa9; font: 8px var(--mono); }
+.project-index-list { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; border: 0; }
+.project-index-list .project-row { min-width: 0; padding: 10px; border: 1px solid var(--line); border-radius: 12px; background: #f8f7f1; }
+.project-index-list .project-row-open { padding: 8px 0; }
+.project-index-list .project-row-links { flex-wrap: wrap; }
+.project-index-list .project-row { display: flex; flex-direction: column; align-items: stretch; }
+.project-index-list .project-row-open { display: block; }
+.project-index-list .project-row-open > span:first-child { display: block; margin-bottom: 6px; }
+.project-index-list .project-row-name { display: flex; justify-content: space-between; gap: 8px; }
+.project-index-list .project-row-open small { display: block; margin-top: 8px; line-height: 1.7; }
+.project-index-list .project-row-links { position: static; display: flex; margin-top: auto; padding-top: 8px; }
+@media (max-width: 1200px) and (min-width: 981px) { .project-index-list { grid-template-columns: 1fr; } .travel-table .timeline-photo-pins .travel-pass { width: 145px; transform: translateX(calc(-50% + var(--compact-offset) + var(--spread))) rotate(var(--angle)); } .travel-table .timeline-photo-pins .travel-pass.is-raised { transform: translate(calc(-50% + var(--compact-offset)),-22px); } }
+@media (max-width: 980px) { .travel-table { position: relative; top: auto; aspect-ratio: auto; min-height: 560px; } .work-pass { width: 150px; } }
+@media (max-width: 600px) {
+  .travel-table { min-height: 455px; }
+  .travel-table::before { top: 85px; font-size: 9px; }
+  .travel-table::after { bottom: 18px; font-size: 9px; }
+  .travel-table .timeline-photo-pins { inset: 125px 0 auto; display: flex; gap: 14px; padding: 14px 24px 24px; height: 310px; overflow-x: auto; scroll-snap-type: x proximity; }
+  .travel-table .timeline-photo-pins .travel-pass, .travel-table .timeline-photo-pins .travel-pass.is-raised { position: relative; inset: auto; flex: 0 0 168px; height: 270px; transform: none; scroll-snap-align: center; }
+  .travel-table .timeline-photo-pins .travel-pass[aria-pressed=true] { box-shadow: 0 0 0 2px #8b9b82; }
+  .travel-pass-photo { flex-basis: 100px; }
+  .work-pass { left: 13%; width: 110px; }
+  .work-pass-band { height: 65px; }
+  .work-pass-card { top: 52px; padding: 12px 8px 8px; }
+  .work-pass-card img { margin: 6px auto; width: 58%; }
+  .work-pass-card small, .work-pass-card em { font-size: 6px; }
+  .work-pass-card em { margin-top: 8px; padding-top: 6px; }
+  .project-index-list { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) { .travel-table .timeline-photo-pins .travel-pass, .work-pass-card { transition: none; } }
+.travel-table .timeline-photo-pins .travel-pass { animation: none; backdrop-filter: none; gap: 0; }
+.travel-table .timeline-photo-pins .travel-pass::before, .travel-table .timeline-photo-pins .travel-pass::after, .travel-table .travel-pass strong::after { display: none; }
+
+/* A balanced workbench: one page scroll, legible project cards. */
+#works .projects-shell { grid-template-columns: minmax(0,.85fr) minmax(0,1.15fr); align-items: start; }
+#works .projects-left { position: sticky; top: 92px; }
+#works .projects-visual { min-height: 0; aspect-ratio: 3/2; }
+#works .projects-visual .scene-art { height: 100%; object-fit: cover; }
+#works .project-hotspots { display: none; }
+#works .project-cabinet { position: static; max-height: none; overflow: visible; padding: clamp(24px,3vw,40px); }
+#works .project-cabinet h1 { font-size: clamp(28px,3vw,42px); line-height: 1.3; }
+#works .project-cabinet header > p:last-child { font-size: 14px; }
+#works .project-index-list { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; margin-top: 24px; }
+#works .project-index-list .project-row { padding: 16px; background: #fcfaf4; }
+#works .project-index-list .project-row-open { padding: 0 0 12px; }
+#works .project-index-list strong { font-size: 19px; }
+#works .project-index-list small { font-size: 12px; line-height: 1.75; color: #62665c; }
+#works .project-index-list .project-row > .project-row-links { margin-top: auto; padding: 8px 0 0; }
+#works .project-row-links a { font-size: 11px; padding: 7px 10px; }
+#works .work-pass { left: 14%; width: clamp(105px,11vw,145px); }
+#works .work-pass-band { height: 82px; }
+#works .work-pass-card { top: 68px; }
+#works .work-pass-card img { width: 58%; }
+#works .work-pass-card strong { font-size: 17px; }
+@media (max-width: 980px) {
+  #works .projects-shell { grid-template-columns: 1fr; }
+  #works .projects-left { position: static; }
+  #works .projects-visual { max-height: 430px; }
+  #works .work-pass { width: 135px; }
+}
+@media (max-width: 600px) {
+  #works .project-index-list { grid-template-columns: 1fr; }
+  #works .project-cabinet { padding: 24px 20px; }
+  #works .work-pass { left: 18%; width: 105px; }
+  #works .work-pass-card { top: 56px; }
+  #works .work-pass-band { height: 68px; }
+  #works .work-pass-card strong { font-size: 13px; }
+}
+
+/* Editorial project index: typography carries hierarchy, not nested boxes. */
+#works .project-cabinet { background: transparent; border: 0; border-radius: 0; padding: 12px 12px 32px 24px; box-shadow: none; }
+#works .project-cabinet h1 { max-width: 16ch; font-family: var(--sans); font-size: clamp(30px,3.3vw,46px); font-weight: 500; letter-spacing: -.055em; }
+#works .project-cabinet header > p:last-child { max-width: 38em; margin: 18px 0 28px; color: #6e706b; line-height: 1.8; }
+#works .project-index-list { display: block; margin: 0; border-top: 1px solid #bfc2b8; }
+#works .project-index-list .project-row { position: relative; display: grid; grid-template-columns: minmax(0,1fr) auto; column-gap: 16px; padding: 20px 0; border: 0; border-bottom: 1px solid #d8d9d0; border-radius: 0; background: transparent; transition: background-color .18s ease; }
+#works .project-index-list .project-row:hover, #works .project-index-list .project-row:focus-within { background: #eeeee5; }
+#works .project-index-list .project-row .project-row-open { display: grid; grid-template-columns: 25px minmax(0,1fr); grid-column: 1; grid-row: 1; align-items: start; gap: 7px 10px; padding: 0; background: none; border: 0; box-shadow: none; }
+#works .project-index-list .project-row-open > span:first-child { grid-column: 1; grid-row: 1; margin: 6px 0 0; color: #888d82; font: 10px var(--mono); }
+#works .project-index-list .project-row .project-row-name { grid-column: 2; grid-row: 1; justify-content: flex-start; gap: 12px; }
+#works .project-index-list strong { font: 500 clamp(18px,1.8vw,24px)/1.3 var(--sans); letter-spacing: -.04em; color: #303a34; }
+#works .project-index-list .project-row-name > i { opacity: 0; transform: translateX(-5px); transition: opacity .18s ease, transform .18s ease; }
+#works .project-row:hover .project-row-name > i, #works .project-row:focus-within .project-row-name > i { opacity: 1; transform: none; }
+#works .project-index-list .project-row-open small { grid-column: 2; grid-row: 2; margin: 0; font-size: 12px; line-height: 1.65; color: #71786e; }
+#works .project-index-list .project-row-open small::before { display: none; }
+#works .project-index-list .project-row > .project-row-links { grid-column: 2; grid-row: 1; position: static; align-self: center; justify-content: flex-end; gap: 10px; margin: 0; padding: 0; max-width: 150px; }
+#works .project-index-list .project-row-links a { min-height: 32px; padding: 6px 0; border: 0; border-radius: 0; background: none; color: #58664d; font: 11px var(--sans); box-shadow: none; }
+#works .project-index-list .project-row-links a:hover { color: #202f20; text-decoration: underline; text-underline-offset: 4px; transform: none; }
+#works .project-row-links a > i { display: none; }
+#works .project-index-list .project-row-open::before, #works .project-index-list .project-row-open::after { display: none; }
+#works .project-index-footer { margin-top: 24px; opacity: .8; }
+@media (max-width: 600px) {
+  #works .project-cabinet { padding: 18px 8px 24px; }
+  #works .project-index-list .project-row { grid-template-columns: minmax(0,1fr); padding: 18px 0; }
+  #works .project-index-list .project-row > .project-row-links { grid-column: 1; grid-row: 2; justify-content: flex-start; max-width: none; margin: 5px 0 0 35px; gap: 20px; }
+  #works .project-index-list .project-row-links a { min-height: 44px; }
+  #works .project-index-list .project-row-name > i { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) { #works .project-index-list .project-row, #works .project-index-list .project-row-name > i { transition: none; } }

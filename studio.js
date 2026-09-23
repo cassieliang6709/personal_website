@@ -55,13 +55,13 @@ aboutNotes.hessler.body[0]=[
 ];
 projects['1day']={
   title:'1Day',
-  meta:['iOS · private beta','iOS · private beta'],
+  meta:['iOS · App Store v1.1','iOS · App Store v1.1'],
   body:[
-    '1Day 给每天一张小卡片：拍下几秒，和朋友互相看见，也给想完成的目标留一个轻轻的约定。陪伴、期待和回忆被放进同一天，人会更愿意把今天过完，也把那个小目标做掉。目前处于 private beta。',
-    '1Day gives each day a small card: record a few seconds, let friends witness one another, and leave a gentle commitment to a goal. Companionship, anticipation, and memory share the same day, making it easier to finish both the day and the small goal. It is currently in private beta.'
+    '1Day 把一天里的几个 2 / 5 / 10 秒瞬间，在设备端自动拼成一支短片；也可以通过邀请码和朋友共同拍摄同一天。v1.1 已上架 App Store。',
+    '1Day turns a few 2 / 5 / 10-second moments from a day into one short film on-device. An invite code also lets friends capture the same day together. Version 1.1 is live on the App Store.'
   ],
   quote:['我想让每一天都值得记住。','I want every day to feel worth remembering.'],
-  url:'https://1day.liangyue.site'
+  url:'https://apps.apple.com/app/id6794565199'
 };
 projects.mushroom.meta=['五集漫画已上线 · 完整可读','Five comic episodes · now available'];
 projects.mindbridge={

@@ -1,0 +1,5 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "npm --prefix react-site ci && npm --prefix react-site run build",
+  "outputDirectory": "react-site/dist"
+}

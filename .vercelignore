@@ -18,3 +18,4 @@ output/
 .playwright-cli/
 content-polish-options.md
 scripts/
+lanyard-demo/
