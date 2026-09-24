@@ -268,14 +268,8 @@ function Band({
             }}
           >
             <mesh geometry={nodes.card.geometry}>
-              <meshPhysicalMaterial
-                map={cardMap}
-                map-anisotropy={16}
-                roughness={0.9}
-                metalness={0}
-                envMapIntensity={0.12}
-                toneMapped={false}
-              />
+              {/* Unlit so the printed face shows exactly the texture's colors. */}
+              <meshBasicMaterial map={cardMap} map-anisotropy={16} toneMapped={false} />
             </mesh>
             <mesh geometry={nodes.clip.geometry} material={materials.metal} material-roughness={0.3} />
             <mesh geometry={nodes.clamp.geometry} material={materials.metal} />
