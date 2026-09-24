@@ -55,7 +55,7 @@ export default function Lanyard({
           gl.setClearColor(new THREE.Color(0x000000), transparent ? 0 : 1)
         }
       >
-        <ambientLight intensity={Math.PI} />
+        <ambientLight intensity={1.4} />
         <Physics gravity={gravity} timeStep={isCompact ? 1 / 30 : 1 / 60}>
           <Band
             isCompact={isCompact}
@@ -271,10 +271,11 @@ function Band({
               <meshPhysicalMaterial
                 map={cardMap}
                 map-anisotropy={16}
-                clearcoat={isCompact ? 0 : 1}
-                clearcoatRoughness={0.15}
-                roughness={0.9}
-                metalness={0.8}
+                clearcoat={isCompact ? 0 : 0.25}
+                clearcoatRoughness={0.4}
+                roughness={0.55}
+                metalness={0.1}
+                envMapIntensity={0.35}
               />
             </mesh>
             <mesh geometry={nodes.clip.geometry} material={materials.metal} material-roughness={0.3} />
