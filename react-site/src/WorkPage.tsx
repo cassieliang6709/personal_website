@@ -15,8 +15,8 @@ import './work.css';
 const Lanyard=lazy(()=>import('./Lanyard.jsx'));
 
 function LanyardIdentity(){
- const [interactive,setInteractive]=useState(()=>typeof window!=='undefined'&&!matchMedia('(max-width: 759px), (prefers-reduced-motion: reduce)').matches);
- useEffect(()=>{const media=matchMedia('(max-width: 759px), (prefers-reduced-motion: reduce)');const update=()=>setInteractive(!media.matches);media.addEventListener('change',update);return()=>media.removeEventListener('change',update)},[]);
+ const [interactive,setInteractive]=useState(()=>typeof window!=='undefined'&&!matchMedia('(prefers-reduced-motion: reduce)').matches);
+ useEffect(()=>{const media=matchMedia('(prefers-reduced-motion: reduce)');const update=()=>setInteractive(!media.matches);media.addEventListener('change',update);return()=>media.removeEventListener('change',update)},[]);
  if(!interactive)return <div className="lanyard-wrap is-static" aria-label={t('Yue 的工作身份牌',"Yue's work pass")}><span className="lanyard-line"/><img className="identity-pass-flat" src={cassieCardFront} alt="" width="520" height="785"/></div>;
  return <div className="lanyard-three" aria-label={t('Yue 的 3D 工作身份牌，可以拖动',"Yue's 3D work pass, draggable")}><Suspense fallback={<div className="lanyard-loading">{t('正在挂上工作牌…','Hanging up the pass…')}</div>}><Lanyard position={[0,0,16]} gravity={[0,-40,0]} fov={20} cardImage={cassieCard} lanyardImage={cassieBand}/></Suspense></div>;
 }

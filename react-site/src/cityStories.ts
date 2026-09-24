@@ -6,7 +6,7 @@ export const cityStories={
     extra:[
       ['2018 年，我离开新疆去上海读会计。那时我还不知道自己后来会做产品、审计和 AI。真正从哈密带走的，是一种很朴素的学习方式：碰到感兴趣的东西，就先去试着弄懂。','In 2018, I left Xinjiang to study accounting in Shanghai. I did not yet know that I would later work in product, audit, and AI. What I carried from Hami was a simple way of learning: when something caught my interest, I tried to understand it.']
     ],
-    quote:['我一直是兴趣和好奇心驱动的人。','I have always been driven by interest and curiosity.']
+    quote:['哈密，我喜欢！','Hami, I love it!']
   },
   shanghai:{
     title:['上海 · 产品、数据与证据','Shanghai · Product, data, and evidence'],
@@ -18,7 +18,7 @@ export const cityStories={
       ['在美团优选，我做销售周报、竞对研究和专题分析，也用城市的团长数量与单团销量做四象限，把分散的经营数据变成拓团优先级。Excel 慢慢变成瓶颈，我开始用 SQL 和 Python 处理重复取数和汇总。','At Meituan Select, I worked on weekly sales reports, competitor research, and focused analyses. I used group-leader count and sales per group to build a city quadrant and turn scattered operating data into expansion priorities. As Excel became a bottleneck, I began using SQL and Python for repeated extraction and aggregation.'],
       ['毕业后，我在德勤参与年审和 IPO 项目。审计每天都在追问同一件事：凭什么相信这个数？后来我用 Python、Pandas 和 VBA 处理重复 Mapping，也第一次把自己写的工具放进真实工作流。','After graduation, I joined Deloitte and worked on annual audits and IPO projects. Audit kept returning to one question: why should we trust this number? I later used Python, Pandas, and VBA to handle repeated mapping work, putting a tool I had built into a real workflow for the first time.']
     ],
-    quote:['上海是一个很热闹的城市，但我 2018 年刚到上海时，一直没有安全感。','Shanghai is a lively city, but when I arrived in 2018, I never really felt secure.']
+    quote:['上海是一个很热闹的城市，但是我18年在上海的时候没有安全感。','Shanghai is a lively city, but I did not feel secure when I was there in 2018.']
   },
   hangzhou:{
     title:['杭州 · 从 0 到 1','Hangzhou · From zero to one'],
@@ -39,6 +39,6 @@ export const cityStories={
       ['在 Smith-Kettlewell 的 YouDescribe / YouDescribeX 项目里，我参与为盲人和低视力用户生成视频画面描述。描述要避开原片对话，还必须在有限时间里念完。模型可以生成候选内容，确定性的时长测量和播放规则决定它能不能真的被使用。','At Smith-Kettlewell, I worked on YouDescribe / YouDescribeX, which generates video descriptions for blind and low-vision users. A description must avoid the original dialogue and fit into a limited speaking window. The model can generate candidate text; deterministic timing and playback rules decide whether it can actually be used.'],
       ['在这里，「用户」变成了一个具体的人。湾区的课程、研究和生活也让我从更多国家、行业和个人经验里理解技术。','Here, “the user” became a specific person. Classes, research, and daily life in the Bay Area have also widened the countries, industries, and personal experiences through which I understand technology.']
     ],
-    quote:['San Jose 是一个很无聊的城市，但这里有很多不同的人。很 mind-blowing，上限和下限都很高，我还需要探索更多。','San Jose can be a boring city, but it is full of very different people. It is mind-blowing—the highs and lows are both extreme, and I still have much more to explore.']
+    quote:['San Jose是一个很无聊的城市，但是有很多不同的人，mind blowing，上下限都很高。我还需要探索更多。','San Jose can be a boring city, but it is full of very different people. It is mind-blowing—the highs and lows are both extreme, and I still have much more to explore.']
   }
 };
