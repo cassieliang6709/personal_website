@@ -18,7 +18,7 @@ export const cityStories={
       ['在美团优选，我做销售周报、竞对研究和专题分析，也用城市的团长数量与单团销量做四象限，把分散的经营数据变成拓团优先级。Excel 慢慢变成瓶颈，我开始用 SQL 和 Python 处理重复取数和汇总。','At Meituan Select, I worked on weekly sales reports, competitor research, and focused analyses. I used group-leader count and sales per group to build a city quadrant and turn scattered operating data into expansion priorities. As Excel became a bottleneck, I began using SQL and Python for repeated extraction and aggregation.'],
       ['毕业后，我在德勤参与年审和 IPO 项目。审计每天都在追问同一件事：凭什么相信这个数？后来我用 Python、Pandas 和 VBA 处理重复 Mapping，也第一次把自己写的工具放进真实工作流。','After graduation, I joined Deloitte and worked on annual audits and IPO projects. Audit kept returning to one question: why should we trust this number? I later used Python, Pandas, and VBA to handle repeated mapping work, putting a tool I had built into a real workflow for the first time.']
     ],
-    quote:['上海让我第一次同时从用户、数据和证据看一件事。','Shanghai taught me to look at a problem through users, data, and evidence at the same time.']
+    quote:['上海是一个很热闹的城市，但我 2018 年刚到上海时，一直没有安全感。','Shanghai is a lively city, but when I arrived in 2018, I never really felt secure.']
   },
   hangzhou:{
     title:['杭州 · 从 0 到 1','Hangzhou · From zero to one'],
@@ -28,7 +28,7 @@ export const cityStories={
       ['我做过微信小程序「正在帮助」，参与开发 ToGoal，也带着 Becoming 参加创业森林并获得二等奖。我也在这里认识了很多独立开发者。当地的创业和技术社群给了我很快的反馈：别人正在用什么、遇到什么问题，往往比我独自在网上多查十份资料更有用。','I built the WeChat mini program Helping Now, contributed to ToGoal, and brought Becoming to Startup Forest, where it won second prize. I also met many independent developers here. Hangzhou’s startup and technology communities gave me faster feedback: what people were using and where they were stuck often taught me more than another ten documents read alone.'],
       ['后来我在 AdventureX 获得赛道最佳技术奖。黑客松让我学会快速把想法做成原型，也暴露了我的老问题：新题目一直很诱人，作品却容易停在演示阶段。','I later won a Best Technology track award at AdventureX. Hackathons taught me to turn an idea into a prototype quickly, but they also exposed an old problem: new ideas were always tempting, and too many projects stopped at the demo stage.']
     ],
-    quote:['杭州教我怎么从 0 到 1，也让我真正爱上了技术。','Hangzhou taught me how to go from zero to one, and made me genuinely fall in love with technology.']
+    quote:['杭州是一个宜居的城市，我可以在这里退休。','Hangzhou is a very livable city. I could retire here.']
   },
   sanjose:{
     title:['San Jose · 视野与技术','San Jose · Perspective and technology'],
@@ -39,6 +39,6 @@ export const cityStories={
       ['在 Smith-Kettlewell 的 YouDescribe / YouDescribeX 项目里，我参与为盲人和低视力用户生成视频画面描述。描述要避开原片对话，还必须在有限时间里念完。模型可以生成候选内容，确定性的时长测量和播放规则决定它能不能真的被使用。','At Smith-Kettlewell, I worked on YouDescribe / YouDescribeX, which generates video descriptions for blind and low-vision users. A description must avoid the original dialogue and fit into a limited speaking window. The model can generate candidate text; deterministic timing and playback rules decide whether it can actually be used.'],
       ['在这里，「用户」变成了一个具体的人。湾区的课程、研究和生活也让我从更多国家、行业和个人经验里理解技术。','Here, “the user” became a specific person. Classes, research, and daily life in the Bay Area have also widened the countries, industries, and personal experiences through which I understand technology.']
     ],
-    quote:['San Jose 给我国际视野，也让我把技术能力补得更扎实。','San Jose has given me a wider international perspective and stronger technical skills.']
+    quote:['San Jose 是一个很无聊的城市，但这里有很多不同的人。很 mind-blowing，上限和下限都很高，我还需要探索更多。','San Jose can be a boring city, but it is full of very different people. It is mind-blowing—the highs and lows are both extreme, and I still have much more to explore.']
   }
 };

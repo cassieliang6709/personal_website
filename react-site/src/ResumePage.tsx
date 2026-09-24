@@ -28,7 +28,7 @@ export function ResumePage(){
     <h2><span aria-hidden="true">▣</span> 经历</h2>
     <div className="resume-list">{experience.map(item=><article key={item.title}><time>{item.date}</time><div><h3>{item.title}<small>{item.meta}</small></h3><p>{item.body}</p></div></article>)}</div>
     <h2 className="resume-subheading"><span aria-hidden="true">◆</span> 代表作品</h2>
-    <div className="resume-projects"><a href="?project=mindbridge#work"><strong>MindBridge</strong><span>本地优先的长期记忆引擎</span></a><a href="?project=1day#work"><strong>1Day</strong><span>协作视频日记 iOS App</span></a><a href="?project=vance#work"><strong>Vance</strong><span>可执行训练计划的 AI 健身搭子</span></a></div>
+    <div className="resume-projects"><a href="#flagship"><strong>1Day</strong><span>协作视频日记 iOS App</span></a><a href="#flagship"><strong>Tabspace</strong><span>把散乱标签页收进一个工作台</span></a></div>
    </section>
 
    <aside className="resume-aside">

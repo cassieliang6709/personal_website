@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1200" viewBox="0 0 900 1200">
+  <rect width="900" height="1200" rx="56" fill="#fffaf1"/>
+  <rect x="30" y="30" width="840" height="1140" rx="38" fill="none" stroke="#d6b49f" stroke-width="4"/>
+  <text x="74" y="105" fill="#aa6252" font-family="monospace" font-size="28" letter-spacing="5">BUILDER PASS · 01</text>
+  <circle cx="450" cy="355" r="190" fill="#f4d7cc"/>
+  <circle cx="450" cy="334" r="121" fill="#f4c7b8"/>
+  <path d="M331 322c10-127 221-142 248 0-22-53-68-83-128-83-58 0-99 28-120 83Z" fill="#44342e"/>
+  <path d="M294 582c24-115 105-172 156-172s132 57 156 172Z" fill="#47758b"/>
+  <path d="M410 424c13 22 67 22 80 0v74c-19 33-61 33-80 0Z" fill="#efbdad"/>
+  <circle cx="405" cy="338" r="8" fill="#40332e"/>
+  <circle cx="495" cy="338" r="8" fill="#40332e"/>
+  <path d="M414 383c20 17 52 17 72 0" fill="none" stroke="#9b5e52" stroke-width="7" stroke-linecap="round"/>
+  <text x="74" y="706" fill="#3c3431" font-family="Georgia, serif" font-size="76" font-weight="700">Yue Liang</text>
+  <text x="74" y="780" fill="#745e54" font-family="sans-serif" font-size="34" letter-spacing="1">CASSIE · 梁悦</text>
+  <line x1="74" y1="832" x2="826" y2="832" stroke="#e2c7b7" stroke-width="3"/>
+  <text x="74" y="900" fill="#a55f50" font-family="monospace" font-size="27">M.S. AI · INDEPENDENT BUILDER</text>
+  <text x="74" y="955" fill="#65534c" font-family="sans-serif" font-size="27">Human-steered systems for everyday action.</text>
+  <rect x="74" y="1030" width="294" height="70" rx="35" fill="#c77a67"/>
+  <text x="221" y="1075" fill="#fffaf1" text-anchor="middle" font-family="monospace" font-size="23" letter-spacing="3">CURRENTLY BUILDING</text>
+  <text x="826" y="1080" fill="#aa6252" text-anchor="end" font-family="monospace" font-size="27">SF BAY AREA</text>
+</svg>

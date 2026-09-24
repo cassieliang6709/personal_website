@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1200" viewBox="0 0 900 1200">
+  <rect width="900" height="1200" rx="56" fill="#c77a67"/>
+  <rect x="30" y="30" width="840" height="1140" rx="38" fill="none" stroke="#ffece0" stroke-width="4" opacity="0.75"/>
+  <text x="74" y="112" fill="#fff4ea" font-family="monospace" font-size="27" letter-spacing="5">BEHIND THE PASS</text>
+  <text x="74" y="270" fill="#fffaf1" font-family="Georgia, serif" font-size="78" font-weight="700">I make ideas</text>
+  <text x="74" y="360" fill="#fffaf1" font-family="Georgia, serif" font-size="78" font-weight="700">touchable.</text>
+  <line x1="74" y1="435" x2="826" y2="435" stroke="#f4d0c4" stroke-width="3"/>
+  <text x="74" y="520" fill="#fff6ef" font-family="sans-serif" font-size="30">Research Assistant · Smith-Kettlewell</text>
+  <text x="74" y="582" fill="#fff6ef" font-family="sans-serif" font-size="30">MSAI · Northeastern University</text>
+  <text x="74" y="644" fill="#fff6ef" font-family="sans-serif" font-size="30">Product · Engineering · Writing</text>
+  <rect x="74" y="755" width="752" height="2" fill="#f4d0c4"/>
+  <text x="74" y="842" fill="#4e3a32" font-family="monospace" font-size="27">GITHUB</text>
+  <text x="826" y="842" fill="#fffaf1" text-anchor="end" font-family="monospace" font-size="27">cassieliang6709</text>
+  <text x="74" y="918" fill="#4e3a32" font-family="monospace" font-size="27">EMAIL</text>
+  <text x="826" y="918" fill="#fffaf1" text-anchor="end" font-family="monospace" font-size="27">liangyue3666@gmail.com</text>
+  <text x="74" y="1080" fill="#fff4ea" font-family="monospace" font-size="24" letter-spacing="4">DRAG · TURN · LET GO</text>
+</svg>
