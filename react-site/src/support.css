@@ -1,0 +1,19 @@
+.support-section{--tab-accent:var(--warm-accent)}
+.support-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:20px}
+.support-card{display:flex;flex-direction:column;gap:12px;padding:28px;border-radius:var(--radius-lg);background:var(--surface)}
+.support-card small{font-size:11px;letter-spacing:.06em;color:var(--ink-muted)}
+.support-card h3{margin:0;font-size:26px;line-height:1.2;letter-spacing:-.025em}
+.support-card p{margin:0;color:var(--ink-secondary);font-size:15px;line-height:1.65;max-width:460px}
+.fund-card{background:#fbf3ea}
+.support-primary{margin-top:auto;align-self:flex-start;border:0;border-radius:980px;padding:11px 20px;background:var(--work);color:#fff;font-size:14px;font-weight:600}
+.support-primary:disabled{background:rgba(118,118,128,.16);color:var(--ink-muted);cursor:default}
+.fund-button{background:#1677ff}
+.support-sheet footer{padding:14px 24px;border-top:1px solid var(--line);font-size:13px;color:var(--work)}
+.calendly-sheet{width:min(1000px,calc(100vw - 32px));height:calc(100dvh - 40px)}
+.calendly-sheet iframe{flex:1;width:100%;border:0}
+.fund-sheet{width:min(420px,calc(100vw - 32px))}
+.fund-qr{padding:24px;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center}
+.fund-qr img,.qr-placeholder{width:min(280px,100%);aspect-ratio:1;border-radius:var(--radius-md);object-fit:contain;background:#fff}
+.qr-placeholder{display:grid;place-items:center;border:1px dashed var(--line);color:var(--ink-muted);font-size:14px}
+.fund-qr p{margin:0;color:var(--ink-secondary);font-size:14px;line-height:1.6}
+@media(max-width:759px){.support-grid{grid-template-columns:1fr}.support-card{padding:22px}}

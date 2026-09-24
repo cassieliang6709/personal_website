@@ -1,0 +1,20 @@
+.room-entry-wrap{display:flex;justify-content:center;padding:8px 0 24px}
+.room-entry{display:inline-flex;align-items:center;gap:14px;padding:10px 18px 10px 10px;border:1px solid var(--line);border-radius:980px;background:var(--surface);text-align:left;transition:transform 180ms var(--ease),box-shadow 180ms var(--ease)}
+.room-entry:hover{transform:translateY(-2px);box-shadow:var(--shadow-object)}
+.room-entry-cube{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#f2a79a 0 50%,#e8cfa6 50%);box-shadow:inset 0 -6px 0 rgba(0,0,0,.08)}
+.room-entry small{display:block;font-size:10px;letter-spacing:.08em;color:var(--ink-muted)}
+.room-entry strong{font-size:14px}
+.room-entry i{font-style:normal;color:var(--ink-muted)}
+.room-page{position:relative;height:calc(100dvh - 56px);margin:0 calc(50% - 50vw);background:#f7efe4;overflow:hidden}
+.room-page canvas{touch-action:none}
+.room-loading{position:absolute;inset:0;display:grid;place-items:center;color:var(--ink-secondary);font-size:14px}
+.room-overlay{position:absolute;left:clamp(20px,4vw,56px);top:clamp(20px,4vh,48px);pointer-events:none}
+.room-overlay h1{margin:0;font-size:clamp(32px,4.5vw,56px);letter-spacing:-.04em;line-height:1.05;font-weight:650}
+.room-overlay>p:last-child{margin:10px 0 0;color:var(--ink-secondary);font-size:14px}
+.room-exit{position:absolute;right:clamp(20px,4vw,56px);top:clamp(20px,4vh,48px);border:0;border-radius:980px;padding:9px 16px;background:rgba(255,255,255,.85);font-size:13px;box-shadow:0 2px 10px rgba(0,0,0,.08)}
+.voxel-bubble{width:220px;padding:14px 16px;border-radius:14px;background:#fff;box-shadow:var(--shadow-object);font-size:13px;line-height:1.5}
+.voxel-bubble strong{display:block;font-size:14px}
+.voxel-bubble p{margin:4px 0 8px;color:var(--ink-secondary)}
+.voxel-bubble a{color:var(--work);font-weight:600}
+.is-room .site-footer,.is-room .mobile-tabs{display:none}
+@media(max-width:759px){.voxel-bubble{width:180px}.room-overlay{right:20px}.room-exit{top:auto;bottom:20px}}
