@@ -1,4 +1,4 @@
-import {lazy,Suspense,useEffect,useRef,useState} from 'react';
+import {lazy,Suspense,useEffect,useRef,useState,type CSSProperties} from 'react';
 import avatar from '../../assets/characters/cassie-favicon.png';
 import cassieCard from './assets/lanyard/cassie-card.png';
 import cassieBand from './assets/lanyard/cassie-band.png';
@@ -20,9 +20,28 @@ function LanyardIdentity(){
  return <div className="lanyard-three" aria-label="Yue 的 3D 工作身份牌，可以拖动"><Suspense fallback={<div className="lanyard-loading">正在挂上工作牌…</div>}><Lanyard position={[0,0,16]} gravity={[0,-40,0]} fov={20} cardImage={cassieCard} lanyardImage={cassieBand}/></Suspense></div>;
 }
 
-function ProductDock(){
- const visible=projects.filter(project=>project.id==='1day'||project.id==='tabspace');const [active,setActive]=useState(visible[0]);
- return <div className="product-inline"><div className="product-switcher" role="tablist" aria-label="Yue 的主要产品">{visible.map((project,index)=><button role="tab" type="button" key={project.id} className={active.id===project.id?'is-active':''} aria-selected={active.id===project.id} onClick={()=>setActive(project)}><span className="switcher-index">0{index+1}</span><img src={productLogoById[project.id]} alt=""/><span><strong>{project.name}</strong><small>{project.category}</small></span></button>)}</div><article className="product-inline-detail" aria-live="polite"><header><div><small>{active.category} · {active.status}</small><h3>{active.name}</h3></div><p>{active.description}</p></header><div className="inline-detail-sections"><section><h4>为什么做</h4><p>{active.story}</p></section><section><h4>我负责的部分</h4><p>{active.role}</p></section><section><h4>一个关键选择</h4><p>{active.decision}</p></section></div><footer><a href={active.url} target="_blank" rel="noreferrer">打开项目 ↗</a><a href={active.source} target="_blank" rel="noreferrer">查看源码 ↗</a></footer></article></div>;
+const productBriefs:Record<string,{why:string;did:string;key:string}>={
+ '1day':{why:'把一天剪成一支短片',did:'产品、设计、SwiftUI、上架',key:'单人记录不离开手机'},
+ tabspace:{why:'标签页越开越多',did:'产品、交互、前端、上架',key:'先预览，确认后才整理'},
+};
+
+function ProductPasses(){
+ const visible=projects.filter(project=>project.id in productBriefs);
+ const [selected,setSelected]=useState<string|null>(null);const dialog=useRef<HTMLDialogElement>(null);
+ const active=visible.find(project=>project.id===selected);const brief=active?productBriefs[active.id]:null;
+ useEffect(()=>{if(!selected){dialog.current?.close();return}const overflow=document.body.style.overflow;dialog.current?.showModal();document.body.style.overflow='hidden';return()=>{document.body.style.overflow=overflow}},[selected]);
+ const close=()=>{dialog.current?.close();setSelected(null)};
+ return <><div className="product-passes">{visible.map((project,i)=><button key={project.id} type="button" className="product-pass" aria-haspopup="dialog" onClick={()=>setSelected(project.id)} style={{'--accent':project.accent,'--tilt':`${i?4:-4}deg`} as CSSProperties}>
+  <span className="pass-art"><img src={productLogoById[project.id]} alt=""/></span>
+  <small>0{i+1} · {project.category}</small><strong>{project.name}</strong><em>{project.description}</em>
+ </button>)}</div>
+ <p className="product-pass-hint">点开一张，看它是怎么来的。</p>
+ <dialog ref={dialog} className="product-sheet" aria-labelledby="product-sheet-title" onClose={()=>setSelected(null)} onClick={e=>{if(e.target===e.currentTarget)close()}}>{active&&brief&&<>
+  <header style={{'--accent':active.accent} as CSSProperties}><img src={productLogoById[active.id]} alt=""/><button type="button" onClick={close} aria-label="关闭">×</button></header>
+  <div className="product-sheet-body"><small>{active.status}</small><h3 id="product-sheet-title">{active.name}</h3><p>{active.description}</p>
+   <dl><div><dt>为什么</dt><dd>{brief.why}</dd></div><div><dt>我做了</dt><dd>{brief.did}</dd></div><div><dt>关键</dt><dd>{brief.key}</dd></div></dl>
+   <footer><a className="button-primary" href={active.url} target="_blank" rel="noreferrer">打开 ↗</a><a href={active.source} target="_blank" rel="noreferrer">源码 ↗</a></footer>
+  </div></>}</dialog></>;
 }
 
 const studioRooms=[
@@ -45,7 +64,7 @@ export function StudioArchiveFooter(){return <aside className="studio-archive-fo
 export function WorkPage({showArchive=true}:{showArchive?:boolean}){
  return <div className="work-page">
   <section className="work-hero"><div className="hero-copy"><p className="eyebrow">YUE (CASSIE) LIANG / 梁悦</p><h1>AI 学生，<br/><em>1Day</em> 的独立开发者。</h1><p>我在 San Jose 学习人工智能，也独立设计、开发和发布自己的产品。现在主要在做 AI 应用、iOS 和浏览器工具。</p><nav><a className="button-primary" href="#flagship">看作品 ↓</a><a href="#resume">关于我 ↗</a><a href="https://github.com/cassieliang6709" target="_blank" rel="noreferrer">GitHub ↗</a></nav></div><div className="hero-object" aria-label="Yue 的工作身份牌"><LanyardIdentity/></div></section>
-  <section id="flagship" className="product-library"><header><p className="eyebrow">PRODUCTS / 01—02</p><h2>先放这两个。</h2><span>切换产品，详情留在这一页。</span></header><ProductDock/></section>
+  <section id="flagship" className="product-library"><header><p className="eyebrow">PRODUCTS / 01—02</p><h2>先放这两个。</h2><span>点开卡片看详情。</span></header><ProductPasses/></section>
   {showArchive&&<StudioArchiveFooter/>}
  </div>;
 }
