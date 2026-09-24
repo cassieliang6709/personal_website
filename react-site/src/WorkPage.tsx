@@ -25,16 +25,29 @@ const productBriefs:Record<string,{why:string;did:string;key:string}>={
  tabspace:{why:'标签页越开越多',did:'产品、交互、前端、上架',key:'先预览，确认后才整理'},
 };
 
+// Tilt toward the pointer with a light that follows it (React Bits Tilted Card + Spotlight Card).
+function ProductPass({project,index,onOpen}:{project:(typeof projects)[number];index:number;onOpen:()=>void}){
+ const ref=useRef<HTMLButtonElement>(null);
+ const move=(e:React.PointerEvent<HTMLButtonElement>)=>{
+  const el=ref.current;if(!el||e.pointerType!=='mouse'||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  const r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
+  el.style.setProperty('--rx',`${(0.5-y)*16}deg`);el.style.setProperty('--ry',`${(x-0.5)*16}deg`);
+  el.style.setProperty('--mx',`${x*100}%`);el.style.setProperty('--my',`${y*100}%`);el.classList.add('is-tilting','is-hover');
+ };
+ const leave=()=>{const el=ref.current;if(!el)return;el.classList.remove('is-tilting','is-hover');el.style.setProperty('--rx','0deg');el.style.setProperty('--ry','0deg')};
+ return <button ref={ref} type="button" className="product-pass" aria-haspopup="dialog" onClick={onOpen} onPointerMove={move} onPointerLeave={leave} style={{'--accent':project.accent,'--tilt':`${index?4:-4}deg`} as CSSProperties}>
+  <span className="pass-art"><img src={productLogoById[project.id]} alt=""/></span>
+  <small>0{index+1} · {project.category}</small><strong>{project.name}</strong><em>{project.description}</em>
+ </button>;
+}
+
 function ProductPasses(){
  const visible=projects.filter(project=>project.id in productBriefs);
  const [selected,setSelected]=useState<string|null>(null);const dialog=useRef<HTMLDialogElement>(null);
  const active=visible.find(project=>project.id===selected);const brief=active?productBriefs[active.id]:null;
  useEffect(()=>{if(!selected){dialog.current?.close();return}const overflow=document.body.style.overflow;dialog.current?.showModal();document.body.style.overflow='hidden';return()=>{document.body.style.overflow=overflow}},[selected]);
  const close=()=>{dialog.current?.close();setSelected(null)};
- return <><div className="product-passes">{visible.map((project,i)=><button key={project.id} type="button" className="product-pass" aria-haspopup="dialog" onClick={()=>setSelected(project.id)} style={{'--accent':project.accent,'--tilt':`${i?4:-4}deg`} as CSSProperties}>
-  <span className="pass-art"><img src={productLogoById[project.id]} alt=""/></span>
-  <small>0{i+1} · {project.category}</small><strong>{project.name}</strong><em>{project.description}</em>
- </button>)}</div>
+ return <><div className="product-passes">{visible.map((project,i)=><ProductPass key={project.id} project={project} index={i} onOpen={()=>setSelected(project.id)}/>)}</div>
  <p className="product-pass-hint">点开一张，看它是怎么来的。</p>
  <dialog ref={dialog} className="product-sheet" aria-labelledby="product-sheet-title" onClose={()=>setSelected(null)} onClick={e=>{if(e.target===e.currentTarget)close()}}>{active&&brief&&<>
   <header style={{'--accent':active.accent} as CSSProperties}><img src={productLogoById[active.id]} alt=""/><button type="button" onClick={close} aria-label="关闭">×</button></header>

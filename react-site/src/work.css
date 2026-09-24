@@ -22,8 +22,13 @@
 @media(max-width:900px) and (min-width:760px){.work-hero{grid-template-columns:minmax(0,1fr) 320px}.lanyard-three{width:320px}}
 @media(max-width:759px){.work-hero{grid-template-columns:1fr}.hero-object{height:300px}.lanyard-wrap.is-static{height:285px}}
 .product-passes{display:flex;justify-content:center;gap:28px;padding:24px 0 8px}
-.product-pass{--tilt:0deg;width:240px;height:320px;display:flex;flex-direction:column;padding:0 18px 18px;border:0;border-radius:18px;background:#fff;text-align:left;color:var(--ink);box-shadow:0 12px 28px rgba(0,0,0,.1);transform:rotate(var(--tilt));transition:transform 220ms var(--ease),box-shadow 220ms var(--ease)}
-.product-pass:hover,.product-pass:focus-visible{transform:translateY(-10px) rotate(0);box-shadow:0 20px 40px rgba(0,0,0,.14)}
+.product-pass{--tilt:0deg;--rx:0deg;--ry:0deg;--mx:50%;--my:30%;position:relative;width:240px;height:320px;display:flex;flex-direction:column;padding:0 18px 18px;border:0;border-radius:18px;background:#fff;text-align:left;color:var(--ink);box-shadow:0 12px 28px rgba(0,0,0,.1);transform:perspective(900px) rotate(var(--tilt));transform-style:preserve-3d;transition:transform 480ms cubic-bezier(.2,.9,.25,1.1),box-shadow 300ms var(--ease)}
+.product-pass::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity 300ms var(--ease);background:radial-gradient(circle 170px at var(--mx) var(--my),rgba(255,255,255,.65),transparent 70%),radial-gradient(circle 260px at var(--mx) var(--my),rgba(0,102,204,.09),transparent 72%)}
+.product-pass.is-hover,.product-pass:focus-visible{transform:perspective(900px) rotateX(var(--rx)) rotateY(var(--ry)) scale(1.04);box-shadow:0 24px 48px rgba(0,0,0,.16)}
+.product-pass.is-tilting{transition:transform 90ms linear,box-shadow 300ms var(--ease)}
+.product-pass.is-hover::after{opacity:1}
+.pass-art img{transform:translateZ(36px);transition:transform 300ms var(--ease)}
+.product-pass.is-hover .pass-art img{transform:translateZ(56px) scale(1.06)}
 .product-pass:focus-visible{outline:2px solid var(--work);outline-offset:4px}
 .pass-art{display:grid;place-items:center;height:150px;margin:0 -18px 18px;border-radius:18px 18px 0 0;background:var(--accent)}
 .pass-art img{width:76px;height:76px;border-radius:18px;box-shadow:0 8px 20px rgba(0,0,0,.12)}
