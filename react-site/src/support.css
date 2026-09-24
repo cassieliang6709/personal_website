@@ -14,6 +14,7 @@
 .fund-sheet{width:min(420px,calc(100vw - 32px))}
 .fund-qr{padding:24px;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center}
 .fund-qr img,.qr-placeholder{width:min(280px,100%);aspect-ratio:1;border-radius:var(--radius-md);object-fit:contain;background:#fff}
+.fund-qr img{width:min(260px,100%);height:auto;aspect-ratio:auto}
 .qr-placeholder{display:grid;place-items:center;border:1px dashed var(--line);color:var(--ink-muted);font-size:14px}
 .fund-qr p{margin:0;color:var(--ink-secondary);font-size:14px;line-height:1.6}
 @media(max-width:759px){.support-grid{grid-template-columns:1fr}.support-card{padding:22px}}
