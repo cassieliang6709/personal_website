@@ -14,7 +14,7 @@ export function ResumePage(){
  return <div className="resume-page">
   <section className="resume-intro">
    <p className="eyebrow">ABOUT / 简历</p>
-   <h1>你好，我是 Cassie <span aria-hidden="true">👋</span></h1>
+   <h1>你好，我是 Yue <span aria-hidden="true">👋</span></h1>
    <p>我在 San Jose 学习人工智能，也独立设计、开发和发布自己的产品。目前主要做 AI 应用、iOS 和浏览器工具。</p>
    <nav aria-label="联系与简历">
     <a className="resume-primary" href="mailto:liangyue3666@gmail.com">发个邮件 ↗</a>
