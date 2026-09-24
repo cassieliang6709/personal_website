@@ -16,6 +16,7 @@ import comicOne from '../../assets/comics/mushroom/episode-1/01.webp';
 import comicTwo from '../../assets/comics/mushroom/episode-1/03.webp';
 import comicThree from '../../assets/comics/mushroom/episode-1/05.webp';
 import {ReadingCorner} from './ReadingCorner';
+import {PolaroidDesk} from './PolaroidDesk';
 import './life.css';
 
 const chapters=[{id:'hami',name:'哈密',en:'HAMI',date:'18 岁以前'},{id:'shanghai',name:'上海',en:'SHANGHAI',date:'2018—2024'},{id:'hangzhou',name:'杭州',en:'HANGZHOU',date:'2025'},{id:'sanjose',name:'San Jose',en:'SAN JOSE',date:'2025—现在'}] as const;
@@ -34,15 +35,10 @@ const memoryAlbums=[
  {id:'stories',name:'小蘑菇',meta:'4 张 · COMIC',images:[writingRoom,comicOne,comicTwo,comicThree],captions:['故事从阅读角开始','第一格','路上遇见的事','还会继续']},
 ];
 
-function MemoryAlbums(){
- const [active,setActive]=useState<string|null>(null);const selected=memoryAlbums.find(album=>album.id===active);
- return <div className="memory-albums"><div className="album-row" role="list">{memoryAlbums.map(album=><button key={album.id} role="listitem" className={active===album.id?'is-active':''} aria-expanded={active===album.id} onClick={()=>setActive(active===album.id?null:album.id)}><span className="album-stack" aria-hidden="true">{album.images.slice(0,3).map((image,index)=><img key={image} src={image} alt="" style={{'--stack':index} as CSSProperties}/>)}</span><strong>{album.name}</strong><small>{album.meta}</small></button>)}</div>{selected&&<div className="album-expanded"><header><div><strong>{selected.name}</strong><span>{selected.meta}</span></div><button type="button" onClick={()=>setActive(null)}>收起</button></header><div className="polaroid-grid">{selected.images.map((image,index)=><figure key={image}><img src={image} alt={selected.captions[index]}/><figcaption>{selected.captions[index]}</figcaption></figure>)}</div></div>}</div>;
-}
-
 export function LifePage({embedded=false}:{embedded?:boolean}={}){const [wechatCopied,setWechatCopied]=useState(false);const copyWechat=async()=>{try{await navigator.clipboard.writeText('liangyue3666');setWechatCopied(true);window.setTimeout(()=>setWechatCopied(false),1800)}catch{window.prompt('复制我的微信号', 'liangyue3666')}};return <div className={`life-page${embedded?' is-home-section':''}`}>
  {!embedded&&<section className="life-hero"><div><p className="eyebrow">LIFE / 生活与想法</p><h1>我走过的地方，<br/>也塑造了我做东西的方式。</h1><p>城市、文章和一些不太安静的念头，都收在这里。</p></div><figure><img src={room} alt="Yue 坐在靠窗的阅读角，身边是书架和浅木色书桌"/><figcaption>READING ROOM · 2026</figcaption></figure></section>}
  <section id="life" className="life-section travel-section"><header><p className="eyebrow">01 / PLACES</p><h2>走过的路</h2><span>四座城市，四段把我带到这里的经历。</span></header><TravelPassDeck/></section>
- <section className="life-section memories-section"><header><p className="eyebrow">02 / ALBUMS</p><h2>留下来的画面</h2><span>四本小相册，装着城市、作品和旧工作室。</span></header><MemoryAlbums/></section>
+ <section className="life-section memories-section"><header><p className="eyebrow">02 / ALBUMS</p><h2>留下来的画面</h2><span>四本小相册，装着城市、作品和旧工作室。</span></header><PolaroidDesk albums={memoryAlbums}/></section>
  <section className="life-section notes-section"><header><p className="eyebrow">03 / NOTES & STORIES</p><h2>收下来的想法</h2><span>做东西、想事情，也记录生活。</span></header><ReadingCorner embedded/></section>
  <section className="contact-section"><div><p className="eyebrow">04 / CONTACT</p><h2>一起做点东西。</h2></div><div className="contact-copy"><p>我正在寻找 AI 应用研发与产品工程相关机会，也欢迎聊产品、合作，或者一个值得解决的问题。</p><nav aria-label="联系 Yue"><a className="contact-primary" href="mailto:liangyue3666@gmail.com">发邮件 ↗</a><button type="button" onClick={copyWechat}>{wechatCopied?'微信号已复制 ✓':'微信 · liangyue3666'}</button><a href="https://github.com/cassieliang6709" target="_blank" rel="noreferrer">GitHub ↗</a></nav></div></section>
  </div>}

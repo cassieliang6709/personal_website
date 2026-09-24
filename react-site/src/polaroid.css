@@ -1,0 +1,22 @@
+.polaroid-block{position:relative}
+.polaroid-desk{position:relative;border:1px solid #ececee;border-radius:var(--radius-lg);background:radial-gradient(circle,rgba(0,0,0,.06) 1px,transparent 1.2px) 0 0/22px 22px,linear-gradient(180deg,#fafafb,#f3f3f5);overflow:hidden;transition:height 480ms cubic-bezier(.2,.8,.2,1)}
+.polaroid-head{position:absolute;left:20px;right:16px;top:14px;height:36px;display:flex;align-items:center;gap:10px;z-index:300;pointer-events:none}
+.polaroid-head strong{font-size:17px;letter-spacing:-.01em}
+.polaroid-head small{font-size:12px;color:var(--ink-muted)}
+.polaroid-head button{margin-left:auto;pointer-events:auto;min-height:32px;padding:0 14px;border:1px solid var(--line);border-radius:999px;background:#fff;font-size:12px;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.polaroid-desk.is-open .polaroid-head{animation:polaroid-fade 260ms 120ms both}
+.polaroid-label{position:absolute;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 10px;border:0;background:none;color:var(--ink);white-space:nowrap;transition:opacity 260ms var(--ease)}
+.polaroid-label strong{font-size:14px;font-weight:600}
+.polaroid-label small{font-size:12px;color:var(--ink-muted)}
+.polaroid-desk.is-open .polaroid-label{opacity:0;pointer-events:none}
+.polaroid-card{position:absolute;left:0;top:0;padding:7px 7px 0;border:0;border-radius:3px;background:#fdfdfb;box-shadow:0 1px 2px rgba(0,0,0,.12),0 8px 18px rgba(0,0,0,.1);transform-origin:0 0;cursor:pointer;transition:transform 620ms cubic-bezier(.2,.9,.25,1.05),opacity 320ms var(--ease),box-shadow 320ms var(--ease);will-change:transform}
+.polaroid-card img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:1px;background:#e8e8ea;pointer-events:none}
+.polaroid-card span{display:block;height:30px;padding:6px 2px 0;font-size:10px;line-height:1.3;color:var(--ink-secondary);text-align:center;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.polaroid-card:not(.is-out):hover{box-shadow:0 2px 4px rgba(0,0,0,.14),0 14px 26px rgba(0,0,0,.14)}
+.polaroid-card.is-out:hover{box-shadow:0 2px 4px rgba(0,0,0,.14),0 16px 30px rgba(0,0,0,.16)}
+.polaroid-card.is-dim{opacity:.22;pointer-events:none}
+.polaroid-desk.is-focused .polaroid-card.is-out:not(.is-focus){opacity:.35}
+.polaroid-card.is-focus{box-shadow:0 4px 10px rgba(0,0,0,.14),0 30px 60px rgba(0,0,0,.22)}
+.polaroid-card:focus-visible,.polaroid-label:focus-visible,.polaroid-head button:focus-visible{outline:2px solid var(--work);outline-offset:3px}
+@keyframes polaroid-fade{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.polaroid-desk,.polaroid-card,.polaroid-label{transition:none}.polaroid-desk.is-open .polaroid-head{animation:none}}
