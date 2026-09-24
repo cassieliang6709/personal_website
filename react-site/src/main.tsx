@@ -21,4 +21,4 @@ function App(){
   <nav className="mobile-tabs" aria-label="主要内容"><button className={page==='home'?'active':''} onClick={()=>switchPage('home')}>主页</button><button className={page==='resume'?'active':''} onClick={()=>switchPage('resume')}>关于</button></nav>
  </div>;
 }
-createRoot(document.getElementById('root')!).render(<React.StrictMode><App/></React.StrictMode>);
+createRoot(document.getElementById('root')!).render(<App/>);
