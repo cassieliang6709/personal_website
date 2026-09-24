@@ -5,6 +5,7 @@ export type LanyardProps = {
   gravity?: [number, number, number];
   fov?: number;
   transparent?: boolean;
+  cardImage?: string | null;
   frontImage?: string | null;
   backImage?: string | null;
   imageFit?: 'cover' | 'contain';

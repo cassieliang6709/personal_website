@@ -28,6 +28,7 @@ export default function Lanyard({
   gravity = [0, -40, 0],
   fov = 20,
   transparent = true,
+  cardImage = null,
   frontImage = null,
   backImage = null,
   imageFit = 'cover',
@@ -58,6 +59,7 @@ export default function Lanyard({
         <Physics gravity={gravity} timeStep={isCompact ? 1 / 30 : 1 / 60}>
           <Band
             isCompact={isCompact}
+            cardImage={cardImage}
             frontImage={frontImage}
             backImage={backImage}
             imageFit={imageFit}
@@ -80,6 +82,7 @@ function Band({
   maxSpeed = 50,
   minSpeed = 0,
   isCompact = false,
+  cardImage = null,
   frontImage = null,
   backImage = null,
   imageFit = 'cover',
@@ -105,11 +108,19 @@ function Band({
   };
   const { nodes, materials } = useGLTF(cardGLB);
   const texture = useTexture(lanyardImage || defaultLanyard);
+  const cardTex = useTexture(cardImage || BLANK_PIXEL);
   const frontTex = useTexture(frontImage || BLANK_PIXEL);
   const backTex = useTexture(backImage || BLANK_PIXEL);
 
   const cardMap = useMemo(() => {
     const baseMap = materials.base.map;
+    if (cardImage) {
+      cardTex.flipY = baseMap.flipY;
+      cardTex.colorSpace = THREE.SRGBColorSpace;
+      cardTex.anisotropy = 16;
+      cardTex.needsUpdate = true;
+      return cardTex;
+    }
     if (!frontImage && !backImage) return baseMap;
 
     const baseImage = baseMap.image;
@@ -150,7 +161,7 @@ function Band({
     composite.anisotropy = 16;
     composite.needsUpdate = true;
     return composite;
-  }, [backImage, backTex, frontImage, frontTex, imageFit, materials.base.map]);
+  }, [backImage, backTex, cardImage, cardTex, frontImage, frontTex, imageFit, materials.base.map]);
 
   const [curve] = useState(
     () =>
@@ -180,7 +191,9 @@ function Band({
     };
   }, [dragged, hovered]);
 
-  useFrame((state, delta) => {
+  useFrame((state, rawDelta) => {
+    // Tab switches pause rAF; a huge delta would overshoot the rope lerp.
+    const delta = Math.min(rawDelta, 1 / 30);
     if (dragged) {
       vec.set(state.pointer.x, state.pointer.y, 0.5).unproject(state.camera);
       dir.copy(vec).sub(state.camera.position).normalize();
