@@ -1,17 +1,18 @@
 import {lazy,Suspense,useState} from 'react';
+import {t} from './i18n';
 import './voxel-room.css';
 
 const VoxelRoom=lazy(()=>import('./VoxelRoom'));
 
 export function RoomEntry({onOpen}:{onOpen:()=>void}){
- return <aside className="room-entry-wrap" aria-label="3D 房间入口"><button type="button" className="room-entry" onClick={onOpen}><span className="room-entry-cube" aria-hidden="true"/><span><small>SIDE QUEST</small><strong>来我的 3D 房间逛逛</strong></span><i aria-hidden="true">↗</i></button></aside>;
+ return <aside className="room-entry-wrap" aria-label={t('3D 房间入口','3D room entrance')}><button type="button" className="room-entry" onClick={onOpen}><span className="room-entry-cube" aria-hidden="true"/><span><small>SIDE QUEST</small><strong>{t('来我的 3D 房间逛逛','Walk around my 3D room')}</strong></span><i aria-hidden="true">↗</i></button></aside>;
 }
 
 export function RoomPage({onExit}:{onExit:()=>void}){
  const [label,setLabel]=useState<string|null>(null);
- return <section className="room-page" aria-label="Yue 的 3D 房间">
-  <Suspense fallback={<div className="room-loading">正在搭房间…</div>}><VoxelRoom onHover={setLabel}/></Suspense>
-  <header className="room-overlay"><p className="eyebrow">YUE'S ROOM</p><h1>{label??'欢迎来我房间'}</h1><p>点地板走过去，点家具看看它通向哪里。</p></header>
-  <button type="button" className="room-exit" onClick={onExit}>← 回主页</button>
+ return <section className="room-page" aria-label={t('Yue 的 3D 房间',"Yue's 3D room")}>
+  <Suspense fallback={<div className="room-loading">{t('正在搭房间…','Building the room…')}</div>}><VoxelRoom onHover={setLabel}/></Suspense>
+  <header className="room-overlay"><p className="eyebrow">YUE'S ROOM</p><h1>{label??t('欢迎来我房间','Welcome to my room')}</h1><p>{t('点地板走过去，点家具看看它通向哪里。','Click the floor to walk. Click furniture to see where it leads.')}</p></header>
+  <button type="button" className="room-exit" onClick={onExit}>{t('← 回主页','← Back home')}</button>
  </section>;
 }

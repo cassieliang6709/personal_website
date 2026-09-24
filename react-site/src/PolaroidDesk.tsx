@@ -1,4 +1,5 @@
 import {useLayoutEffect,useRef,useState,type CSSProperties} from 'react';
+import {t} from './i18n';
 import './polaroid.css';
 
 export type PolaroidAlbum={id:string;name:string;meta:string;images:string[];captions:string[]};
@@ -67,7 +68,7 @@ export function PolaroidDesk({albums}:{albums:PolaroidAlbum[]}){
  return <div className="polaroid-block">
   <div ref={desk} className={`polaroid-desk${open?' is-open':''}${focus!==null?' is-focused':''}`} style={{height}} onKeyDown={e=>{if(e.key==='Escape')focus!==null?setFocus(null):close()}}>
    <header className="polaroid-head" aria-hidden={!current}>
-    {current&&<><strong>{current.name}</strong><small>{current.meta}</small><button type="button" onClick={close}>收起</button></>}
+    {current&&<><strong>{current.name}</strong><small>{current.meta}</small><button type="button" onClick={close}>{t('收起','Close')}</button></>}
    </header>
    {stacks.map(({cx,top,album})=><button key={album.id} type="button" className="polaroid-label" style={{left:cx,top:top+cardH(stackW)+18}} onClick={()=>toggle(album.id)} aria-expanded={open===album.id} tabIndex={open&&open!==album.id?-1:0}>
     <strong>{album.name}</strong><small>{album.meta}</small>
@@ -77,7 +78,7 @@ export function PolaroidDesk({albums}:{albums:PolaroidAlbum[]}){
     const style={width:gridW,zIndex:p.z,transform:`translate(${p.x}px,${p.y}px) rotate(${p.r}deg) scale(${p.s})`,transitionDelay:isOpen&&focus===null?`${i*35}ms`:'0ms'} as CSSProperties;
     return <button key={`${album.id}-${i}`} type="button" className={`polaroid-card${isOpen?' is-out':''}${open&&!isOpen?' is-dim':''}${focus===i&&isOpen?' is-focus':''}`} style={style}
      tabIndex={isOpen||(!open&&i===0)?0:-1}
-     aria-label={isOpen?`${album.name}：${album.captions[i]??`第 ${i+1} 张`}`:`打开相册 ${album.name}`}
+     aria-label={isOpen?`${album.name}: ${album.captions[i]??t(`第 ${i+1} 张`,`Photo ${i+1}`)}`:t(`打开相册 ${album.name}`,`Open album ${album.name}`)}
      onClick={()=>{if(!isOpen){toggle(album.id);return}setFocus(focus===i?null:i)}}>
      <img src={image} alt="" draggable={false} loading={i<3?'eager':'lazy'}/>
      <span>{isOpen?album.captions[i]:''}</span>

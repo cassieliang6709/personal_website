@@ -4,6 +4,7 @@ import {Bvh,Html,useTexture} from '@react-three/drei';
 import {EffectComposer,N8AO,Outline,Select,Selection,TiltShift2} from '@react-three/postprocessing';
 import {easing} from 'maath';
 import * as THREE from 'three';
+import {t} from './i18n';
 import oneDayIcon from './assets/1day-icon.png';
 import tabspaceIcon from './assets/tabspace-icon.png';
 import cities from './assets/albums/travel-cities.webp';
@@ -29,16 +30,16 @@ const shell:Block[]=[
 ];
 
 const spots:Spot[]=[
- {id:'bed',label:'床边 · 关于我',hint:'我是谁、在学什么、一路怎么走过来。',href:'#resume',stand:[-2.2,0.8],blocks:[
+ {id:'bed',label:t('床边 · 关于我','Bed · About me'),hint:t('我是谁、在学什么、一路怎么走过来。','Who I am, what I study, and how I got here.'),href:'#resume',stand:[-2.2,0.8],blocks:[
   b([-3.6,0.3,-0.6],[2.2,0.6,3.4],'#c8956a'),b([-3.6,0.7,-0.6],[2,0.3,3.2],'#fffaf2'),b([-3.6,0.9,-1.8],[1.6,0.25,0.7],'#fff'),b([-3.6,0.88,0.2],[2.05,0.3,1.8],'#8fb8de'),b([-3.6,0.9,-2.35],[2.2,1.4,0.2],'#b07d52')]},
- {id:'desk',label:'工作桌 · 作品',hint:'1Day、Tabspace 和我正在做的产品。',href:'#flagship',stand:[3,-1.8],blocks:[
+ {id:'desk',label:t('工作桌 · 作品','Desk · Work'),hint:t('1Day、Tabspace 和我正在做的产品。','1Day, Tabspace, and what I am building now.'),href:'#flagship',stand:[3,-1.8],blocks:[
   b([3.2,1,-4.2],[2.8,0.15,1.2],'#d9a978'),b([2,0.5,-4.2],[0.15,1,1],'#b98a5e'),b([4.4,0.5,-4.2],[0.15,1,1],'#b98a5e'),
   b([3.2,1.3,-4.4],[1,0.45,0.06],'#333'),b([3.2,1.3,-4.36],[0.9,0.36,0.02],'#7cc4f0'),b([3.2,1.1,-4],[1,0.04,0.5],'#555'),
   b([2.2,1.2,-4.3],[0.2,0.25,0.2],'#e07a5f'),b([3.2,0.35,-3.1],[0.7,0.1,0.7],'#6d8fb3'),b([3.2,0.7,-3.4],[0.7,0.7,0.1],'#6d8fb3')]},
- {id:'shelf',label:'书架 · 文章与漫画',hint:'做东西的笔记、想法和小蘑菇漫画。',href:'#life',stand:[-2.8,-2.6],blocks:[
+ {id:'shelf',label:t('书架 · 文章与漫画','Shelf · Writing & comics'),hint:t('做东西的笔记、想法和小蘑菇漫画。','Build notes, ideas, and the little mushroom comic.'),href:'#life',stand:[-2.8,-2.6],blocks:[
   b([-4.55,1.5,-3.2],[0.8,3,2],'#a8744a'),
   ...[0.45,1.25,2.05].flatMap(y=>[b([-4.3,y,-3.2],[0.35,0.03,1.8],'#8a5d3a'),...[0,1,2,3,4].map(k=>b([-4.3,y+0.3,-3.95+k*0.35],[0.3,0.55,0.25],['#e07a5f','#81b29a','#f2cc8f','#3d405b','#9fd3ea'][(k+Math.round(y))%5]))])]},
- {id:'jar',label:'存钱罐 · V 我 50',hint:'约我聊 30 分钟，或者支持我读完研究生。',href:'#support',stand:[2.6,2.4],blocks:[
+ {id:'jar',label:t('存钱罐 · V 我 50','Jar · Buy me a meal'),hint:t('约我聊 30 分钟，或者支持我读完研究生。','Book a 30-minute chat, or help me through grad school.'),href:'#support',stand:[2.6,2.4],blocks:[
   b([3.8,0.35,3.6],[0.9,0.7,0.9],'#b98a5e'),b([3.8,0.95,3.6],[0.6,0.5,0.6],'#ffd6de'),b([3.8,1.25,3.6],[0.3,0.08,0.06],'#6b4a3a'),b([3.5,0.95,3.6],[0.12,0.2,0.2],'#ffb8c6')]},
 ];
 
@@ -119,7 +120,7 @@ function Scene({onSpot,active,hover,setHover}:{onSpot:(id:string|null)=>void;act
   {spots.map(s=>{const n=s.blocks.length,x=s.blocks.reduce((t,k)=>t+k.p[0],0)/n,z=s.blocks.reduce((t,k)=>t+k.p[2],0)/n,top=Math.max(...s.blocks.map(k=>k.p[1]+k.s[1]/2));return <Marker key={s.id} position={[x,top+0.38,z]} hidden={active===s.id}/>})}
   <Posters/>
   <Avatar target={target} onArrive={()=>{if(pending.current){onSpot(pending.current);pending.current=null}}}/>
-  {spot&&<Html position={[spot.stand[0],3.6,spot.stand[1]]} center className="voxel-bubble"><strong>{spot.label}</strong><p>{spot.hint}</p><a href={spot.href}>去看看 →</a></Html>}
+  {spot&&<Html position={[spot.stand[0],3.6,spot.stand[1]]} center className="voxel-bubble"><strong>{spot.label}</strong><p>{spot.hint}</p><a href={spot.href}>{t('去看看 →','Take a look →')}</a></Html>}
   <CameraRig/>
  </>;
 }
