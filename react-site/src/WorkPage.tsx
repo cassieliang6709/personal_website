@@ -1,7 +1,7 @@
 import {lazy,Suspense,useEffect,useRef,useState,type CSSProperties} from 'react';
-import avatar from '../../assets/characters/cassie-favicon.png';
 import cassieCard from './assets/lanyard/cassie-card.png';
 import cassieBand from './assets/lanyard/cassie-band.png';
+import cassieCardFront from './assets/lanyard/cassie-card-front.webp';
 import {productLogoById} from './productAssets';
 import studioHome from '../../assets/room-spec/home-stage-theatre.webp';
 import studioAbout from '../../assets/room-spec/about.webp';
@@ -17,7 +17,7 @@ const Lanyard=lazy(()=>import('./Lanyard.jsx'));
 function LanyardIdentity(){
  const [interactive,setInteractive]=useState(()=>typeof window!=='undefined'&&!matchMedia('(max-width: 759px), (prefers-reduced-motion: reduce)').matches);
  useEffect(()=>{const media=matchMedia('(max-width: 759px), (prefers-reduced-motion: reduce)');const update=()=>setInteractive(!media.matches);media.addEventListener('change',update);return()=>media.removeEventListener('change',update)},[]);
- if(!interactive)return <div className="lanyard-wrap is-static" aria-label={t('Yue 的工作身份牌',"Yue's work pass")}><span className="lanyard-line"/><div className="identity-pass"><small>WORK IN PROGRESS</small><img src={avatar} alt=""/><strong>Yue (Cassie) Liang</strong><span>AI STUDENT · INDIE BUILDER</span><em>BUILDER PASS · 01</em></div></div>;
+ if(!interactive)return <div className="lanyard-wrap is-static" aria-label={t('Yue 的工作身份牌',"Yue's work pass")}><span className="lanyard-line"/><img className="identity-pass-flat" src={cassieCardFront} alt="" width="520" height="785"/></div>;
  return <div className="lanyard-three" aria-label={t('Yue 的 3D 工作身份牌，可以拖动',"Yue's 3D work pass, draggable")}><Suspense fallback={<div className="lanyard-loading">{t('正在挂上工作牌…','Hanging up the pass…')}</div>}><Lanyard position={[0,0,16]} gravity={[0,-40,0]} fov={20} cardImage={cassieCard} lanyardImage={cassieBand}/></Suspense></div>;
 }
 
