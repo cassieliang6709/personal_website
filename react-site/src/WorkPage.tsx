@@ -21,41 +21,32 @@ function LanyardIdentity(){
  return <div className="lanyard-three" aria-label={t('Yue 的 3D 工作身份牌，可以拖动',"Yue's 3D work pass, draggable")}><Suspense fallback={<div className="lanyard-loading">{t('正在挂上工作牌…','Hanging up the pass…')}</div>}><Lanyard position={[0,0,16]} gravity={[0,-40,0]} fov={20} cardImage={cassieCard} lanyardImage={cassieBand}/></Suspense></div>;
 }
 
-const productBriefs:Record<string,{why:string;did:string;key:string}>={
- '1day':{why:t('把一天剪成一支短片','Turn a day into a short film'),did:t('产品、设计、SwiftUI、上架','Product, design, SwiftUI, launch'),key:t('单人记录不离开手机','Solo clips never leave the phone')},
- tabspace:{why:t('标签页越开越多','Tabs keep piling up'),did:t('产品、交互、前端、上架','Product, interaction, front end, launch'),key:t('先预览，确认后才整理','Preview first, tidy only after you confirm')},
+// Product cards link straight to each project's own website.
+const officialSites:Record<string,string>={
+ '1day':t('https://1day.liangyue.site/zh','https://1day.liangyue.site/'),
+ tabspace:'https://cassieliang6709.github.io/tabspace-site/',
 };
 
 // Tilt toward the pointer with a light that follows it (React Bits Tilted Card + Spotlight Card).
-function ProductPass({project,index,onOpen}:{project:(typeof projects)[number];index:number;onOpen:()=>void}){
- const ref=useRef<HTMLButtonElement>(null);
- const move=(e:React.PointerEvent<HTMLButtonElement>)=>{
+function ProductPass({project,index}:{project:(typeof projects)[number];index:number}){
+ const ref=useRef<HTMLAnchorElement>(null);
+ const move=(e:React.PointerEvent<HTMLAnchorElement>)=>{
   const el=ref.current;if(!el||e.pointerType!=='mouse'||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
   const r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
   el.style.setProperty('--rx',`${(0.5-y)*16}deg`);el.style.setProperty('--ry',`${(x-0.5)*16}deg`);
   el.style.setProperty('--mx',`${x*100}%`);el.style.setProperty('--my',`${y*100}%`);el.classList.add('is-tilting','is-hover');
  };
  const leave=()=>{const el=ref.current;if(!el)return;el.classList.remove('is-tilting','is-hover');el.style.setProperty('--rx','0deg');el.style.setProperty('--ry','0deg')};
- return <button ref={ref} type="button" className="product-pass" aria-haspopup="dialog" onClick={onOpen} onPointerMove={move} onPointerLeave={leave} style={{'--accent':project.accent,'--tilt':`${index?4:-4}deg`} as CSSProperties}>
+ return <a ref={ref} className="product-pass" href={officialSites[project.id]} target="_blank" rel="noreferrer" onPointerMove={move} onPointerLeave={leave} style={{'--accent':project.accent,'--tilt':`${index?4:-4}deg`} as CSSProperties}>
   <span className="pass-art"><img src={productLogoById[project.id]} alt=""/></span>
   <small>0{index+1} · {project.category}</small><strong>{project.name}</strong><em>{project.description}</em>
- </button>;
+  <span className="pass-link">{t('官网 ↗','Website ↗')}</span>
+ </a>;
 }
 
 function ProductPasses(){
- const visible=projects.filter(project=>project.id in productBriefs);
- const [selected,setSelected]=useState<string|null>(null);const dialog=useRef<HTMLDialogElement>(null);
- const active=visible.find(project=>project.id===selected);const brief=active?productBriefs[active.id]:null;
- useEffect(()=>{if(!selected){dialog.current?.close();return}const overflow=document.body.style.overflow;dialog.current?.showModal();document.body.style.overflow='hidden';return()=>{document.body.style.overflow=overflow}},[selected]);
- const close=()=>{dialog.current?.close();setSelected(null)};
- return <><div className="product-passes">{visible.map((project,i)=><ProductPass key={project.id} project={project} index={i} onOpen={()=>setSelected(project.id)}/>)}</div>
- <p className="product-pass-hint">{t('点开一张，看它是怎么来的。','Open one to see how it started.')}</p>
- <dialog ref={dialog} className="product-sheet" aria-labelledby="product-sheet-title" onClose={()=>setSelected(null)} onClick={e=>{if(e.target===e.currentTarget)close()}}>{active&&brief&&<>
-  <header style={{'--accent':active.accent} as CSSProperties}><img src={productLogoById[active.id]} alt=""/><button type="button" onClick={close} aria-label={t('关闭','Close')}>×</button></header>
-  <div className="product-sheet-body"><small>{active.status}</small><h3 id="product-sheet-title">{active.name}</h3><p>{active.description}</p>
-   <dl><div><dt>{t('为什么','Why')}</dt><dd>{brief.why}</dd></div><div><dt>{t('我做了','I did')}</dt><dd>{brief.did}</dd></div><div><dt>{t('关键','Key call')}</dt><dd>{brief.key}</dd></div></dl>
-   <footer><a className="button-primary" href={active.url} target="_blank" rel="noreferrer">{t('打开 ↗','Open ↗')}</a><a href={active.source} target="_blank" rel="noreferrer">{t('源码 ↗','Source ↗')}</a></footer>
-  </div></>}</dialog></>;
+ const visible=projects.filter(project=>project.id in officialSites);
+ return <><div className="product-passes">{visible.map((project,i)=><ProductPass key={project.id} project={project} index={i}/>)}</div></>;
 }
 
 const studioRooms=[
@@ -78,7 +69,7 @@ export function StudioArchiveFooter(){return <aside className="studio-archive-fo
 export function WorkPage({showArchive=true}:{showArchive?:boolean}){
  return <div className="work-page">
   <section className="work-hero"><div className="hero-copy"><p className="eyebrow">{t('YUE (CASSIE) LIANG / 梁悦','YUE (CASSIE) LIANG')}</p>{lang==='en'?<h1>AI student.<br/>Indie builder of <em>1Day</em>.</h1>:<h1>AI 学生，<br/><em>1Day</em> 的独立开发者。</h1>}<p>{t('我在 San Jose 学习人工智能，也独立设计、开发和发布自己的产品。现在主要在做 AI 应用、iOS 和浏览器工具。','I study AI in San Jose and design, build, and ship my own products. Right now that means AI apps, iOS, and browser tools.')}</p><nav><a className="button-primary" href="#flagship">{t('看作品 ↓','See my work ↓')}</a><a href="#resume">{t('关于我 ↗','About me ↗')}</a><a href="https://github.com/cassieliang6709" target="_blank" rel="noreferrer">GitHub ↗</a></nav></div><div className="hero-object" aria-label={t('Yue 的工作身份牌',"Yue's work pass")}><LanyardIdentity/></div></section>
-  <section id="flagship" className="product-library"><header><p className="eyebrow">PRODUCTS / 01—02</p><h2>{t('先放这两个。','Two to start.')}</h2><span>{t('点开卡片看详情。','Open a card for details.')}</span></header><ProductPasses/></section>
+  <section id="flagship" className="product-library"><header><p className="eyebrow">PRODUCTS / 01—02</p><h2>{t('先放这两个。','Two to start.')}</h2><span>{t('点卡片去项目官网。','Each card opens the project website.')}</span></header><ProductPasses/></section>
   {showArchive&&<StudioArchiveFooter/>}
  </div>;
 }
