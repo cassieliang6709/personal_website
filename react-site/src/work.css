@@ -37,7 +37,8 @@
 .product-pass em{font-style:normal;font-size:14px;line-height:1.5;color:var(--ink-secondary)}
 .product-pass .pass-link{margin-top:auto;padding-top:10px;font-size:13px;font-weight:600;color:var(--work)}
 @media(max-width:759px){.product-passes{gap:14px}.product-pass{width:calc(50% - 7px);height:268px;padding:0 14px 14px}.pass-art{height:120px;margin:0 -14px 14px}.pass-art img{width:60px;height:60px;border-radius:14px}.product-pass strong{font-size:20px}.product-pass em{font-size:13px}}
-@media(prefers-reduced-motion:reduce){.product-pass{transition:none}.lanyard-wrap.is-static{height:auto;display:flex;flex-direction:column;align-items:center}
+@media(prefers-reduced-motion:reduce){.product-pass{transition:none}}
+.lanyard-wrap.is-static{height:auto;display:flex;flex-direction:column;align-items:center}
 .lanyard-wrap.is-static .lanyard-line{position:static;width:8px;height:56px;border-radius:0 0 3px 3px;background:linear-gradient(90deg,#0066cc 0 1px,#141416 1px calc(100% - 1px),#0066cc calc(100% - 1px));transform:none}
 .identity-pass-flat{display:block;width:170px;height:auto;border-radius:12px;box-shadow:0 14px 30px rgba(0,0,0,.18);transform:rotate(-3deg);transform-origin:top center}
 @media(max-width:759px){.hero-object{height:auto;padding:0 0 12px;place-items:start center}}
