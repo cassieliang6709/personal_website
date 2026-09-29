@@ -1,0 +1,3 @@
+/* Additions to notes.css for the article reader (#writing). */
+.notes-nav section+section{margin-top:24px}
+.notes-prose .notes-deck{margin:0 0 32px;font-size:18px;line-height:1.6;color:var(--ink-secondary)}
