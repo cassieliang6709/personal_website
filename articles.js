@@ -1,5 +1,39 @@
 window.CASSIE_ARTICLES = [
   {
+    id: "indie-artist",
+    cat: "reflection",
+    title: ["独立开发者应该像艺术家", "Independent developers should work like artists"],
+    meta: ["REFLECTION · 为什么开爱发电", "REFLECTION · WHY I OPENED A SUPPORT PAGE"],
+    deck: ["先做自己想做的东西，再让喜欢它的人养活它。", "Make the thing you want to make, then let the people who like it keep it going."],
+    body: [[
+      "我是梁悦，一个人做 iOS App。目前上架的作品叫 1Day：你和朋友各拍几秒，一顿早饭、一段通勤、一个日落，App 把这些片段拼成一天的短片。视频存在你自己手机上，单人使用不用注册账号。",
+      "设计、写代码、画插图、做官网、写这段文字，都是我一个人。",
+      "## 画画的人怎么做",
+      "画画的人通常不会先做市场调研再决定画什么。他画他想画的，画完挂出来，有人看见，有人喜欢，喜欢的人买下来或者支持他，他接着画下一张。",
+      "做软件本来也可以这样。但现在很多独立开发走的是另一条路：先看赛道够不够大，再看订阅能不能转化，然后加广告、加次数限制、加弹窗，尽可能从每个用户身上多收一点钱。这样做出来的东西，我自己都不想用。",
+      "1Day 我不想这么做。它现在没有广告，没有订阅，也没有「解锁全部功能」。我不想为了收入去改它的样子。",
+      "## 现在的真实情况",
+      "我在找工作。1Day 目前没有任何收入。Apple 开发者账号一年 688 元，另外我还要租数据库，这些现在都是我自己出。",
+      "所以我开了一个爱发电页面。如果那里能有一点稳定的收入，意味着两件事：1Day 可以一直保持现在的样子，我也可以接着做下一个作品。",
+      "## 支持我的人能得到什么",
+      "我每个月写一篇开发日志，讲这个月做了什么、砍掉了什么功能、为什么砍，做砸的部分也写。新版本正式上架前，会先通过 TestFlight 给支持者试用。下一步做什么功能，我会放出几个候选让大家投票。愿意的话，你的名字会出现在 App 里的致谢名单上。",
+      "> App Store：apps.apple.com/us/app/1-day/id6794565199 · 官网：1day.liangyue.site"
+    ], [
+      "I'm Yue (Cassie) Liang, and I build iOS apps on my own. My current app is 1Day: you and your friends each record a few seconds—breakfast, a commute, a sunset—and the app turns those clips into a short film of the day. Videos stay on your own phone, and solo use needs no account.",
+      "The design, the code, the illustrations, the website, and this text are all made by me.",
+      "## How painters work",
+      "A painter usually doesn't run market research before deciding what to paint. They paint what they want to paint and hang it up. Some people see it, some of them like it, and the people who like it buy it or support the painter, who then paints the next one.",
+      "Software can work this way too. But a lot of independent development now goes the other way: check whether the market is big enough, check whether subscriptions will convert, then add ads, usage limits, and pop-ups to collect as much as possible from each user. I don't want to use the apps that come out of that.",
+      "I don't want to build 1Day that way. Right now it has no ads, no subscription, and no \"unlock everything\" button. I don't want to change what it is in order to make money from it.",
+      "## Where things actually stand",
+      "I'm looking for a job. 1Day currently earns nothing. The Apple Developer account costs ¥688 a year, and I also pay for a hosted database. I cover all of it myself.",
+      "So I opened a support page on Afdian. A small, steady income there would mean two things: 1Day can stay the way it is, and I can keep making the next thing.",
+      "## What supporters get",
+      "Each month I write a development log: what I built, which features I cut and why, including the parts that went badly. Supporters get new versions through TestFlight before they reach the App Store. When I'm choosing what to build next, I'll post a few candidates for supporters to vote on. If you'd like, your name goes on the thank-you list inside the app.",
+      "> App Store: apps.apple.com/us/app/1-day/id6794565199 · Website: 1day.liangyue.site"
+    ]]
+  },
+  {
     "id": "stop-token",
     "cat": "build",
     "title": [
@@ -128,7 +162,7 @@ window.CASSIE_ARTICLES = [
       "单人模式可以完全离线，视频在手机上合成；只有想和朋友一起时，CloudKit 才出现。我也给每个时刻留了固定的 key，这样切换中英文，已经拍下来的那一天不会跟着翻译一起散掉。",
       "我后来发现，自己想保留的并不是多完整的一支 vlog。可能只是朋友午饭吃了什么，我窗外那天是什么颜色，还有晚上看到彼此的片段时那句：哦，原来你今天在这里。",
       "两三秒很小，但它会留下一个证据：我们今天也一起生活过。",
-      "> 当前状态：1Day 正在 Private Beta。"
+      "> 当前状态：1Day 已上架 App Store。"
     ], [
       "In the U.S., having no car and friends who lived far away often meant that we could be in the same city and still barely touch each other's daily lives.",
       "Around then I used a Korean vlog app called Setlog. Every few hours it asked for a two- or three-second clip. At night, friends shared the day they had assembled: class, lunch, a commute, a messy desk. None of it was remarkable. Still, those tiny clips gave our separate days a few places to meet.",
@@ -138,7 +172,7 @@ window.CASSIE_ARTICLES = [
       "Solo mode works offline and composes the video on the phone. CloudKit appears only when someone chooses to share with friends. Each moment also has a stable key, so switching languages does not pull an already-recorded day apart.",
       "Eventually I realized I was not trying to preserve a complete vlog. I wanted the smaller things: what a friend ate for lunch, the color outside my window, and the moment I watched their clip and thought, oh, that is where you were today.",
       "Two seconds can be enough evidence that we shared today, too.",
-      "> Current status: 1Day is in private beta."
+      "> Current status: 1Day is live on the App Store."
     ]]
   },
   {
