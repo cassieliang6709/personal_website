@@ -1,5 +1,5 @@
 import {useEffect,useRef,useState} from 'react';
-import {ALIPAY_QR,CALENDLY_URL,FUND_AMOUNT} from './siteConfig';
+import {ALIPAY_QR,BOOKING_URL,FUND_AMOUNT} from './siteConfig';
 import {t} from './i18n';
 import './support.css';
 
@@ -9,11 +9,10 @@ function useDialog(open:boolean){
  return ref;
 }
 
-function CalendlyCard(){
- const [open,setOpen]=useState(false);const dialog=useDialog(open);const close=()=>{dialog.current?.close();setOpen(false)};
- const embed=CALENDLY_URL?`${CALENDLY_URL}${CALENDLY_URL.includes('?')?'&':'?'}hide_gdpr_banner=1`:'';
- return <article className="support-card calendly-card"><small>CHAT · 30 MIN</small><h3>{t('约我聊 30 分钟','Book a 30-minute chat')}</h3><p>{t('聊 AI 应用、产品、求职，或者你手上一个想做的东西。选一个你方便的时间就行。','AI apps, products, job search, or something you want to build. Pick any time that works for you.')}</p><button type="button" className="support-primary" disabled={!CALENDLY_URL} onClick={()=>setOpen(true)}>{CALENDLY_URL?t('选一个时间 ↗','Pick a time ↗'):t('日程链接准备中','Booking link coming soon')}</button>
-  <dialog ref={dialog} className="reading-sheet support-sheet calendly-sheet" aria-labelledby="calendly-title" onClose={()=>setOpen(false)} onClick={e=>{if(e.target===e.currentTarget)close()}}><header><div><p className="eyebrow">CALENDLY</p><h2 id="calendly-title">{t('约一个时间','Pick a time')}</h2></div><button onClick={close} aria-label={t('关闭日程','Close booking')}>×</button></header>{open&&embed&&<iframe src={embed} title={t('Calendly 预约','Calendly booking')}/>}<footer><a href={CALENDLY_URL} target="_blank" rel="noreferrer">{t('在新标签页打开 ↗','Open in a new tab ↗')}</a></footer></dialog>
+function BookingCard(){
+ const label=t('约我聊 15 分钟','Book a 15-minute chat');
+ return <article className="support-card booking-card"><small>GOOGLE MEET · 15 MIN</small><h3>{label}</h3><p>{t('聊 AI 应用、产品、求职，或者你手上一个想做的东西。选一个你方便的时间就行。','AI apps, products, job search, or something you want to build. Pick any time that works for you.')}</p>
+  {BOOKING_URL?<a className="support-primary" href={BOOKING_URL} target="_blank" rel="noreferrer">{t('选一个时间 ↗','Pick a time ↗')}</a>:<button type="button" className="support-primary" disabled>{t('日程链接准备中','Booking link coming soon')}</button>}
  </article>;
 }
 
@@ -25,5 +24,5 @@ function FundCard(){
 }
 
 export function SupportSection(){
- return <section id="support" className="life-section support-section"><header><p className="eyebrow">04 / SUPPORT</p><h2>{t(`聊一聊，或者 V 我 ${FUND_AMOUNT}`,`Chat, or chip in ¥${FUND_AMOUNT}`)}</h2><span>{t('两种方式都欢迎。','Either is welcome.')}</span></header><div className="support-grid"><CalendlyCard/><FundCard/></div></section>;
+ return <section id="support" className="life-section support-section"><header><p className="eyebrow">04 / SUPPORT</p><h2>{t(`聊一聊，或者 V 我 ${FUND_AMOUNT}`,`Chat, or chip in ¥${FUND_AMOUNT}`)}</h2><span>{t('两种方式都欢迎。','Either is welcome.')}</span></header><div className="support-grid"><BookingCard/><FundCard/></div></section>;
 }
