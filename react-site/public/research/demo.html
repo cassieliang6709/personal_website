@@ -6,126 +6,251 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>材料预览</title>
 <style>
-  :root { --ink:#1d1d1f; --muted:#6e6e73; --line:#e3e3e6; --accent:#1f5fd6; --accent-bg:#e8f0fd; --bg:#fafafa; --hl:#fff1b8; --hl-ink:#7a5200; --ok:#1b7f3b; --bad:#b3261e; }
+  :root { --ink:#1d1d1f; --muted:#6e6e73; --line:#e3e3e6; --accent:#1f5fd6; --accent-bg:#e8f0fd; --bg:#f4f4f6; --panel:#fff; --hl:#fff1b8; --hl-ink:#7a5200; --ok:#1b7f3b; --ok-bg:#e7f4ea; --bad:#b3261e; --bad-bg:#fbeae9; }
   * { box-sizing: border-box; }
+  html, body { height:100%; }
   body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.8 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif; }
-  main { max-width:720px; margin:0 auto; padding:24px 18px 72px; }
-  .bar { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:22px; }
-  .bar button, .chip, .opt, .primary { font:inherit; font-size:14px; border:1px solid var(--line); background:#fff; border-radius:8px; cursor:pointer; color:var(--ink); }
-  .bar button { padding:6px 12px; }
-  .bar button.on { border-color:var(--accent); color:var(--accent); background:var(--accent-bg); }
-  .note { color:var(--muted); font-size:14px; margin:0 0 14px; }
-  .card { background:#fff; border:1px solid var(--line); border-radius:12px; padding:18px 20px; }
-  .turn { margin:0 0 12px; }
+  button, select { font:inherit; color:inherit; }
+  code { font:13px ui-monospace,Menlo,monospace; background:#f2f2f4; padding:1px 4px; border-radius:4px; }
+  pre { margin:4px 0; background:#f5f5f7; padding:8px 10px; border-radius:6px; overflow-x:auto; font-size:13px; line-height:1.6; }
+  pre code { background:none; padding:0; }
+
+  /* 外壳：顶栏 + 双栏 + 底栏。页面本身不滚动，左右两栏各自滚动 */
+  .shell { height:100dvh; display:grid; grid-template-rows:auto minmax(0,1fr) auto; }
+  #app { display:contents; }
+  header { display:flex; align-items:center; gap:12px; flex-wrap:wrap; padding:8px 20px; background:var(--panel); border-bottom:1px solid var(--line); font-size:14px; line-height:1.4; }
+  header a { color:var(--accent); text-decoration:none; }
+  header .title { font-weight:600; margin-right:auto; }
+  header label { display:flex; align-items:center; gap:6px; color:var(--muted); }
+  header select { font-size:14px; padding:4px 8px; border:1px solid var(--line); border-radius:6px; background:#fff; color:var(--ink); max-width:60vw; }
+
+  .split { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,1fr); min-height:0; }
+  .pane { overflow-y:auto; min-height:0; padding:22px 28px 40px; }
+  .pane + .pane { border-left:1px solid var(--line); background:var(--panel); }
+  .pane-inner { max-width:680px; margin:0 auto; }
+  .pane-label { font-size:13px; color:var(--muted); margin:0 0 10px; }
+
+  .note { color:var(--muted); font-size:14px; margin:0 0 12px; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:16px 18px; }
+  .turn { margin:0 0 10px; }
   .turn b { display:inline-block; min-width:56px; color:var(--muted); font-weight:500; }
-  .s { cursor:pointer; border-radius:4px; padding:1px 2px; }
-  .s:hover { background:#f2f2f4; }
-  .s.on { background:var(--hl); color:var(--hl-ink); }
-  .line { display:block; margin:0 0 6px; }
-  h3 { font-size:15px; font-weight:600; margin:24px 0 8px; }
-  .chip { padding:4px 10px; margin:0 6px 6px 0; }
+  h3 { font-size:15px; font-weight:600; margin:22px 0 8px; }
+
+  .reply .s { display:block; position:relative; cursor:pointer; border-radius:6px; padding:2px 6px 2px 30px; margin:0 -6px 4px; }
+  .reply .s::before { content:attr(data-n); position:absolute; left:6px; top:2px; font-size:12px; color:#b0b0b5; font-variant-numeric:tabular-nums; }
+  .reply .s:hover { background:#f2f2f4; }
+  .reply .s.on { background:var(--hl); color:var(--hl-ink); }
+  .reply .s.on::before { color:var(--hl-ink); font-weight:600; }
+
+  .section { margin:0 0 26px; }
+  .section h2 { font-size:16px; margin:0 0 4px; }
+  .mark { border:1px solid var(--line); border-radius:8px; padding:8px 10px; margin:0 0 8px; }
+  .mark-head { display:flex; gap:8px; align-items:baseline; font-size:14px; margin-bottom:6px; }
+  .mark-head .n { color:var(--hl-ink); background:var(--hl); border-radius:4px; padding:0 6px; font-size:12px; flex:none; }
+  .mark-head .txt { flex:1; min-width:0; color:var(--muted); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .mark-head button { flex:none; border:0; background:none; color:var(--muted); cursor:pointer; font-size:13px; padding:0 2px; }
+  .mark-head button:hover { color:var(--bad); }
+  .chip { font-size:13px; line-height:1.5; padding:3px 10px; margin:0 6px 6px 0; border:1px solid var(--line); background:#fff; border-radius:999px; cursor:pointer; }
   .chip.on { border-color:var(--accent); color:var(--accent); background:var(--accent-bg); }
-  .q { margin:0 0 18px; }
-  .q p { margin:0 0 6px; }
-  .opt { display:block; width:100%; text-align:left; padding:8px 12px; margin:0 0 6px; }
-  .opt.on { border-color:var(--accent); color:var(--accent); }
-  .opt.right { border-color:var(--ok); color:var(--ok); }
-  .opt.wrong { border-color:var(--bad); color:var(--bad); }
-  .primary { background:var(--accent); border-color:var(--accent); color:#fff; padding:10px 18px; margin-top:8px; }
-  .err { color:var(--bad); font-size:13px; min-height:20px; }
-  table { border-collapse:collapse; width:100%; font-size:14px; margin:6px 0 12px; }
+  .empty { font-size:14px; color:var(--muted); border:1px dashed var(--line); border-radius:8px; padding:10px 12px; margin:0; }
+
+  .q { margin:0 0 22px; scroll-margin-top:12px; }
+  .q-text { display:flex; gap:8px; margin:0 0 8px; font-weight:500; }
+  .q-text .num { flex:none; font-variant-numeric:tabular-nums; color:var(--muted); }
+  .opt { display:flex; align-items:center; gap:10px; width:100%; text-align:left; font-size:15px; line-height:1.5; padding:8px 12px; margin:0 0 6px; border:1px solid var(--line); background:#fff; border-radius:8px; cursor:pointer; }
+  .opt:hover { border-color:#c9c9ce; }
+  .opt .k { flex:none; width:24px; height:24px; border-radius:50%; border:1px solid #c9c9ce; display:grid; place-items:center; font-size:12px; color:var(--muted); }
+  .opt.on { border-color:var(--accent); background:var(--accent-bg); }
+  .opt.on .k { background:var(--accent); border-color:var(--accent); color:#fff; }
+  .opt.right { border-color:var(--ok); background:var(--ok-bg); }
+  .opt.right .k { background:var(--ok); border-color:var(--ok); color:#fff; }
+  .opt.wrong { border-color:var(--bad); background:var(--bad-bg); }
+  .opt.wrong .k { background:var(--bad); border-color:var(--bad); color:#fff; }
+
+  footer { display:flex; align-items:center; gap:14px; padding:10px 20px; background:var(--panel); border-top:1px solid var(--line); font-size:14px; line-height:1.4; }
+  .nav { display:flex; gap:6px; flex-wrap:wrap; }
+  .nav button { width:30px; height:30px; border-radius:6px; border:1px solid var(--line); background:#fff; cursor:pointer; font-size:13px; }
+  .nav button.done { background:var(--accent); border-color:var(--accent); color:#fff; }
+  .nav button.right { background:var(--ok); border-color:var(--ok); color:#fff; }
+  .nav button.wrong { background:var(--bad); border-color:var(--bad); color:#fff; }
+  .status { color:var(--muted); margin-right:auto; }
+  .status.err { color:var(--bad); }
+  .primary { background:var(--accent); border:1px solid var(--accent); color:#fff; border-radius:8px; padding:8px 18px; cursor:pointer; }
+
+  .result { border:1px solid var(--line); border-radius:10px; padding:12px 14px; background:var(--bg); margin:0 0 22px; font-size:14px; }
+  .result p { margin:0; }
+
+  /* 设计视角：单栏阅读 */
+  .design { overflow-y:auto; min-height:0; padding:22px 20px 40px; }
+  .design .pane-inner { max-width:1000px; }
+  table { border-collapse:collapse; width:100%; font-size:14px; margin:6px 0 12px; background:#fff; }
   th, td { border:1px solid var(--line); padding:6px 8px; text-align:left; vertical-align:top; }
-  .cols { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:10px; }
+  .cols { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:10px; }
   .cols .card { padding:12px 14px; font-size:14px; }
+  .line { display:block; margin:0 0 6px; }
+
+  /* 窄屏：改成单列，整页滚动，底栏贴底 */
+  @media (max-width: 860px) {
+    .shell { height:auto; min-height:100dvh; display:block; }
+    header { padding:8px 14px; }
+    .split { display:block; }
+    .pane { overflow:visible; padding:18px 14px 24px; }
+    .pane + .pane { border-left:0; border-top:1px solid var(--line); }
+    .design { overflow:visible; padding:18px 14px 32px; }
+    footer { position:sticky; bottom:0; padding:8px 14px; flex-wrap:wrap; }
+    .nav { order:3; flex-basis:100%; }
+  }
 </style>
 </head>
 <body>
-<main>
-  <p style="margin:0 0 14px;font-size:14px"><a href="index.html" style="color:#1f5fd6;text-decoration:none">← 回到研究计划</a></p>
-  <div class="bar" id="bar"></div>
+<div class="shell">
+  <header>
+    <a href="index.html">← 研究计划</a>
+    <span class="title" id="title">材料预览</span>
+    <label>材料 <select id="mat"></select></label>
+    <label>组别 <select id="mode"></select></label>
+  </header>
   <div id="app"></div>
-</main>
+</div>
 <script>
-let M, mode = "full_A", marks = {}, cur = null, picks = {}, orders = {};
+const MATS = [["02-coding-ledger","记账 app"],["03-coding-logout","掉线排查"],["04-coding-shipping","运费重写"],["05-coding-upgrade","框架升级"],["01-renovation","装修（对照）"]];
+const LETTERS = "ABCDEFG";
+let M, mode = "full_A", marks = {}, picks = {}, orders = {}, submitted = false;
 const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const md = u => u.startsWith("```")
-  ? "<pre style=\"margin:4px 0;background:#f5f5f7;padding:8px 10px;border-radius:6px;overflow-x:auto;font-size:13px\"><code>" + esc(u.replace(/^```\w*\n?/, "").replace(/\n?```$/, "")) + "</code></pre>"
-  : esc(u).replace(/`([^`]+)`/g, "<code style=\"font:13px ui-monospace,Menlo,monospace;background:#f2f2f4;padding:1px 4px;border-radius:4px\">$1</code>").replace(/\*\*([^*]+)\*\*/g, "<b>$1</b>");
+  ? "<pre><code>" + esc(u.replace(/^```\w*\n?/, "").replace(/\n?```$/, "")) + "</code></pre>"
+  : esc(u).replace(/`([^`]+)`/g, "<code>$1</code>").replace(/\*\*([^*]+)\*\*/g, "<b>$1</b>");
+const plain = u => u.replace(/```\w*\n?|```/g, "").replace(/[`*]/g, "").replace(/\s+/g, " ").trim();
 const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const $ = id => document.getElementById(id);
+const matId = new URLSearchParams(location.search).get("m") || "02-coding-ledger";
 
-function bar() {
-  const tabs = M.conditions.map(c => [c.id, c.name.split("：")[0]]).concat([["design", "设计视角"]]);
-  const mats = [["02-coding-ledger","记账 app"],["03-coding-logout","掉线排查"],["04-coding-shipping","运费重写"],["05-coding-upgrade","框架升级"],["01-renovation","装修（对照）"]];
-  const matRow = `<div style="flex-basis:100%;display:flex;flex-wrap:wrap;gap:8px;margin-bottom:4px">` + mats.map(([id, n]) => `<button data-mat="${id}" class="${M.id === id ? "on" : ""}">${n}</button>`).join("") + `</div>`;
-  document.getElementById("bar").innerHTML = matRow + tabs.map(([id, n]) => `<button data-m="${id}" class="${mode === id ? "on" : ""}">${n}</button>`).join("");
-  document.querySelectorAll("#bar button[data-mat]").forEach(b => b.onclick = () => { location.search = "?m=" + b.dataset.mat; });
-  document.querySelectorAll("#bar button[data-m]").forEach(b => b.onclick = () => { mode = b.dataset.m; marks = {}; cur = null; picks = {}; orders = {}; render(); });
+function header() {
+  $("mat").innerHTML = MATS.map(([id, n]) => `<option value="${id}" ${id === matId ? "selected" : ""}>${n}</option>`).join("");
+  $("mat").onchange = e => { location.search = "?m=" + e.target.value; };
+  const tabs = M.conditions.map(c => [c.id, c.name]).concat([["design", "设计视角"]]);
+  $("mode").innerHTML = tabs.map(([id, n]) => `<option value="${id}" ${mode === id ? "selected" : ""}>${esc(n)}</option>`).join("");
+  $("mode").onchange = e => { mode = e.target.value; reset(); };
+  $("title").textContent = "材料预览 · " + ((MATS.find(([id]) => id === matId) || [, ""])[1]);
 }
+
+function reset() { marks = {}; picks = {}; orders = {}; submitted = false; render(); }
 
 function participant(cond) {
   const reply = M.replies[cond.reply];
-  const conv = cond.shows_conversation ? `
-    <p class="note">${esc(M.intro_full || "下面是一段对话。请从头读完。")}</p>
-    <div class="card">${M.conversation.map(t => `<p class="turn"><b>${t.role === "user" ? (M.id.includes("coding") ? "开发者" : "用户") : "AI"}</b>${esc(t.text)}</p>`).join("")}</div>
-    <h3>AI 的最后一条回复</h3>` : `<p class="note">${esc(M.intro_only || "下面是 AI 的最后一条回复。你没看过前面的对话，只看这一条。")}</p>`;
-  document.getElementById("app").innerHTML = `
-    <p class="note">${esc(cond.name)}</p>
-    ${conv}
-    <p class="note">第 1 步：点你看不懂的句子（可以点多句），再选原因。</p>
-    <div class="card">${reply.map((s, i) => `<span class="s line ${marks[i] !== undefined ? "on" : ""}" data-i="${i}">${md(s)}</span>`).join("")}</div>
-    <div id="why" style="margin-top:10px;min-height:36px"></div>
-    <h3>第 2 步：回答下面的问题</h3>
-    <div id="qs">${M.questions.map(q => {
-      orders[q.id] = orders[q.id] || shuffle(q.options.map((_, k) => k));
-      return `<div class="q"><p>${esc(q.text)}</p>${orders[q.id].map(k => `<button class="opt" data-q="${q.id}" data-k="${k}">${esc(q.options[k])}</button>`).join("")}</div>`;
-    }).join("")}</div>
-    <div class="err" id="err"></div>
-    <button class="primary" id="submit">看结果（只在预览里显示）</button>
-    <div id="result"></div>`;
-  document.querySelectorAll(".s").forEach(el => el.onclick = () => {
+  const who = t => t.role === "user" ? (M.id.includes("coding") ? "开发者" : "用户") : "AI";
+  const conv = cond.shows_conversation
+    ? `<p class="note">${esc(M.intro_full || "下面是一段对话。请从头读完。")}</p>
+       <div class="card">${M.conversation.map(t => `<p class="turn"><b>${who(t)}</b>${esc(t.text)}</p>`).join("")}</div>
+       <h3>AI 的最后一条回复</h3>`
+    : `<p class="note">${esc(M.intro_only || "下面是 AI 的最后一条回复。你没看过前面的对话，只看这一条。")}</p>`;
+  M.questions.forEach(q => { orders[q.id] = orders[q.id] || shuffle(q.options.map((_, k) => k)); });
+
+  $("app").innerHTML = `
+    <div class="split">
+      <section class="pane" aria-label="阅读材料"><div class="pane-inner">
+        <p class="pane-label">阅读材料 · ${esc(cond.name)}</p>
+        ${conv}
+        <div class="card reply">${reply.map((s, i) => `<span class="s" data-i="${i}" data-n="${i + 1}">${md(s)}</span>`).join("")}</div>
+        <p class="note" style="margin-top:10px">点句子可以标成看不懂，再点一次取消。</p>
+      </div></section>
+      <section class="pane" id="qpane" aria-label="题目"><div class="pane-inner">
+        <div id="result"></div>
+        <div class="section">
+          <h2>第 1 步：哪里看不懂</h2>
+          <p class="note">在左边点你看不懂的句子，可以点多句，然后在这里选原因。</p>
+          <div id="marks"></div>
+        </div>
+        <div class="section">
+          <h2>第 2 步：回答问题</h2>
+          <p class="note">共 ${M.questions.length} 题，都是单选。</p>
+          ${M.questions.map((q, n) => `<div class="q" id="q-${q.id}">
+            <p class="q-text"><span class="num">${n + 1}.</span><span>${esc(q.text)}</span></p>
+            ${orders[q.id].map((k, pos) => `<button class="opt" data-q="${q.id}" data-k="${k}"><span class="k">${LETTERS[pos]}</span><span>${esc(q.options[k])}</span></button>`).join("")}
+          </div>`).join("")}
+        </div>
+      </div></section>
+    </div>
+    <footer>
+      <div class="nav" id="nav">${M.questions.map((q, n) => `<button data-q="${q.id}" title="第 ${n + 1} 题">${n + 1}</button>`).join("")}</div>
+      <span class="status" id="status"></span>
+      <button class="primary" id="submit">交卷看结果</button>
+    </footer>`;
+
+  document.querySelectorAll(".reply .s").forEach(el => el.onclick = () => {
+    if (submitted) return;
     const i = +el.dataset.i;
-    if (marks[i] !== undefined && cur === i) { delete marks[i]; el.classList.remove("on"); cur = null; }
-    else { if (marks[i] === undefined) marks[i] = null; el.classList.add("on"); cur = i; }
-    why();
+    if (marks[i] !== undefined) delete marks[i]; else marks[i] = null;
+    syncMarks(reply);
   });
   document.querySelectorAll(".opt").forEach(b => b.onclick = () => {
+    if (submitted) return;
     picks[b.dataset.q] = +b.dataset.k;
     document.querySelectorAll(`.opt[data-q="${b.dataset.q}"]`).forEach(x => x.classList.toggle("on", x === b));
-    document.getElementById("err").textContent = "";
+    syncNav();
   });
-  document.getElementById("submit").onclick = () => submit(cond);
-  why();
+  document.querySelectorAll("#nav button").forEach(b => b.onclick = () => $("q-" + b.dataset.q).scrollIntoView({ behavior: "smooth", block: "start" }));
+  $("submit").onclick = () => submitted ? reset() : submit(reply);
+  syncMarks(reply); syncNav();
 }
 
-function why() {
-  const w = document.getElementById("why");
-  if (cur === null) { w.innerHTML = `<span class="note">点一句后，这里会让你选原因。</span>`; return; }
-  w.innerHTML = `<span class="note">第 ${cur + 1} 句哪里看不懂？</span><br>` +
-    M.reasons.map((r, k) => `<button class="chip ${marks[cur] === k ? "on" : ""}" data-r="${k}">${r}</button>`).join("");
-  w.querySelectorAll(".chip").forEach(b => b.onclick = () => { marks[cur] = +b.dataset.r; why(); });
+function syncMarks(reply) {
+  document.querySelectorAll(".reply .s").forEach(el => el.classList.toggle("on", marks[el.dataset.i] !== undefined));
+  const ids = Object.keys(marks).map(Number).sort((a, b) => a - b);
+  $("marks").innerHTML = ids.length ? ids.map(i => `<div class="mark">
+      <div class="mark-head"><span class="n">第 ${i + 1} 句</span><span class="txt">${esc(plain(reply[i]))}</span>${submitted ? "" : `<button data-rm="${i}">取消</button>`}</div>
+      ${M.reasons.map((r, k) => `<button class="chip ${marks[i] === k ? "on" : ""}" data-i="${i}" data-r="${k}">${esc(r)}</button>`).join("")}
+    </div>`).join("")
+    : `<p class="empty">${submitted ? "没有标记看不懂的句子。" : "还没有标记。全都看得懂就直接做第 2 步。"}</p>`;
+  $("marks").querySelectorAll(".chip").forEach(b => b.onclick = () => { if (!submitted) { marks[b.dataset.i] = +b.dataset.r; syncMarks(reply); } });
+  $("marks").querySelectorAll("[data-rm]").forEach(b => b.onclick = () => { delete marks[b.dataset.rm]; syncMarks(reply); });
 }
 
-function submit(cond) {
+function syncNav() {
+  const done = M.questions.filter(q => picks[q.id] !== undefined).length;
+  document.querySelectorAll("#nav button").forEach(b => {
+    const q = M.questions.find(x => x.id === b.dataset.q);
+    b.classList.toggle("done", !submitted && picks[q.id] !== undefined);
+    b.classList.toggle("right", submitted && picks[q.id] === q.answer);
+    b.classList.toggle("wrong", submitted && picks[q.id] !== q.answer);
+  });
+  if (!submitted) { $("status").className = "status"; $("status").textContent = `已答 ${done} / ${M.questions.length}`; }
+}
+
+function submit(reply) {
   const missing = M.questions.filter(q => picks[q.id] === undefined);
-  if (missing.length) { document.getElementById("err").textContent = `还有 ${missing.length} 道题没选。`; return; }
+  if (missing.length) {
+    $("status").className = "status err";
+    $("status").textContent = `还有 ${missing.length} 道题没选。`;
+    $("q-" + missing[0].id).scrollIntoView({ behavior: "smooth", block: "start" });
+    return;
+  }
+  submitted = true;
   let right = 0;
   M.questions.forEach(q => {
     const ok = picks[q.id] === q.answer; right += ok;
     document.querySelectorAll(`.opt[data-q="${q.id}"]`).forEach(b => {
       const k = +b.dataset.k;
+      b.classList.remove("on");
       b.classList.toggle("right", k === q.answer);
       b.classList.toggle("wrong", k === picks[q.id] && !ok);
     });
   });
-  const flagged = Object.entries(marks).map(([i, r]) => `第 ${+i + 1} 句：${r === null ? "没选原因" : M.reasons[r]}`);
-  document.getElementById("result").innerHTML = `<div class="card" style="margin-top:14px">
-    <p style="margin:0">答对 ${right} / ${M.questions.length} 题。标了 ${flagged.length} 句看不懂${flagged.length ? "：" + flagged.join("；") : "。"}</p>
+  const flagged = Object.entries(marks).sort((a, b) => a[0] - b[0]).map(([i, r]) => `第 ${+i + 1} 句：${r === null ? "没选原因" : M.reasons[r]}`);
+  $("result").innerHTML = `<div class="result">
+    <p><b>答对 ${right} / ${M.questions.length} 题</b>。标了 ${flagged.length} 句看不懂${flagged.length ? "：" + flagged.join("；") : "。"}</p>
     <p class="note" style="margin:6px 0 0">绿色是正确答案，红色是选错的。正式实验里参与者看不到这一步，结果直接存下来。</p></div>`;
+  $("status").className = "status";
+  $("status").textContent = `答对 ${right} / ${M.questions.length}`;
+  $("submit").textContent = "重新做";
+  syncMarks(reply); syncNav();
+  $("qpane").scrollTo({ top: 0, behavior: "smooth" });
+  window.scrollTo({ top: $("qpane").offsetTop, behavior: "smooth" });
 }
 
 function design() {
   const len = v => M.replies[v].join("").length;
-  document.getElementById("app").innerHTML = `
+  $("app").innerHTML = `<div class="design"><div class="pane-inner">
     <p class="note">${esc(M.version)}</p>
     <h3>设计说明</h3><ol>${M.design_notes.map(n => `<li>${esc(n)}</li>`).join("")}</ol>
     <h3>AI 起的名字（远引用）</h3>
@@ -135,11 +260,16 @@ function design() {
     <div class="cols">${["A", "B", "C"].map(v => `<div class="card"><b>${v} 版 · ${len(v)} 字</b>${M.replies[v].map(s => `<span class="line">${md(s)}</span>`).join("")}</div>`).join("")}</div>
     <h3>题目</h3>
     <table><tr><th>题</th><th>考什么</th><th>A 里解释了吗</th><th>正确答案</th></tr>
-      ${M.questions.map(q => `<tr><td>${esc(q.text)}</td><td>${esc(q.tests)}</td><td>${q.bare_in_A === true ? "没有（测试题）" : q.bare_in_A === false ? "解释了（对照题）" : "—"}</td><td>${esc(q.options[q.answer])}</td></tr>`).join("")}</table>`;
+      ${M.questions.map(q => `<tr><td>${esc(q.text)}</td><td>${esc(q.tests)}</td><td>${q.bare_in_A === true ? "没有（测试题）" : q.bare_in_A === false ? "解释了（对照题）" : "—"}</td><td>${esc(q.options[q.answer])}</td></tr>`).join("")}</table>
+  </div></div>`;
 }
 
-function render() { bar(); if (mode === "design") design(); else participant(M.conditions.find(c => c.id === mode)); window.scrollTo(0, 0); }
-(async () => { M = await (await fetch("materials/" + (new URLSearchParams(location.search).get("m") || "02-coding-ledger") + ".json")).json(); render(); })();
+function render() {
+  header();
+  if (mode === "design") design(); else participant(M.conditions.find(c => c.id === mode));
+  window.scrollTo(0, 0);
+}
+(async () => { M = await (await fetch("materials/" + matId + ".json")).json(); render(); })();
 </script>
 </body>
 </html>
