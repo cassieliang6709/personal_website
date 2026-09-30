@@ -1,0 +1,366 @@
+{
+  "id": "05-coding-upgrade",
+  "topic": "把 Next.js 从 14 升级到 15",
+  "intro_full": "下面是一个开发者和 AI 编程助手的对话，在给项目升级框架版本。请从头读完。",
+  "intro_only": "下面是 AI 编程助手在一段升级框架的对话里的最后一条回复。你没看过前面的对话，只看这一条。",
+  "version": "draft-2 · 2026-09-27 · A 为模型真实回复；B、C 由 Claude 在 A 的基础上改写，未经人工审阅",
+  "participants": "写过代码的人。",
+  "design_notes": [
+    "引用类型：一个 commit 的别名（绿线）、一组锁死的依赖（冻结清单）、临时代码（兼容层）、一处配置改动（图片 loader）。这是依赖升级会话里常见的起名方式。",
+    "A 版提到了 sharp，所以 Q4、Q5 的错误选项里也都放了 sharp，避免靠这个词猜中。Q6 是注意力检查。",
+    "每道题的 target_sentences 记录它考的信息在 A、B、C 各版本里是第几句（从 0 开始）。H2b 的“以为懂了”= 这道题答错，且对应句子没被标成看不懂。",
+    "draft-2：A 是 Claude Code 默认模型在距离 0 时的真实回复（见 base_reply）。B 只补全 A 没解释的回头引用，其他句子一字不改；C 是 B 的内容按 i-have-adhd 规则重排，并去掉了结尾的客套句。",
+    "每道题的 bare_in_A 标明它考的名字在 A 里是否没被解释：true 是测试题，false 是对照题，null 是行动题或注意力检查题。",
+    "draft-2：A 是 Claude Code 默认模型在距离 0 时的真实回复（见 base_reply）。B 只补全 A 没解释的回头引用，其他句子一字不改；C 是 B 的内容按 i-have-adhd 规则重排，并去掉了结尾的客套句。",
+    "每道题的 bare_in_A 标明它考的名字在 A 里是否没被解释：true 是测试题，false 是对照题，null 是行动题或注意力检查题。"
+  ],
+  "conditions": [
+    {
+      "id": "full_A",
+      "name": "第 1 组：先读完整对话，再看 A 版",
+      "shows_conversation": true,
+      "reply": "A"
+    },
+    {
+      "id": "only_A",
+      "name": "第 2 组：只看 A 版",
+      "shows_conversation": false,
+      "reply": "A"
+    },
+    {
+      "id": "only_B",
+      "name": "第 3 组：只看 B 版（远引用补全）",
+      "shows_conversation": false,
+      "reply": "B"
+    },
+    {
+      "id": "only_C",
+      "name": "第 4 组：只看 C 版（ADHD 规则）",
+      "shows_conversation": false,
+      "reply": "C"
+    }
+  ],
+  "coined_labels": [
+    {
+      "label": "绿线",
+      "turn": 2,
+      "means": "main 上的 commit a1b2c3d，升级前构建、测试、线上都正常"
+    },
+    {
+      "label": "冻结清单",
+      "turn": 4,
+      "means": "next-auth、@tanstack/query、sharp 这次锁死不升，因为上次一次升太多包，出问题分不清是谁"
+    },
+    {
+      "label": "兼容层",
+      "turn": 8,
+      "means": "compat/cookies.ts，让 middleware.ts 鉴权那一处继续用 Next 14 的同步写法；升 16 之前必须去掉"
+    },
+    {
+      "label": "图片 loader",
+      "turn": 14,
+      "means": "Next 15 的图片优化要 sharp 0.33 以上，我们是 0.32；为了不升 sharp，临时切回旧 loader"
+    }
+  ],
+  "conversation": [
+    {
+      "role": "user",
+      "text": "项目要从 Next.js 14 升到 15。上次升级搞崩过一次，这次想稳一点。"
+    },
+    {
+      "role": "ai",
+      "text": "先定一条绿线：现在 main 上的 commit a1b2c3d，构建、测试、线上都正常。升级过程中任何时候搞乱了，都回到绿线。"
+    },
+    {
+      "role": "user",
+      "text": "好。"
+    },
+    {
+      "role": "ai",
+      "text": "升级前我列了一份冻结清单：next-auth、@tanstack/query、sharp 这三个包，这次只升 Next.js，它们的版本锁死不动。原因是上次崩就是一次升了太多包，出问题分不清是谁。"
+    },
+    {
+      "role": "user",
+      "text": "对，上次就是这样。"
+    },
+    {
+      "role": "ai",
+      "text": "升到 Next.js 15 以后，构建报了 23 个错，都是同一个原因：15 里 cookies() 和 headers() 变成了异步函数，要加 await。我用官方的 codemod 自动改了 19 个，剩下 4 个在中间件里，codemod 改不了。"
+    },
+    {
+      "role": "user",
+      "text": "那 4 个怎么办？"
+    },
+    {
+      "role": "ai",
+      "text": "我手动改了 3 个。第 4 个在 middleware.ts 的鉴权逻辑里，改完以后登录会循环跳转。我先加了一个兼容层 compat/cookies.ts，让这一处继续用老的同步写法，等 next-auth 升级以后再去掉。"
+    },
+    {
+      "role": "user",
+      "text": "兼容层会有问题吗？"
+    },
+    {
+      "role": "ai",
+      "text": "官方说 15 里同步写法还能用，只是会打警告，16 会删掉。所以兼容层是临时的，必须在升 16 之前去掉。我在代码里加了 TODO，也写进了 UPGRADE.md。"
+    },
+    {
+      "role": "user",
+      "text": "好。"
+    },
+    {
+      "role": "ai",
+      "text": "现在构建通过了，214 个单元测试全过。但有 2 个端到端测试挂了，都是图片页面，报 sharp 版本不匹配。"
+    },
+    {
+      "role": "user",
+      "text": "那升一下 sharp？"
+    },
+    {
+      "role": "ai",
+      "text": "按冻结清单，sharp 这次不动。我查了：Next 15 默认的图片优化需要 sharp 0.33 以上，我们是 0.32。可以在 next.config 里先把图片优化切回旧的 loader，端到端测试就能过，不用升 sharp。"
+    },
+    {
+      "role": "user",
+      "text": "可以。"
+    },
+    {
+      "role": "ai",
+      "text": "改完了，端到端测试全过。改动都在分支 upgrade/next15 上，一共 31 个文件。"
+    },
+    {
+      "role": "user",
+      "text": "然后呢？"
+    }
+  ],
+  "replies": {
+    "A": [
+      "接下来分三步，前两步需要你点头：",
+      "**1. 合并前自查（我现在就能做）**",
+      "- 对照冻结清单核一遍 `package-lock`：确认 next-auth、@tanstack/query、sharp 的版本和绿线 a1b2c3d 完全一致，这次只有 Next.js 及其直接依赖变了。",
+      "- 在分支上完整跑一遍构建、214 个单元测试和全部端到端测试，把结果贴给你。",
+      "- 把 31 个文件的改动按类型整理出来：codemod 自动改的 19 处、手动改的 3 处、兼容层、next.config 图片 loader。这样 review 时重点看后面几类就行。",
+      "**2. 上预发环境（需要你确认）**",
+      "- 先部署 upgrade/next15 到预发，重点手测两块：中间件的登录鉴权（兼容层那一处，确认不再循环跳转），以及图片页面（旧 loader 下的加载和尺寸）。",
+      "- 预发没问题再合进 main、上线。合并前我会确认回滚方式：出问题就直接 revert 回 a1b2c3d 重新部署。",
+      "**3. 记下这次留的两笔债**",
+      "这次是用两个临时方案换来的稳定，UPGRADE.md 里要写清楚：",
+      "- `compat/cookies.ts`：依赖 next-auth 升级后去掉，**必须在升 Next 16 之前完成**，否则 16 会直接删掉同步写法。",
+      "- 图片旧 loader：等下一轮单独把 sharp 升到 0.33+ 以后，切回默认的图片优化。",
+      "我建议下一轮单独升 next-auth，并顺手去掉兼容层；sharp 再单独放一轮。还是一次只动一个包。",
+      "要我先做第 1 步吗？"
+    ],
+    "B": [
+      "接下来分三步，前两步需要你点头：",
+      "**1. 合并前自查（我现在就能做）**",
+      "- 对照冻结清单核一遍 `package-lock`：确认 next-auth、@tanstack/query、sharp 的版本和绿线 a1b2c3d 完全一致，这次只有 Next.js 及其直接依赖变了。",
+      "- 在分支上完整跑一遍构建、214 个单元测试和全部端到端测试，把结果贴给你。",
+      "- 把 31 个文件的改动按类型整理出来：codemod 自动改的 19 处、手动改的 3 处、兼容层、next.config 图片 loader。这样 review 时重点看后面几类就行。",
+      "**2. 上预发环境（需要你确认）**",
+      "- 先部署 upgrade/next15 到预发，重点手测两块：中间件的登录鉴权（兼容层那一处，确认不再循环跳转），以及图片页面（旧 loader 下的加载和尺寸）。",
+      "- 预发没问题再合进 main、上线。合并前我会确认回滚方式：出问题就直接 revert 回 a1b2c3d 重新部署。",
+      "**3. 记下这次留的两笔债**",
+      "这次是用两个临时方案换来的稳定，UPGRADE.md 里要写清楚：",
+      "- `compat/cookies.ts`：依赖 next-auth 升级后去掉，**必须在升 Next 16 之前完成**，否则 16 会直接删掉同步写法。",
+      "- 图片旧 loader：等下一轮单独把 sharp 升到 0.33+ 以后，切回默认的图片优化。",
+      "我建议下一轮单独升 next-auth，并顺手去掉兼容层；sharp 再单独放一轮。还是一次只动一个包。",
+      "要我先做第 1 步吗？"
+    ],
+    "C": [
+      "现在先做一件事：合并前自查。这一步我现在就能做，不需要你操作。",
+      "自查包括三项：",
+      "1. 对照冻结清单核一遍 `package-lock`：确认 next-auth、@tanstack/query、sharp 的版本和绿线 a1b2c3d 完全一致，这次只有 Next.js 及其直接依赖变了。",
+      "2. 在分支上完整跑一遍构建、214 个单元测试和全部端到端测试，把结果贴给你。",
+      "3. 把 31 个文件的改动按类型整理出来：codemod 自动改的 19 处、手动改的 3 处、兼容层、next.config 图片 loader。review 时重点看后面几类。",
+      "自查之后，有一步需要你确认：先部署 upgrade/next15 到预发，重点手测中间件的登录鉴权（兼容层那一处，确认不再循环跳转）和图片页面（旧 loader 下的加载和尺寸）。预发没问题再合进 main、上线；出问题就 revert 回 a1b2c3d 重新部署。",
+      "现在的状态：升级完成，留了两笔债，要写进 UPGRADE.md：",
+      "- `compat/cookies.ts`：依赖 next-auth 升级后去掉，必须在升 Next 16 之前完成，否则 16 会直接删掉同步写法。",
+      "- 图片旧 loader：等下一轮单独把 sharp 升到 0.33+ 以后，切回默认的图片优化。",
+      "下一轮单独升 next-auth，并顺手去掉兼容层；sharp 再单独放一轮，一次只动一个包。"
+    ]
+  },
+  "questions": [
+    {
+      "id": "Q1",
+      "tests": "下一步（行动题）",
+      "bare_in_A": null,
+      "text": "读完这条回复，现在先做哪一步？",
+      "options": [
+        "合并前自查：核对依赖版本、跑全部测试",
+        "直接部署到线上",
+        "先升级 sharp",
+        "先删掉兼容层",
+        "不知道"
+      ],
+      "answer": 0,
+      "target_sentences": {
+        "A": [
+          1
+        ],
+        "B": [
+          1
+        ],
+        "C": [
+          0
+        ]
+      }
+    },
+    {
+      "id": "Q2",
+      "tests": "远引用：绿线（A 已解释）",
+      "bare_in_A": false,
+      "text": "依赖版本要和哪个 commit 对照？",
+      "options": [
+        "a1b2c3d",
+        "main 分支最新的提交",
+        "upgrade/next15 分支的第一个提交",
+        "不知道"
+      ],
+      "answer": 0,
+      "target_sentences": {
+        "A": [
+          2
+        ],
+        "B": [
+          2
+        ],
+        "C": [
+          2
+        ]
+      }
+    },
+    {
+      "id": "Q3",
+      "tests": "远引用：兼容层（A 已解释）",
+      "bare_in_A": false,
+      "text": "compat/cookies.ts 必须在什么之前去掉？",
+      "options": [
+        "升级到 Next 16 之前",
+        "这次合并之前",
+        "下周五之前",
+        "不知道"
+      ],
+      "answer": 0,
+      "target_sentences": {
+        "A": [
+          10
+        ],
+        "B": [
+          10
+        ],
+        "C": [
+          7
+        ]
+      }
+    },
+    {
+      "id": "Q4",
+      "tests": "远引用：冻结清单（A 已解释）",
+      "bare_in_A": false,
+      "text": "冻结清单里是哪几个包？",
+      "options": [
+        "next-auth、@tanstack/query、sharp",
+        "react、typescript、sharp",
+        "eslint、sharp、jest",
+        "不知道"
+      ],
+      "answer": 0,
+      "target_sentences": {
+        "A": [
+          2
+        ],
+        "B": [
+          2
+        ],
+        "C": [
+          2
+        ]
+      }
+    },
+    {
+      "id": "Q5",
+      "tests": "远引用：图片 loader（A 已解释）",
+      "bare_in_A": false,
+      "text": "什么时候切回默认的图片优化？",
+      "options": [
+        "把 sharp 升到 0.33 以上以后",
+        "升级到 Next 16 以后",
+        "这次合并之后",
+        "不知道"
+      ],
+      "answer": 0,
+      "target_sentences": {
+        "A": [
+          11
+        ],
+        "B": [
+          11
+        ],
+        "C": [
+          8
+        ]
+      }
+    },
+    {
+      "id": "Q6",
+      "tests": "注意力检查（三个版本都直接写了）",
+      "bare_in_A": null,
+      "text": "在预发环境重点手测哪两块？",
+      "options": [
+        "登录鉴权和图片页面",
+        "首页和设置页",
+        "支付和搜索",
+        "不知道"
+      ],
+      "answer": 0,
+      "target_sentences": {
+        "A": [
+          6
+        ],
+        "B": [
+          6
+        ],
+        "C": [
+          5
+        ]
+      }
+    }
+  ],
+  "reasons": [
+    "不知道指什么",
+    "不懂这个词",
+    "不知道为什么这么做",
+    "不知道要我做什么"
+  ],
+  "replies_v1": {
+    "A": [
+      "可以合了。",
+      "合之前再对一次绿线，确认 main 这几天没人动过，不然要先 rebase。",
+      "合进去以后先部署到预览环境，重点点登录，兼容层那一处最容易出问题。",
+      "冻结清单下一轮再放开，一次升一个。",
+      "图片 loader 那个改动，记得在升 sharp 的时候改回来。",
+      "今天就做合并和预览部署。"
+    ],
+    "B": [
+      "可以合了。",
+      "合之前再核对一次 main 是否还停在 commit a1b2c3d（升级前构建、测试、线上都正常的那个版本），确认这几天没人动过，不然要先 rebase。",
+      "合进去以后先部署到预览环境，重点点登录：middleware.ts 鉴权那一处还在用 Next 14 的老写法（临时加的 compat/cookies.ts），最容易出问题。",
+      "这次锁死没升的 next-auth、@tanstack/query、sharp，下一轮再放开，一次升一个。",
+      "为了这次不升 sharp，图片优化临时切回了旧的 loader，记得在把 sharp 升到 0.33 以上的时候改回来。",
+      "今天就做合并和预览部署。"
+    ],
+    "C": [
+      "今天做两件事：合并分支 upgrade/next15，然后部署到预览环境。",
+      "按顺序：",
+      "1. 合并前确认 main 还停在 commit a1b2c3d（升级前一切正常的版本）。如果有人动过，先 rebase。",
+      "2. 合并后部署到预览环境，重点测登录。middleware.ts 鉴权那一处还在用 Next 14 的老写法（临时加的 compat/cookies.ts），最容易出问题。",
+      "现在的状态：Next.js 已升到 15，构建和测试全过。next-auth、@tanstack/query、sharp 这次锁死没升，下一轮一次升一个。为了不升 sharp，图片优化临时切回了旧的 loader，把 sharp 升到 0.33 以上时要改回来。"
+    ]
+  },
+  "base_reply": {
+    "source": "h1_gen_runs.jsonl",
+    "model": "default",
+    "distance_chars": 0,
+    "sample": 1,
+    "note": "A 是模型原样输出，只按行切分，没有改字"
+  }
+}

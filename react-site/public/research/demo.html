@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>材料预览</title>
+<style>
+  :root { --ink:#1d1d1f; --muted:#6e6e73; --line:#e3e3e6; --accent:#1f5fd6; --accent-bg:#e8f0fd; --bg:#fafafa; --hl:#fff1b8; --hl-ink:#7a5200; --ok:#1b7f3b; --bad:#b3261e; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.8 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif; }
+  main { max-width:720px; margin:0 auto; padding:24px 18px 72px; }
+  .bar { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:22px; }
+  .bar button, .chip, .opt, .primary { font:inherit; font-size:14px; border:1px solid var(--line); background:#fff; border-radius:8px; cursor:pointer; color:var(--ink); }
+  .bar button { padding:6px 12px; }
+  .bar button.on { border-color:var(--accent); color:var(--accent); background:var(--accent-bg); }
+  .note { color:var(--muted); font-size:14px; margin:0 0 14px; }
+  .card { background:#fff; border:1px solid var(--line); border-radius:12px; padding:18px 20px; }
+  .turn { margin:0 0 12px; }
+  .turn b { display:inline-block; min-width:56px; color:var(--muted); font-weight:500; }
+  .s { cursor:pointer; border-radius:4px; padding:1px 2px; }
+  .s:hover { background:#f2f2f4; }
+  .s.on { background:var(--hl); color:var(--hl-ink); }
+  .line { display:block; margin:0 0 6px; }
+  h3 { font-size:15px; font-weight:600; margin:24px 0 8px; }
+  .chip { padding:4px 10px; margin:0 6px 6px 0; }
+  .chip.on { border-color:var(--accent); color:var(--accent); background:var(--accent-bg); }
+  .q { margin:0 0 18px; }
+  .q p { margin:0 0 6px; }
+  .opt { display:block; width:100%; text-align:left; padding:8px 12px; margin:0 0 6px; }
+  .opt.on { border-color:var(--accent); color:var(--accent); }
+  .opt.right { border-color:var(--ok); color:var(--ok); }
+  .opt.wrong { border-color:var(--bad); color:var(--bad); }
+  .primary { background:var(--accent); border-color:var(--accent); color:#fff; padding:10px 18px; margin-top:8px; }
+  .err { color:var(--bad); font-size:13px; min-height:20px; }
+  table { border-collapse:collapse; width:100%; font-size:14px; margin:6px 0 12px; }
+  th, td { border:1px solid var(--line); padding:6px 8px; text-align:left; vertical-align:top; }
+  .cols { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:10px; }
+  .cols .card { padding:12px 14px; font-size:14px; }
+</style>
+</head>
+<body>
+<main>
+  <p style="margin:0 0 14px;font-size:14px"><a href="index.html" style="color:#1f5fd6;text-decoration:none">← 回到研究计划</a></p>
+  <div class="bar" id="bar"></div>
+  <div id="app"></div>
+</main>
+<script>
+let M, mode = "full_A", marks = {}, cur = null, picks = {}, orders = {};
+const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const md = u => u.startsWith("```")
+  ? "<pre style=\"margin:4px 0;background:#f5f5f7;padding:8px 10px;border-radius:6px;overflow-x:auto;font-size:13px\"><code>" + esc(u.replace(/^```\w*\n?/, "").replace(/\n?```$/, "")) + "</code></pre>"
+  : esc(u).replace(/`([^`]+)`/g, "<code style=\"font:13px ui-monospace,Menlo,monospace;background:#f2f2f4;padding:1px 4px;border-radius:4px\">$1</code>").replace(/\*\*([^*]+)\*\*/g, "<b>$1</b>");
+const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+
+function bar() {
+  const tabs = M.conditions.map(c => [c.id, c.name.split("：")[0]]).concat([["design", "设计视角"]]);
+  const mats = [["02-coding-ledger","记账 app"],["03-coding-logout","掉线排查"],["04-coding-shipping","运费重写"],["05-coding-upgrade","框架升级"],["01-renovation","装修（对照）"]];
+  const matRow = `<div style="flex-basis:100%;display:flex;flex-wrap:wrap;gap:8px;margin-bottom:4px">` + mats.map(([id, n]) => `<button data-mat="${id}" class="${M.id === id ? "on" : ""}">${n}</button>`).join("") + `</div>`;
+  document.getElementById("bar").innerHTML = matRow + tabs.map(([id, n]) => `<button data-m="${id}" class="${mode === id ? "on" : ""}">${n}</button>`).join("");
+  document.querySelectorAll("#bar button[data-mat]").forEach(b => b.onclick = () => { location.search = "?m=" + b.dataset.mat; });
+  document.querySelectorAll("#bar button[data-m]").forEach(b => b.onclick = () => { mode = b.dataset.m; marks = {}; cur = null; picks = {}; orders = {}; render(); });
+}
+
+function participant(cond) {
+  const reply = M.replies[cond.reply];
+  const conv = cond.shows_conversation ? `
+    <p class="note">${esc(M.intro_full || "下面是一段对话。请从头读完。")}</p>
+    <div class="card">${M.conversation.map(t => `<p class="turn"><b>${t.role === "user" ? (M.id.includes("coding") ? "开发者" : "用户") : "AI"}</b>${esc(t.text)}</p>`).join("")}</div>
+    <h3>AI 的最后一条回复</h3>` : `<p class="note">${esc(M.intro_only || "下面是 AI 的最后一条回复。你没看过前面的对话，只看这一条。")}</p>`;
+  document.getElementById("app").innerHTML = `
+    <p class="note">${esc(cond.name)}</p>
+    ${conv}
+    <p class="note">第 1 步：点你看不懂的句子（可以点多句），再选原因。</p>
+    <div class="card">${reply.map((s, i) => `<span class="s line ${marks[i] !== undefined ? "on" : ""}" data-i="${i}">${md(s)}</span>`).join("")}</div>
+    <div id="why" style="margin-top:10px;min-height:36px"></div>
+    <h3>第 2 步：回答下面的问题</h3>
+    <div id="qs">${M.questions.map(q => {
+      orders[q.id] = orders[q.id] || shuffle(q.options.map((_, k) => k));
+      return `<div class="q"><p>${esc(q.text)}</p>${orders[q.id].map(k => `<button class="opt" data-q="${q.id}" data-k="${k}">${esc(q.options[k])}</button>`).join("")}</div>`;
+    }).join("")}</div>
+    <div class="err" id="err"></div>
+    <button class="primary" id="submit">看结果（只在预览里显示）</button>
+    <div id="result"></div>`;
+  document.querySelectorAll(".s").forEach(el => el.onclick = () => {
+    const i = +el.dataset.i;
+    if (marks[i] !== undefined && cur === i) { delete marks[i]; el.classList.remove("on"); cur = null; }
+    else { if (marks[i] === undefined) marks[i] = null; el.classList.add("on"); cur = i; }
+    why();
+  });
+  document.querySelectorAll(".opt").forEach(b => b.onclick = () => {
+    picks[b.dataset.q] = +b.dataset.k;
+    document.querySelectorAll(`.opt[data-q="${b.dataset.q}"]`).forEach(x => x.classList.toggle("on", x === b));
+    document.getElementById("err").textContent = "";
+  });
+  document.getElementById("submit").onclick = () => submit(cond);
+  why();
+}
+
+function why() {
+  const w = document.getElementById("why");
+  if (cur === null) { w.innerHTML = `<span class="note">点一句后，这里会让你选原因。</span>`; return; }
+  w.innerHTML = `<span class="note">第 ${cur + 1} 句哪里看不懂？</span><br>` +
+    M.reasons.map((r, k) => `<button class="chip ${marks[cur] === k ? "on" : ""}" data-r="${k}">${r}</button>`).join("");
+  w.querySelectorAll(".chip").forEach(b => b.onclick = () => { marks[cur] = +b.dataset.r; why(); });
+}
+
+function submit(cond) {
+  const missing = M.questions.filter(q => picks[q.id] === undefined);
+  if (missing.length) { document.getElementById("err").textContent = `还有 ${missing.length} 道题没选。`; return; }
+  let right = 0;
+  M.questions.forEach(q => {
+    const ok = picks[q.id] === q.answer; right += ok;
+    document.querySelectorAll(`.opt[data-q="${q.id}"]`).forEach(b => {
+      const k = +b.dataset.k;
+      b.classList.toggle("right", k === q.answer);
+      b.classList.toggle("wrong", k === picks[q.id] && !ok);
+    });
+  });
+  const flagged = Object.entries(marks).map(([i, r]) => `第 ${+i + 1} 句：${r === null ? "没选原因" : M.reasons[r]}`);
+  document.getElementById("result").innerHTML = `<div class="card" style="margin-top:14px">
+    <p style="margin:0">答对 ${right} / ${M.questions.length} 题。标了 ${flagged.length} 句看不懂${flagged.length ? "：" + flagged.join("；") : "。"}</p>
+    <p class="note" style="margin:6px 0 0">绿色是正确答案，红色是选错的。正式实验里参与者看不到这一步，结果直接存下来。</p></div>`;
+}
+
+function design() {
+  const len = v => M.replies[v].join("").length;
+  document.getElementById("app").innerHTML = `
+    <p class="note">${esc(M.version)}</p>
+    <h3>设计说明</h3><ol>${M.design_notes.map(n => `<li>${esc(n)}</li>`).join("")}</ol>
+    <h3>AI 起的名字（远引用）</h3>
+    <table><tr><th>名字</th><th>第几轮起的</th><th>意思</th></tr>
+      ${M.coined_labels.map(c => `<tr><td>${esc(c.label)}</td><td>${c.turn}</td><td>${esc(c.means)}</td></tr>`).join("")}</table>
+    <h3>最后一条回复的三个版本</h3>
+    <div class="cols">${["A", "B", "C"].map(v => `<div class="card"><b>${v} 版 · ${len(v)} 字</b>${M.replies[v].map(s => `<span class="line">${md(s)}</span>`).join("")}</div>`).join("")}</div>
+    <h3>题目</h3>
+    <table><tr><th>题</th><th>考什么</th><th>A 里解释了吗</th><th>正确答案</th></tr>
+      ${M.questions.map(q => `<tr><td>${esc(q.text)}</td><td>${esc(q.tests)}</td><td>${q.bare_in_A === true ? "没有（测试题）" : q.bare_in_A === false ? "解释了（对照题）" : "—"}</td><td>${esc(q.options[q.answer])}</td></tr>`).join("")}</table>`;
+}
+
+function render() { bar(); if (mode === "design") design(); else participant(M.conditions.find(c => c.id === mode)); window.scrollTo(0, 0); }
+(async () => { M = await (await fetch("materials/" + (new URLSearchParams(location.search).get("m") || "02-coding-ledger") + ".json")).json(); render(); })();
+</script>
+</body>
+</html>
