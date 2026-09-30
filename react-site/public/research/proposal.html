@@ -1,0 +1,92 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>研究计划</title><style>
+@page { size: A4; margin: 18mm 18mm 20mm; }
+body { font: 11pt/1.75 -apple-system, "PingFang SC", "Hiragino Sans GB", sans-serif; color: #1d1d1f; max-width: 760px; margin: 32px auto; padding: 0 20px; }
+h1 { font-size: 20pt; line-height: 1.35; margin: 0 0 6px; }
+h2 { font-size: 14pt; margin: 28px 0 8px; padding-top: 4px; }
+h3 { font-size: 12pt; margin: 20px 0 6px; }
+p, li { margin: 0 0 8px; }
+ul, ol { padding-left: 22px; margin: 0 0 10px; }
+table { border-collapse: collapse; width: 100%; margin: 8px 0 14px; font-size: 10pt; page-break-inside: avoid; }
+th, td { border: 1px solid #d9d9de; padding: 5px 8px; text-align: left; vertical-align: top; }
+th { background: #f4f4f6; font-weight: 600; }
+blockquote { margin: 8px 0 12px; padding: 6px 14px; background: #f6f6f8; border-radius: 6px; color: #3a3a3c; }
+code { font: 9.5pt ui-monospace, Menlo, monospace; background: #f2f2f4; padding: 1px 4px; border-radius: 3px; }
+hr { border: none; border-top: 1px solid #e3e3e6; margin: 18px 0; }
+a { color: #1f5fd6; text-decoration: none; word-break: break-all; }
+.meta { color: #6e6e73; }
+</style></head><body><h1>你还记得「方案 B」吗？AI 编程助手在长会话中的回头引用与开发者理解</h1>
+<p class="meta">研究计划 · 草稿 v0.1 · 2026-09-27</p>
+<p>作者：＿＿＿＿（请填写）</p>
+<hr>
+<h2>一句话摘要</h2>
+<p>AI 编程助手在长会话里会给东西起名字（「方案 B」「不动 schema」「探针」），之后再提到时只用这个名字。模型能看到全部上下文，开发者却记不住。本研究测量这种写法让开发者的理解损失多少，检验"把远处的引用说全"和"按工作记忆规则重排回复"两种改法能补回多少，并估计它们的阅读成本。</p>
+<hr>
+<h2>1. 问题</h2>
+<p>开发者和 Claude Code、Cursor 这类 AI 编程助手的会话越来越长。我在自己的 180 个 Claude Code 会话里看到，超过一半（56%）的回复发生在上下文超过 15 万 token 的时候，最长的超过 60 万 token。一个会话常常跨好几个小时，中间开发者还会切去做别的事。</p>
+<p>在这种会话里，AI 的回复经常引用很早以前出现的东西，例如：</p>
+<blockquote>先确认回退点还在，然后部署宽限期。线索 3 的客户端锁记到下个 App 版本里。</blockquote>
+<p>对模型来说，「回退点」「线索 3」就在上下文里，随时可以查到。对开发者来说，这些名字可能是一小时以前、几万字以前出现的。读不懂的直接后果是：开发者要么往上翻很久，要么照着一个没弄懂的指令去做。</p>
+<p>人和人说话时会处理这个问题。刚提过的东西说"它"；隔了很久再提，会说"上周说的那个不肯修热水器的房东"。语言学把这叫作可及性：说话人按对方还能不能想起来，选择说得多完整（Ariel 1990；Givón 1983）。本研究要检验的是：AI 编程助手是否缺少这种调整，缺少它的代价有多大。</p>
+<hr>
+<h2>2. 相关工作</h2>
+<ol><li><b>指代与可及性。</b> 人在对话中选择指代形式时会考虑听者的记忆状态，隔得越远越倾向用完整名词短语（Ariel 1990；Givón 1983；Knutsen 等 2022）。Clark 和 Brennan（1991）把对话双方维护共同知识的过程称为 grounding。</li><li><b>大模型的指代生成。</b> Wu 等（INLG 2025）发现大模型的指代选择与人类系统性不同，模型越大也不一定越像人；他们用的是短文本生成任务，没有涉及长对话中的距离。Aina 等（2021）研究了语言模型中可预测性与指代形式的关系。</li><li><b>长对话里的人机共同知识。</b> 已有研究测量了用户提问对历史的依赖（arXiv 2602.24287）、跨会话引用用户原话对回忆的影响（HAI 2023），以及人机协作中的理解不对称（arXiv 2604.18096；arXiv 2602.21337）。这些工作没有测量 AI 回复本身随上下文变长是否越来越依赖前文。</li><li><b>AI 编程助手的真实使用。</b> 大规模会话分析显示开发者与编程助手之间普遍存在意图偏差（arXiv 2605.29442），会话和自主运行时间都在变长（SWE-chat，arXiv 2604.20779）。</li><li><b>为特殊读者设计、让所有人受益。</b> 为轮椅修的路缘坡道也方便了推婴儿车和拖行李箱的人（Blackwell 2017）。本研究借用这个思路，检验一套为 ADHD 读者写的回复规则对一般开发者是否也有帮助。</li></ol>
+<p><b>目前的空白：</b> 我检索到的工作里，没有一篇测量 AI 助手在长会话里的回头引用是否随距离调整，也没有一篇测量这些引用对开发者理解的影响。文献检索目前只做了初步的几轮，需要系统补充（见第 9 节）。</p>
+<hr>
+<h2>3. 研究问题与假设</h2>
+<p><b>RQ1：</b> AI 编程助手在回头引用时，会不会根据距离调整说法？</p>
+<ul><li><b>H1：</b> 不会。无论引用对象是 2000 字前还是 5 万字前出现的，AI 解释它的比例没有明显变化。受影响最大的是 AI 自己起的名字。</li></ul>
+<p><b>RQ2：</b> 这种写法让开发者损失多少理解？补全引用能补回多少？</p>
+<ul><li><b>H2a：</b> 即使开发者刚读完整段对话，他们在远引用题上的正确率仍然低于只读"补全版"回复的开发者。换句话说，把引用说全，比让人记住前文更可靠。</li><li><b>H2b：</b> 只读"原版"回复的开发者，有相当一部分会答错远引用题，却没有把对应的句子标成看不懂，也就是"以为懂了"。</li></ul>
+<p><b>RQ3：</b> 按工作记忆规则重排回复，能不能在补全之外再带来帮助？</p>
+<ul><li><b>H3：</b> 在信息相同的前提下，"规则版"（先写下一步、编号、结尾写现状）比"补全版"在行动题上的正确率更高，或者阅读时间更短。</li></ul>
+<p><b>RQ4（原因，后续研究）：</b> 这种写法是否来自训练时的打分方式？</p>
+<ul><li><b>H4：</b> 标注者带着完整对话打分时，会偏好简短引用；只看回复本身打分时，会偏好完整说法。本计划不检验 H4，只作为后续方向。</li></ul>
+<hr>
+<h2>4. 已有的初步证据</h2>
+<p>以下数据来自我本机的 Claude Code 会话记录，只做本地统计，原文不外传。</p>
+<ol><li><b>数据规模。</b> 180 个会话，1890 条含中文的最终回复。上下文长度取自 API 返回的真实 token 数。</li><li><b>中文表面质量没有变差。</b> 随上下文变长，平均句长、翻译腔词频、英文夹杂比例基本不变。</li><li><b>回头引用的解释比例不随距离上升（支持 H1）。</b> 在 1354 次回头引用中，AI 在引用处顺手解释的比例，2000 字以内是 3.1%，5 万字以上是 4.0%；相隔 6 小时以上的引用只有 1.1%。这个自动判断方法比较粗，结论需要人工标注确认。</li><li><b>盲标 100 条（近 50、远 50）。</b> 标注由 AI 完成，标注时看不到距离。只看这段就能懂的比例：近的 82%，远的 72%，差异在这个样本量下不显著。43% 的引号内容是界面文字（按钮名、Tab 名），这类不依赖对话记忆。真正的问题集中在 AI 自己起的名字上：这一类有一半只看这段读不懂。</li><li><b>局限。</b> 数据只来自一个用户、主要是一个模型（claude-opus-5）；第 4 条的标注正在由人抽检 20 条。</li></ol>
+<p>这些证据只能说明现象存在、值得做实验，不能替代实验。</p>
+<hr>
+<h2>5. 实验设计</h2>
+<h3>5.1 材料</h3>
+<p>用真实会话做材料有两个问题：内容涉及隐私，而且看不懂可能是因为不懂代码，分不清原因。所以我改用编写的材料，每段只改一个变量。</p>
+<p>每段材料是一段 17–21 轮的开发者与 AI 编程助手的对话，模仿 Claude Code 会话，只保留文字，不放工具输出。对话中 AI 会给 4–5 样东西起名字，最后一条回复会再用到它们。目前写好 4 段：</p>
+<table><tr><th>编号</th><th>场景</th><th>AI 起的名字（举例）</th></tr><tr><td>02</td><td>记账 app：首页提速、加收藏功能</td><td>不动 schema、跨月测试、临时存法、开关</td></tr><tr><td>03</td><td>排查用户偶尔被踢下线</td><td>线索 1/2/3、探针、回退点</td></tr><tr><td>04</td><td>运费计算从 JS 重写成 TS</td><td>金标准测试、那 17 单、顺序规则、双跑</td></tr><tr><td>05</td><td>Next.js 14 升级到 15</td><td>绿线、冻结清单、兼容层</td></tr></table>
+<p>最后一条回复写三个版本，<b>事实完全相同</b>：</p>
+<ul><li><b>A 原版</b>（约 140 字）：AI 的习惯写法，远引用只用名字。</li><li><b>B 补全版</b>（约 240–310 字）：只把远引用说全，句子和 A 一一对应，其他不改。</li><li><b>C 规则版</b>（约 280–320 字）：B 的内容按一套为 ADHD 读者写的回复规则重排：先写下一步，中间编号，结尾写现在的状态。</li></ul>
+<p>A 对 B 只差引用是否补全；B 对 C 只差结构。</p>
+<p>预实验后再写 4 段，正式实验共 8 段。</p>
+<h3>5.2 分组与分配</h3>
+<table><tr><th>组</th><th>看到什么</th><th>代表的情况</th></tr><tr><td>1</td><td>完整对话 + A</td><td>一直在场、记得前文的开发者</td></tr><tr><td>2</td><td>只有 A</td><td>离开一段时间、忘了前文的开发者</td></tr><tr><td>3</td><td>只有 B</td><td>忘了前文，但回复把引用补全了</td></tr><tr><td>4</td><td>只有 C</td><td>忘了前文，回复补全并按规则重排</td></tr></table>
+<p>采用组内设计：每个参与者读 4 段材料，每段分到一个不同的组，按 4×4 拉丁方轮换，保证每段材料在每个组里出现的次数相同。材料顺序随机。</p>
+<h3>5.3 任务与交互</h3>
+<p>每段材料分两步：</p>
+<ol><li><b>标出看不懂的句子。</b> 回复按句子显示。参与者点击看不懂的句子，再选一个原因：不知道指什么 / 不懂这个词 / 不知道为什么这么做 / 不知道要我做什么。四个原因分别对应缺前文、缺专业知识、缺理由、缺下一步。</li><li><b>回答 6 道选择题。</b> 1 道行动题（"你现在第一件事做什么"），4 道远引用题（每道考一个 AI 起的名字），1 道注意力检查题（答案在三个版本里都直接写着）。每道题都有"不知道"选项，选项顺序随机。</li></ol>
+<h3>5.4 测量指标</h3>
+<table><tr><th>指标</th><th>怎么算</th><th>对应假设</th></tr><tr><td>远引用题正确率</td><td>4 道远引用题答对的比例</td><td>H2a</td></tr><tr><td>"以为懂了"比例</td><td>远引用题答错，但对应句子没被标成看不懂</td><td>H2b</td></tr><tr><td>行动题正确率</td><td>行动题是否答对</td><td>H3</td></tr><tr><td>阅读时间</td><td>从回复出现到提交的秒数</td><td>H3，以及补全的成本</td></tr><tr><td>看不懂的原因分布</td><td>各原因被选的次数</td><td>探索性分析</td></tr></table>
+<p>注意力检查题答错的，这段材料的数据不计入分析。</p>
+<p><b>需要说明的一点：</b> 组 2（只看 A）在远引用题上答不好几乎是必然的，因为信息不在回复里。它是下限对照，不是主要结论。主要结论来自三个非平凡的比较：组 1 对组 3（记住前文能否替代补全）、组 2 里"以为懂了"的比例、组 3 对组 4（结构有没有额外作用）。</p>
+<h3>5.5 参与者与样本量</h3>
+<ul><li><b>参与者：</b> 写过代码的人，按"偶尔写 / 每周写 / 每天写"记录背景，并记录是否用过 AI 编程助手。</li><li><b>预实验：</b> 8 人（拉丁方每行 2 人），用来检查材料、题目和页面。</li><li><b>正式实验：</b> 暂定 40 人。用预实验估出的效应大小做功效模拟之后，再确定最终人数，并在预注册里写明。</li></ul>
+<h3>5.6 分析计划</h3>
+<ul><li><b>主模型：</b> 混合效应逻辑回归，因变量是每道题是否答对，固定效应是组别，随机效应是参与者、材料和题目。</li><li><b>计划比较：</b> 组 1 对组 3（H2a）；组 3 对组 4（H3）；组 1 对组 2 作为操作检查。</li><li><b>"以为懂了"：</b> 在组 1 和组 2 之间比较比例（H2b）。</li><li><b>阅读时间：</b> 对数变换后用混合效应线性模型，比较组 3、组 4 相对组 1 多花的时间。</li><li>所有分析在正式收数据之前预注册（OSF 或 AsPredicted）。</li></ul>
+<hr>
+<h2>6. 改进方法与产品方向</h2>
+<p>如果假设成立，改进方法很直接：<b>只把距离远的引用说全，近的保持原样。</b> 全部说全会让回复变啰嗦；按距离选择性补全，有望用更少的字数换到接近全部补全的效果。第二轮实验会比较"全部补全"和"按距离补全"。</p>
+<p>对应的产品是一个 Claude Code hook：记录开发者看过什么、什么时候看的，在 AI 回复显示之前，检查其中引用的名字距离开发者上次看到有多久，超过阈值就自动补一句说明。这个 hook 也可以作为论文中改进方法的实现。</p>
+<hr>
+<h2>7. 伦理与隐私</h2>
+<ol><li>正式实验在学校 IRB 审批（或豁免认定）之后才开始收集数据。</li><li>参与者看到的材料全部是编写的，不含任何真实会话内容。</li><li>收集的数据不含姓名，只记录昵称、写代码频率、答题和标注结果。</li><li>第 4 节的真实会话分析只在本机进行，只报告汇总数字。</li><li>预实验只用来改进材料和页面，数据不进入论文。</li></ol>
+<hr>
+<h2>8. 时间线（按周）</h2>
+<table><tr><th>周</th><th>内容</th></tr><tr><td>1–2</td><td>材料内部审阅、8 人预实验、修改材料和题目</td></tr><tr><td>2–4</td><td>提交 IRB；系统补充文献；写完剩下 4 段材料</td></tr><tr><td>4</td><td>功效模拟，确定样本量，预注册</td></tr><tr><td>5–7</td><td>正式实验</td></tr><tr><td>8–10</td><td>分析、写论文</td></tr></table>
+<p>目标会议：CHI（人机交互）或 ICSE / FSE（软件工程），都是 CCF-A 类。具体投哪个，按截稿时间和结果决定。</p>
+<hr>
+<h2>9. 风险与局限</h2>
+<ol><li><b>文献检索还不完整。</b> 目前只做了几轮检索，可能有我没找到的相关工作，需要系统检索。</li><li><b>材料是编写的。</b> 编写材料能控制变量，但可能不够像真实会话。缓解办法：请经常用 Claude Code 的开发者盲评，判断材料里的回复是否像真实 AI 写的；同时用第 4 节的真实数据作为补充证据。</li><li><b>补全版更长。</b> B、C 比 A 长一倍左右，理解更好可能部分来自信息更多。阅读时间会作为成本一起报告；第二轮会加入"长度相同但不补全"的对照。</li><li><b>组 1 的遗忘比真实情况轻。</b> 组 1 读完对话马上答题，间隔只有几分钟。真实场景里间隔常常是几小时。所以组 1 的结果偏乐观，如果组 1 仍不如组 3，结论只会更强。</li><li><b>初步证据来自一个人的数据。</b></li></ol>
+<hr>
+<h2>10. 需要的帮助</h2>
+<ul><li><b>老师：</b> 对研究问题、假设和实验设计的意见；是否愿意指导这项研究，或作为 IRB 申请中的指导老师。</li><li><b>朋友（写代码的）：</b> 参加 20 分钟左右的预实验；帮忙判断材料里的 AI 回复像不像真的。</li></ul>
+<hr>
+<h2>参考文献</h2>
+<ul><li>Aina, L., et al. (2021). Does referent predictability affect the choice of referential form? A computational approach using masked coreference resolution. arXiv:2109.13105. <a href="https://arxiv.org/abs/2109.13105">https://arxiv.org/abs/2109.13105</a></li><li>Ariel, M. (1990). <i>Accessing Noun-Phrase Antecedents</i>. Routledge.</li><li>Baumann, et al. (2026). SWE-chat: Coding agent interactions from real users in the wild. arXiv:2604.20779. <a href="https://arxiv.org/abs/2604.20779">https://arxiv.org/abs/2604.20779</a></li><li>Blackwell, A. G. (2017). The curb-cut effect. <i>Stanford Social Innovation Review</i>.</li><li>Clark, H. H., &amp; Brennan, S. E. (1991). Grounding in communication. In <i>Perspectives on Socially Shared Cognition</i>. APA.</li><li>Givón, T. (Ed.) (1983). <i>Topic Continuity in Discourse</i>. John Benjamins.</li><li>Knutsen, D., Fossard, M., &amp; Achim, A. M. (2022). Comparing individual and collective management of referential choices in dialogue. <i>Quarterly Journal of Experimental Psychology</i>. <a href="https://doi.org/10.1177/17470218211037117">https://doi.org/10.1177/17470218211037117</a></li><li>Vishwarupe, V., et al. (2026). The collaboration gap in human-AI work. arXiv:2604.18096. <a href="https://arxiv.org/abs/2604.18096">https://arxiv.org/abs/2604.18096</a></li><li>Wu, Chen, Same, &amp; He (2025). Analysing reference production of large language models. <i>INLG 2025</i>. <a href="https://aclanthology.org/2025.inlg-main.12/">https://aclanthology.org/2025.inlg-main.12/</a></li><li>A benchmark to assess common ground in human-AI collaboration (2026). arXiv:2602.21337. <a href="https://arxiv.org/abs/2602.21337">https://arxiv.org/abs/2602.21337</a></li><li>Comparing how a chatbot references user utterances from previous chatting sessions (2023). <i>HAI 2023</i>. arXiv:2308.04879. <a href="https://arxiv.org/abs/2308.04879">https://arxiv.org/abs/2308.04879</a></li><li>Do LLMs benefit from their own words? (2026). arXiv:2602.24287. <a href="https://arxiv.org/abs/2602.24287">https://arxiv.org/abs/2602.24287</a></li><li>How coding agents fail their users: A large-scale analysis of developer-agent misalignment in 20,574 real-world sessions (2026). arXiv:2605.29442. <a href="https://arxiv.org/abs/2605.29442">https://arxiv.org/abs/2605.29442</a></li></ul></body></html>
