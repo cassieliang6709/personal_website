@@ -6,6 +6,7 @@ import {StitchFrame} from './panda/StitchFrame';
 import {Stuffing} from './panda/Stuffing';
 import {HomeRoom} from './panda/HomeRoom';
 import {MAX_CUSTOM,MAX_HOME,loadCustom,loadHome,newId,randomTag,saveCustom,saveHome,type Pattern,type Work} from './panda/yarn';
+import {setPet} from './panda/petStore';
 import {t} from './i18n';
 
 // 照奥比岛网页版淘宝街的爱绣坊：爱绣小店买图纸 → 美好纺织机纺线染色 → 绣工坊十字绣，最后塞棉花摆进家园
@@ -35,7 +36,7 @@ export default function PandaSewing(){
   setWorks(list);saveHome(list);setCurrentId(work.id);setStage('home');
  };
  const openHome=()=>{setCurrentId(null);setStage('home')};
- const clearHome=()=>{setWorks([]);saveHome([]);setCurrentId(null)};
+ const clearHome=()=>{setWorks([]);saveHome([]);setCurrentId(null);setPet(null)};
  const current=steps.findIndex(s=>s.stages.includes(stage));
 
  return <div className="pw-board">

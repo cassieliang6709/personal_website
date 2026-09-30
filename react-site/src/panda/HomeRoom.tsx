@@ -1,10 +1,10 @@
 import {useEffect,useRef,useState,type CSSProperties} from 'react';
 import {PixelPlush} from './PixelPlush';
+import {setPet,usePetId} from './petStore';
 import {renderPng,type Work} from './yarn';
 import {t} from '../i18n';
 
-type Action='hop'|'spin'|'wiggle'|'squish';
-const actions:Action[]=['hop','spin','wiggle','squish'];
+type Action='hop';
 // 家园里的摆放位置：中间地毯最大，两边地板，墙上两层架子
 const slots:{left:number;bottom:number;w:number;h:number}[]=[
  {left:50,bottom:7,w:40,h:60},
@@ -21,11 +21,12 @@ export function HomeRoom({works,currentId,onNew,onClear}:{works:Work[];currentId
  // 刚做好的摆中间，其余按时间从新到旧
  const placed=current?[current,...works.filter(w=>w.id!==current.id)]:works;
 
+ const petId=usePetId(),pet=works.find(w=>w.id===petId)??null;
+ // 点一下玩偶：先蹦一下，再跳出家园跟着鼠标去玩
  const poke=(id:string)=>{
   if(acting[id])return;
-  const a=actions[Math.floor(Math.random()*actions.length)];
-  setActing(s=>({...s,[id]:a}));
-  timers.current.push(window.setTimeout(()=>setActing(s=>{const n={...s};delete n[id];return n}),900));
+  setActing(s=>({...s,[id]:'hop'}));
+  timers.current.push(window.setTimeout(()=>{setActing(s=>{const n={...s};delete n[id];return n});setPet(id)},450));
  };
  const save=async()=>{
   const w=placed[0],svg=svgRef.current;if(!w||!svg)return;setSaveError(false);
@@ -46,16 +47,18 @@ export function HomeRoom({works,currentId,onNew,onClear}:{works:Work[];currentId
     <h2 className="pw-title">{t('摆进家园啦！','Home sweet home!')}</h2>
    </>}
    {placed.slice(0,slots.length).map((w,i)=>{const s=slots[i];return <div key={w.id} className={`hr-slot${i===0?' is-main':''}${acting[w.id]?` is-${acting[w.id]}`:''}${i===0&&current?' is-new':''}`} style={{left:`${s.left}%`,bottom:`${s.bottom}%`,width:`${s.w}%`,height:`${s.h}%`}}>
-    <PixelPlush pattern={w.pattern} svgRef={i===0?svgRef:undefined} role="button" tabIndex={0} label={t(`${w.name}，点一下它会动`,`${w.name}. Tap to make it move`)}
-     onClick={()=>poke(w.id)} onKeyDown={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();poke(w.id)}}}/>
+    {w.id===petId?<button type="button" className="hr-away" onClick={()=>setPet(null)}>{t(`${w.name}出去玩了`,`${w.name} is out`)}<small>{t('点这里叫它回家','Tap to call it home')}</small></button>
+     :<PixelPlush pattern={w.pattern} svgRef={i===0?svgRef:undefined} role="button" tabIndex={0} label={t(`${w.name}，点一下它会跟着你出去玩`,`${w.name}. Tap to take it out to play`)}
+     onClick={()=>poke(w.id)} onKeyDown={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();poke(w.id)}}}/>}
     {i===0&&<p className="pw-nametag">{w.name} <small>No.{w.no}</small></p>}
    </div>})}
    {!placed.length&&<p className="hr-empty">{t('家里还空着，去绣一个吧。','Nothing here yet. Go stitch one.')}</p>}
   </div>
   <div className="pw-tray">
    <div className="pw-foot">
-    <p>{current?t(`「${current.pattern.name}」绣成的${current.name}摆进家园了。点家里的玩偶，它们会动。`,`${current.name}, made from the ${current.pattern.name} pattern, is home. Tap any plush to make it move.`)
-     :t(`家里有 ${works.length} 个玩偶。点它们会动。`,`${works.length} plush friends live here. Tap them.`)}</p>
+    <p>{pet?t(`${pet.name}正跟着你的鼠标到处玩，换页面也跟着。点它的空位或者左下角的按钮叫它回家。`,`${pet.name} is following your cursor around the site. Tap its empty spot or the button at the bottom left to call it home.`)
+     :current?t(`「${current.pattern.name}」绣成的${current.name}摆进家园了。点一下玩偶，它会跟着你的鼠标出去玩。`,`${current.name}, made from the ${current.pattern.name} pattern, is home. Tap a plush and it follows your cursor out to play.`)
+     :t(`家里有 ${works.length} 个玩偶。点一下，它会跟着你的鼠标出去玩。`,`${works.length} plush friends live here. Tap one to take it out to play.`)}</p>
     <div className="pw-actions">
      {placed.length>0&&<button type="button" className="pw-btn" onClick={save}>{t('保存图片','Save image')}</button>}
      <button type="button" className="pw-btn is-lilac" onClick={onNew}>{t('再绣一个','Stitch another')}</button>
