@@ -20,5 +20,6 @@
 @media(max-width:759px){.voxel-bubble{width:180px}.room-overlay{right:20px}.room-exit{top:auto;bottom:20px}}
 .home-exits{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:28px 0 48px;border-top:1px solid var(--line)}
 .home-exits .room-entry-wrap{padding:0}
+.side-quests{display:flex;flex-wrap:wrap;gap:12px}
 .home-exits .studio-archive-footer{padding:0;border-top:0;margin:0}
-@media(max-width:759px){.home-exits{flex-direction:column;align-items:stretch}.home-exits .room-entry{width:100%}}
+@media(max-width:759px){.home-exits{flex-direction:column;align-items:stretch}.side-quests{flex-direction:column}.home-exits .room-entry{width:100%}}

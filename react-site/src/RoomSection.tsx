@@ -1,11 +1,16 @@
-import {lazy,Suspense,useState} from 'react';
+import {lazy,Suspense,useState,type ReactNode} from 'react';
 import {t} from './i18n';
 import './voxel-room.css';
 
 const VoxelRoom=lazy(()=>import('./VoxelRoom'));
 
+// 主页底部的小入口：3D 房间和缝熊猫共用这一种胶囊按钮
+export function SideQuestEntry({icon,title,label,onOpen}:{icon:ReactNode;title:string;label:string;onOpen:()=>void}){
+ return <aside className="room-entry-wrap" aria-label={label}><button type="button" className="room-entry" onClick={onOpen}>{icon}<span><small>SIDE QUEST</small><strong>{title}</strong></span><i aria-hidden="true">↗</i></button></aside>;
+}
+
 export function RoomEntry({onOpen}:{onOpen:()=>void}){
- return <aside className="room-entry-wrap" aria-label={t('3D 房间入口','3D room entrance')}><button type="button" className="room-entry" onClick={onOpen}><span className="room-entry-cube" aria-hidden="true"/><span><small>SIDE QUEST</small><strong>{t('来我的 3D 房间逛逛','Walk around my 3D room')}</strong></span><i aria-hidden="true">↗</i></button></aside>;
+ return <SideQuestEntry icon={<span className="room-entry-cube" aria-hidden="true"/>} title={t('来我的 3D 房间逛逛','Walk around my 3D room')} label={t('3D 房间入口','3D room entrance')} onOpen={onOpen}/>;
 }
 
 export function RoomPage({onExit}:{onExit:()=>void}){
