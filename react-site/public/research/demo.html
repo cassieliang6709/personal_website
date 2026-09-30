@@ -36,6 +36,8 @@
   .turn b { display:inline-block; min-width:56px; color:var(--muted); font-weight:500; }
   h3 { font-size:15px; font-weight:600; margin:22px 0 8px; }
 
+  .tip { font-size:14px; color:var(--hl-ink); background:var(--hl); border-radius:8px; padding:6px 12px; margin:0 0 10px; scroll-margin-top:12px; }
+  .reply { border-color:#e6d48a; }
   .reply .s { display:block; position:relative; cursor:pointer; border-radius:6px; padding:2px 6px 2px 30px; margin:0 -6px 4px; }
   .reply .s::before { content:attr(data-n); position:absolute; left:6px; top:2px; font-size:12px; color:#b0b0b5; font-variant-numeric:tabular-nums; }
   .reply .s:hover { background:#f2f2f4; }
@@ -149,10 +151,10 @@ function participant(cond) {
   $("app").innerHTML = `
     <div class="split">
       <section class="pane" aria-label="阅读材料"><div class="pane-inner">
-        <p class="pane-label">阅读材料 · ${esc(cond.name)}</p>
+        <p class="pane-label">阅读材料 · ${esc(cond.name)}${cond.shows_conversation ? ` · <button id="jump" style="border:0;background:none;padding:0;color:var(--accent);cursor:pointer;font-size:13px">跳到最后一条回复 ↓</button>` : ""}</p>
         ${conv}
+        <p class="tip" id="reply">第 1 步：点下面你看不懂的句子，会变黄，可以点多句。再点一次取消。</p>
         <div class="card reply">${reply.map((s, i) => `<span class="s" data-i="${i}" data-n="${i + 1}">${md(s)}</span>`).join("")}</div>
-        <p class="note" style="margin-top:10px">点句子可以标成看不懂，再点一次取消。</p>
       </div></section>
       <section class="pane" id="qpane" aria-label="题目"><div class="pane-inner">
         <div id="result"></div>
@@ -177,6 +179,7 @@ function participant(cond) {
       <button class="primary" id="submit">交卷看结果</button>
     </footer>`;
 
+  if ($("jump")) $("jump").onclick = () => $("reply").scrollIntoView({ behavior: "smooth", block: "start" });
   document.querySelectorAll(".reply .s").forEach(el => el.onclick = () => {
     if (submitted) return;
     const i = +el.dataset.i;
